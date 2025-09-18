@@ -15,10 +15,10 @@ namespace EstancieroEntity
 
     public enum TipoCasillero
     {
+        Inicio,
         Provincia,
         Multa,
-        Premio,
-        Inicio
+        Premio
     }
 
     public enum MotivoVictoria
@@ -26,5 +26,11 @@ namespace EstancieroEntity
         ProvinciasCompradas,
         UnicoSaldoPositivo,
         JugadorConMayorSaldo
+    }
+
+    public enum EstadoJugador
+    {
+        Activo,
+        Eliminado
     }
 }
