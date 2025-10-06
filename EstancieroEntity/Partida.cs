@@ -4,19 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EstancieroEntity
+namespace EstancieroEntities
 {
     public class Partida
     {
-        public int NumeroDePartida { get; set; }
-        public DateTime Inicio { get; set; }
-        public DateTime? Fin { get; set; }
-        public EstadoPartida EstadoPartida { get; set; }
-        public int TurnoActual { get; set; }
-        public List<Turno> Turnos { get; set; }
-        public List<Casillero> Tablero { get; set; }
-        public string? GanadorDni { get; set; }
-        public string? MotivoVictoria { get; set; }
+        // Propiedades necesarias para la configuración del turno
+        public int NumeroTurno { get; set; }
+        public string DniJugador { get; set; }
 
+        // Constructor
+        public Partida(int numeroTurno, string dniJugador)
+        {
+            NumeroTurno = numeroTurno;
+            DniJugador = dniJugador;
+        }
     }
 }

@@ -2,9 +2,27 @@
 {
     public class Jugador
     {
-        public string Dni { get; set; }
+        // Propiedades necesarias para el Jugador
+        public string DNI { get; set; }
         public string Nombre { get; set; }
         public string Email { get; set; }
-        public EstadisticaDeJugador Estadistica { get; set; }
+
+        // Estadísticas del Jugador
+        public int PartidasJugadas { get; set; }
+        public int PartidasGanadas { get; set; }
+        public int PartidasPerdidas { get; set; }
+        public int PartidasPendientes { get; set; }
+
+        // Constructor
+        public Jugador(string dni, string nombre, string email)
+        {
+            DNI = dni;
+            Nombre = nombre;
+            Email = email;
+            PartidasJugadas = 0;
+            PartidasGanadas = 0;
+            PartidasPerdidas = 0;
+            PartidasPendientes = 0;
+        }
     }
 }
