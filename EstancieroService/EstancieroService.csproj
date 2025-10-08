@@ -6,4 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\EstancieroData\EstancieroData.csproj" />
+    <ProjectReference Include="..\EstancieroEntity\EstancieroEntity.csproj" />
+    <ProjectReference Include="..\EstancieroResponse\EstancieroResponse.csproj" />
+  </ItemGroup>
+
 </Project>
