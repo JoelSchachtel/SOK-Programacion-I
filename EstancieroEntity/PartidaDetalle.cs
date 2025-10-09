@@ -8,7 +8,6 @@ namespace EstancieroEntities
 {
     public class PartidaDetalle
     {
-        //Propiedades necesarias para gestionar la partida
         public int IdPartida { get; set; }
         public DateTime FechaInicio { get; set; }
         public DateTime? FechaFinalizacion { get; set; }
@@ -17,8 +16,6 @@ namespace EstancieroEntities
         public List<Partida> ConfiguracionesTurnos { get; set; }
         public string? DniGanador { get; set; }
         public string? MotivoVictoria { get; set; }
-
-        // Constructor
 
         public PartidaDetalle(int idPartida, DateTime fechaInicio, int estadoPartida)
         {
