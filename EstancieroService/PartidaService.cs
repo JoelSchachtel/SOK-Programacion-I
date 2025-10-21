@@ -22,12 +22,6 @@ namespace EstancieroService
         public ApiResponse<PartidaResponse> CrearPartida(CrearPartida request)
         {
             var response = new ApiResponse<PartidaResponse>();
-            if (request.Dnis.Count < 2 || request.Dnis.Count > 4)
-            {
-                response.Success = false;
-                response.Message = "La partida debe tener entre 2 y 4 jugadores";
-                return response;
-            }
             foreach (var dni in request.Dnis)
             {
                 var jugador = _jugadorData.GetAll().FirstOrDefault(j => j.DNI.ToString() == dni);

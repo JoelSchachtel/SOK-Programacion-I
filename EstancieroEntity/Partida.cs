@@ -10,8 +10,8 @@ namespace EstancieroEntity
         public DateTime FechaInicio { get; set; }
         public DateTime? FechaFin { get; set; }
         public TimeSpan? Duracion { get; set; }
-        public int Estado { get; set; }// 0-EnJuego, 1-Pausada, 2-Suspendida, 3-Finalizada
-        public int TurnoActual { get; set; } // 1 o 2 (dos jugadores)
+        public int Estado { get; set; }
+        public int TurnoActual { get; set; }
         public List<ConfiguracionTurno> ConfiguracionTurnos { get; set; }
         public List<CasilleroTablero> Tablero { get; set; }
         public List<JugadorEnPartida> Jugadores { get; set; }

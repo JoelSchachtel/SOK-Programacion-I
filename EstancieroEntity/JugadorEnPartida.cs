@@ -8,9 +8,9 @@ namespace EstancieroEntity
     {
         public int NumeroPartida { get; set; }
         public int DniJugador { get; set; }
-        public int PosicionActual { get; set; }        // 0..30
-        public double DineroDisponible { get; set; }   // 5.000.000 inicial
-        public int Estado { get; set; }                // 0-EnJuego, 1-Derrotado
+        public int PosicionActual { get; set; }       
+        public double DineroDisponible { get; set; }   
+        public int Estado { get; set; }                
         public List<Movimiento> HistorialMovimientos { get; set; } = new();
     }
 }

@@ -5,7 +5,7 @@ namespace EstancieroEntity
     {
         public int Id { get; set; }
         public DateTime Fecha { get; set; }
-        public int Tipo { get; set; }  // Tipo: 0-MovimientoDado, 1-CompraProvincia, 2-PagoAlquiler, 3-Multa, 4-Premio
+        public int Tipo { get; set; }
         public string Descripcion { get; set; } = string.Empty;
         public double Monto { get; set; }
         public int CasilleroOrigen { get; set; }

@@ -2,18 +2,15 @@
 {
     public class Jugador
     {
-        // Propiedades necesarias para el Jugador
         public string DNI { get; set; }
         public string Nombre { get; set; }
         public string Email { get; set; }
 
-        // Estadísticas del Jugador
         public int PartidasJugadas { get; set; }
         public int PartidasGanadas { get; set; }
         public int PartidasPerdidas { get; set; }
         public int PartidasPendientes { get; set; }
 
-        // Constructor
         public Jugador(string dni, string nombre, string email)
         {
             DNI = dni;

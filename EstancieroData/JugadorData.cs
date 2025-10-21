@@ -1,40 +1,39 @@
 ﻿using Newtonsoft.Json;
-using EstancieroEntity;
+using System.IO;
 
 namespace EstancieroData
 {
     public class JugadorData
     {
-        private string Carpeta { get; }
-        private string Archivo { get; }
+        private string Direccion { get; set; }
+
         public JugadorData()
         {
-            Carpeta = Path.GetFullPath(Path.Combine("../EstancieroData/Data"));
-            Archivo = Path.Combine(Carpeta, "usuarios.json");
+            Direccion = Path.Combine(Directory.GetCurrentDirectory(), "Data", "jugadores.json");
         }
-        public List<Usuario> GetAll()
+
+        public List<Jugador> GetAll()
         {
-            if (File.Exists(Archivo))
+            if (File.Exists(Direccion))
             {
-                var json = File.ReadAllText(Archivo);
-                return JsonConvert.DeserializeObject<List<Usuario>>(json) ?? new List<Usuario>();
+                string json = File.ReadAllText(Direccion);
+                var jugadores = JsonConvert.DeserializeObject<List<Jugador>>(json);
+                return jugadores ?? new List<Jugador>();
             }
-            Directory.CreateDirectory(Carpeta);
-            return new List<Usuario>();
+
+            Directory.CreateDirectory(Path.GetDirectoryName("../EstancieroData/Data"));
+            return new List<Jugador>();
         }
-        public void WriteAll(List<Usuario> usuarios)
+
+        public class Jugador
         {
-            Directory.CreateDirectory(Carpeta);
-            File.WriteAllText(Archivo, JsonConvert.SerializeObject(usuarios, Formatting.Indented));
+            public int DNI { get; set; }
+            public string Nombre { get; set; } = string.Empty;
+            public string Email { get; set; } = string.Empty;
         }
     }
-    public class Usuario
-    {
-        public int DNI { get; set; }
-        public string Nombre { get; set; } = string.Empty;
-        public string Email { get; set; } = string.Empty;
-    }
-}
+} 
+
 // Entity - DTO / Request / Response - Data - Service - API
 // Referencias actualizadas: WebAPI -> Service, Request, Response -- Service -> Data, Entity, Response -- Data -> Entity
 

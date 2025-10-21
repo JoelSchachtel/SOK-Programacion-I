@@ -3,7 +3,7 @@
     public class CasilleroTablero
     {
         public int NroCasillero { get; set; }
-        public int TipoCasillero { get; set; }// 0-inicio, 1-provincia, 2-multa, 3-premio
+        public int TipoCasillero { get; set; }
         public string Nombre { get; set; } = string.Empty;
         public double? PrecioCompra { get; set; }
         public double? PrecioAlquiler { get; set; }
