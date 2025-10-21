@@ -1,34 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace EstancieroEntities
+namespace EstancieroEntity
 {
     public class Movimiento
     {
-        //Propiedades necesarias para gestionar los movimientos del jugador en el tablero
-        public DateTime FechaMovimiento { get; set; }
-        public string TipoMovimiento { get; set; }
-        public int DesdeCasillero { get; set; }
-        public int HaciaCasillero { get; set; }
-        public string? DNIJugadorOrigen { get; set; }
-        public string? DNIJugadorDestino { get; set; }
-        public decimal MontoTransaccion { get; set; }
-        public string? Detalle { get; set; }
-
-        // Constructor
-        public Movimiento(DateTime fechaMovimiento, string tipoMovimiento, int desdeCasillero, int haciaCasillero, string? dniJugadorOrigen, string? dniJugadorDestino, decimal montoTransaccion, string? detalle)
-        {
-            FechaMovimiento = fechaMovimiento;
-            TipoMovimiento = tipoMovimiento;
-            DesdeCasillero = desdeCasillero;
-            HaciaCasillero = haciaCasillero;
-            DNIJugadorOrigen = dniJugadorOrigen;
-            DNIJugadorDestino = dniJugadorDestino;
-            MontoTransaccion = montoTransaccion;
-            Detalle = detalle;
-        }
+        public int Id { get; set; }
+        public DateTime Fecha { get; set; }
+        public int Tipo { get; set; }  // Tipo: 0-MovimientoDado, 1-CompraProvincia, 2-PagoAlquiler, 3-Multa, 4-Premio
+        public string Descripcion { get; set; } = string.Empty;
+        public double Monto { get; set; }
+        public int CasilleroOrigen { get; set; }
+        public int CasilleroDestino { get; set; }
+        public int? DniJugadorAfectado { get; set; }
     }
 }

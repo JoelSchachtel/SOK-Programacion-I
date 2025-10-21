@@ -1,19 +1,16 @@
-﻿using System;
+﻿using EstancieroEntity;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace EstancieroEntities
+namespace EstancieroEntity
 {
     public class JugadorEnPartida
     {
-        public int IdPartida { get; set; }
-        public string DniJugador { get; set; }
-        public int Posicion { get; set; }
-        public decimal SaldoDisponible { get; set; }
-        public int EstadoJugador { get; set; } // Despues queda mapeado en Response
-        public List<Movimiento> Movimientos { get; set; }
-        public List<int> ProvinciasCompradas { get; set; }
-    }   
+        public int NumeroPartida { get; set; }
+        public int DniJugador { get; set; }
+        public int PosicionActual { get; set; }        // 0..30
+        public double DineroDisponible { get; set; }   // 5.000.000 inicial
+        public int Estado { get; set; }                // 0-EnJuego, 1-Derrotado
+        public List<Movimiento> HistorialMovimientos { get; set; } = new();
+    }
 }

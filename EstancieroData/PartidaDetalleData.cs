@@ -1,47 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using EstancieroEntities;
+﻿using Newtonsoft.Json;
+using EstancieroEntity;
+
 namespace EstancieroData
 {
     public class PartidaDetalleData
     {
-        private string Carpeta { get; set; }
-        private string Archivo { get; set; }
+        private string CarpetaBase { get; }
+        private string CarpetaDetalle => Path.Combine(CarpetaBase, "partidas_detalle");
         public PartidaDetalleData()
         {
-            Carpeta = Path.GetFullPath(Path.Combine("../EstancieroData/Data"));
-            Archivo = Path.Combine(Carpeta, "partidas_detalle.json");
+            CarpetaBase = Path.GetFullPath(Path.Combine("../EstancieroData/Data"));
+            Directory.CreateDirectory(CarpetaBase);
+            Directory.CreateDirectory(CarpetaDetalle);
         }
-        public List<PartidaDetalle> GetAll()
+        private string FileFor(int nro) => Path.Combine(CarpetaDetalle, $"{nro}.json");
+        public List<JugadorEnPartida> GetDetalle(int nroPartida)
         {
-            if (File.Exists(Archivo))
+            string f = FileFor(nroPartida);
+            if (File.Exists(f))
             {
-                string json = File.ReadAllText(Archivo);
-                var partidasDetalle = JsonConvert.DeserializeObject<List<PartidaDetalle>>(json);
-                return partidasDetalle ?? new List<PartidaDetalle>();
+                var json = File.ReadAllText(f);
+                return JsonConvert.DeserializeObject<List<JugadorEnPartida>>(json) ?? new List<JugadorEnPartida>();
             }
-            Directory.CreateDirectory(Carpeta);
-            return new List<PartidaDetalle>();
+            return new List<JugadorEnPartida>();
         }
-        public PartidaDetalle WritePartidaDetalle(PartidaDetalle partidaDetalle)
+        public void WriteDetalle(int nroPartida, List<JugadorEnPartida> detalle)
         {
-            List<PartidaDetalle> partidasDetalle = GetAll();
-            int index = partidasDetalle.FindIndex(pd => pd.IdPartida == partidaDetalle.IdPartida);
-            if (index >= 0)
-            {
-                partidasDetalle[index] = partidaDetalle;
-            }
-            else
-            {
-                partidasDetalle.Add(partidaDetalle);
-            }
-            string json = JsonConvert.SerializeObject(partidasDetalle, Formatting.Indented);
-            File.WriteAllText(Archivo, json);
-            return partidaDetalle;
+            Directory.CreateDirectory(CarpetaDetalle);
+            File.WriteAllText(FileFor(nroPartida), JsonConvert.SerializeObject(detalle, Formatting.Indented));
         }
     }
 }

@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace EstancieroRequest
 {
-    public class LanzarDado(int NroPartida)
+    public class LanzarDado
     {
+        public int NumeroPartida { get; set; }
+        public int DniJugador { get; set; } // opcional; se valida contra el turno
     }
 }

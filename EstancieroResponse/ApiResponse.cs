@@ -3,13 +3,13 @@
     public class ApiResponse<T>
     {
         public bool Success { get; set; }
-        public List<string>? Message { get; set; }
+        public string? Message { get; set; }
         public T? Data { get; set; }
 
         public ApiResponse()
         {
             Success = false;
-            Message = new List<string>();
+            Message = string.Empty;
             Data = default(T);
         }
     }

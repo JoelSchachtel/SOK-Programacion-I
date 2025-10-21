@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace EstancieroResponse
 {
-
-    public record LanzarDadoResponse(int Valor, int NuevaPosicion, decimal nuevoSaldo);
-
+    public class LanzarDadoResponse
+    {
+        public int DniJugador { get; set; }
+        public int ValorDado { get; set; }
+        public int PosicionNueva { get; set; }
+        public double DineroDisponible { get; set; }
+    }
 }

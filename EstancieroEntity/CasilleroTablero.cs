@@ -1,32 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace EstancieroEntities
+﻿namespace EstancieroEntity
 {
     public class CasilleroTablero
     {
         public int NroCasillero { get; set; }
-        public int TipoCasillero { get; set; } // Despues queda mapeado en Response
-        public string Nombre { get; set; }
-        public decimal? PrecioCompra { get; set; }
-        public decimal? PrecioAlquiler { get; set; }
-        public decimal? MontoSancion { get; set; }
+        public int TipoCasillero { get; set; }// 0-inicio, 1-provincia, 2-multa, 3-premio
+        public string Nombre { get; set; } = string.Empty;
+        public double? PrecioCompra { get; set; }
+        public double? PrecioAlquiler { get; set; }
+        public double? Monto { get; set; }
+        public double? MontoSancion { get; set; }
         public string? DniPropietario { get; set; }
-
-        //Constructor
-        
-        public CasilleroTablero(int nroCasillero, int tipoCasillero, string nombre, decimal? precioCompra, decimal? precioAlquiler, decimal? montoSancion, string? dniPropietario)
-        {
-            NroCasillero = nroCasillero;
-            TipoCasillero = tipoCasillero;
-            Nombre = nombre;
-            PrecioCompra = precioCompra;
-            PrecioAlquiler = precioAlquiler;
-            MontoSancion = montoSancion;
-            DniPropietario = dniPropietario;
-        }
     }
 }

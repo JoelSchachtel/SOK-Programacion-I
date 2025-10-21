@@ -1,10 +1,9 @@
-﻿namespace EstancieroRequest
+﻿using System.Security.Cryptography.X509Certificates;
+
+namespace EstancieroRequest
 {
     public class CrearPartida
     {
-        public CrearPartida(List<string> DNIs)
-        {
-
-        }
+        public List<string> Dnis { get; set; }
     }
 }

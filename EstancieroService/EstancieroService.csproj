@@ -9,6 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\EstancieroData\EstancieroData.csproj" />
     <ProjectReference Include="..\EstancieroEntity\EstancieroEntity.csproj" />
+    <ProjectReference Include="..\EstancieroRequest\EstancieroRequest.csproj" />
     <ProjectReference Include="..\EstancieroResponse\EstancieroResponse.csproj" />
   </ItemGroup>
 

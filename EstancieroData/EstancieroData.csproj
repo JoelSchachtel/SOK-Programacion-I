@@ -11,7 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EstancieroEntity\EstancieroEntities.csproj" />
     <ProjectReference Include="..\EstancieroEntity\EstancieroEntity.csproj" />
   </ItemGroup>
 

@@ -1,41 +1,38 @@
 ﻿using Newtonsoft.Json;
 using EstancieroEntity;
+
 namespace EstancieroData
 {
     public class JugadorData
     {
-        private string Carpeta { get; set; }
-        private string Archivo { get; set; }
+        private string Carpeta { get; }
+        private string Archivo { get; }
         public JugadorData()
         {
             Carpeta = Path.GetFullPath(Path.Combine("../EstancieroData/Data"));
-            Archivo = Path.Combine(Carpeta, "jugadores.json");
+            Archivo = Path.Combine(Carpeta, "usuarios.json");
         }
-        public List<Jugador> GetAll()
+        public List<Usuario> GetAll()
         {
             if (File.Exists(Archivo))
             {
-                string json = File.ReadAllText(Archivo);
-                var Jugadores = JsonConvert.DeserializeObject<List<Jugador>>(json);
-                return Jugadores ?? new List<Jugador>();
+                var json = File.ReadAllText(Archivo);
+                return JsonConvert.DeserializeObject<List<Usuario>>(json) ?? new List<Usuario>();
             }
             Directory.CreateDirectory(Carpeta);
-            return new List<Jugador>();
+            return new List<Usuario>();
         }
-        public Jugador WriteJugador(Jugador jugador)
+        public void WriteAll(List<Usuario> usuarios)
         {
-            List<Jugador> jugadores = GetAll();
-            int index = jugadores.FindIndex(j => j.DNI == jugador.DNI);
-            if (index >= 0)
-            {
-                jugadores[index] = jugador;
-            }
-            else
-            {
-                jugadores.Add(jugador);
-            }
-            return jugador;
+            Directory.CreateDirectory(Carpeta);
+            File.WriteAllText(Archivo, JsonConvert.SerializeObject(usuarios, Formatting.Indented));
         }
+    }
+    public class Usuario
+    {
+        public int DNI { get; set; }
+        public string Nombre { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
     }
 }
 // Entity - DTO / Request / Response - Data - Service - API

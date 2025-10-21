@@ -8,10 +8,9 @@ namespace EstancieroResponse
 {
     public class JugadorEnPartidaResponse
     {
-        public string Dni { get; set; }
-        public int Posicion { get; set; }
-        public decimal Saldo { get; set; }
+        public int DniJugador { get; set; }
+        public int PosicionActual { get; set; }
+        public double DineroDisponible { get; set; }
         public EstadoJugador Estado { get; set; }
-        public int ProvinciasCompradas { get; set; }
     }
 }
