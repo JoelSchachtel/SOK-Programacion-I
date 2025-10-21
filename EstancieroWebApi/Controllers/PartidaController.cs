@@ -6,25 +6,40 @@ using EstancieroResponse;
 namespace EstancieroWebAppi.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class PartidaController : ControllerBase
     {
-        private readonly PartidaService _svc = new();
+        private readonly PartidaService _svc;
 
-        [HttpPost("crear")]
+        [HttpPost("/CrearPartida")]
         public IActionResult CrearPartida([FromBody] CrearPartida request)
         {
             var resultado = _svc.CrearPartida(request);
-            if (!resultado.Success) return BadRequest(resultado);
-            return Ok(resultado);
+            if (resultado.Success)
+            {
+                return CreatedAtAction(nameof(CrearPartida), new { numeroPartida = resultado.Data.NumeroPartida }, resultado);
+            }
+            return BadRequest(resultado);
         }
 
-        [HttpPost("lanzarDado")]
-        public IActionResult LanzarDado([FromBody] LanzarDado request)
+        [HttpGet("/BuscarPartida/{id}")]
+        public IActionResult BuscarPartidaId([FromRoute] int id)
         {
-            var resultado = _svc.LanzarDado(request);
-            if (!resultado.Success) return BadRequest(resultado);
-            return Ok(resultado);
+            var request = new BuscarPartida { NumeroPartida = id };
+            var resultado = _svc.BuscarPartidaId(request);
+            if (resultado.Success)
+            {
+                return CreatedAtAction(nameof(BuscarPartidaId), new { numeroPartida = resultado.Data.NumeroPartida }, resultado);
+            }
+            return BadRequest(resultado);
         }
+
+        //[HttpPost("lanzarDado")]
+        //public IActionResult LanzarDado([FromBody] LanzarDado request)
+        //{
+        //    var resultado = _svc.LanzarDado(request);
+        //    if (!resultado.Success) return BadRequest(resultado);
+        //    return Ok(resultado);
+        //}
     }
 }

@@ -2,7 +2,7 @@
 {
     public class PartidaResponse
     {
-        public int NroPartida { get; set; }
+        public int NumeroPartida { get; set; }
         public EstadoPartida Estado { get; set; }
         public int TurnoActual { get; set; }
         public int? DniJugadorTurno { get; set; }

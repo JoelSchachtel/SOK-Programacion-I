@@ -19,6 +19,8 @@ namespace EstancieroService
             _jugadorData = new JugadorData();
             _tableroData = new TableroData();
         }
+
+        //Métodos de Gestión de Partida
         public ApiResponse<PartidaResponse> CrearPartida(CrearPartida request)
         {
             var response = new ApiResponse<PartidaResponse>();
@@ -44,15 +46,6 @@ namespace EstancieroService
                 Jugadores = new List<JugadorEnPartida>()
             };
 
-            for (int i = 0; i < request.Dnis.Count; i++)
-            {
-                partida.ConfiguracionTurnos.Add(new ConfiguracionTurno
-                {
-                    NumeroTurno = i + 1,
-                    DniJugador = int.Parse(request.Dnis[i])
-                });
-            }
-
             foreach (var dni in request.Dnis)
             {
                 partida.Jugadores.Add(new JugadorEnPartida
@@ -73,6 +66,41 @@ namespace EstancieroService
 
             return response;
         }
+        public ApiResponse<PartidaResponse> BuscarPartidaId(BuscarPartida request)
+        {
+            var response = new ApiResponse<PartidaResponse>();
+            var partida = _partidaData.GetAll().FirstOrDefault(p => p.NumeroPartida == request.NumeroPartida);
+            if (partida == null)
+            {
+                response.Success = false;
+                response.Message = "Partida no encontrada";
+                return response;
+            }
+            response.Success = true;
+            response.Message = "Partida encontrada exitosamente";
+            response.Data = MapearPartida(partida);
+            return response;
+        }
+        public ApiResponse<PartidaResponse> PausarPartida(CambiarEstadoPartida request)
+        {
+            var response = new ApiResponse<PartidaResponse>();
+            var partida = _partidaData.GetAll().FirstOrDefault(p => p.NumeroPartida == request.NumeroPartida);
+            if (partida == null)
+            {
+                response.Success = false;
+                response.Message = "Partida no encontrada";
+                return response;
+            }
+            if (partida == )
+
+            //Falta configurar función de lanzar el dado
+        }
+        
+
+
+
+
+
         public ApiResponse<LanzarDadoResponse> LanzarDado(LanzarDado request)
         {
             var response = new ApiResponse<LanzarDadoResponse>();
@@ -168,7 +196,7 @@ namespace EstancieroService
         {
             return new PartidaResponse
             {
-                NroPartida = partida.NumeroPartida,
+                NumeroPartida = partida.NumeroPartida,
                 Estado = (EstadoPartida)partida.Estado,
                 TurnoActual = partida.TurnoActual,
                 DniJugadorTurno = partida.ConfiguracionTurnos.FirstOrDefault(t => t.NumeroTurno == partida.TurnoActual)?.DniJugador,
