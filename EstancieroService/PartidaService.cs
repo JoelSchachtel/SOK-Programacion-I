@@ -3,6 +3,7 @@ using EstancieroEntity;
 using EstancieroRequest;
 using EstancieroResponse;
 using Newtonsoft.Json;
+using System.Transactions;
 
 namespace EstancieroService
 {
@@ -20,7 +21,9 @@ namespace EstancieroService
             _tableroData = new TableroData();
         }
 
-        //Métodos de Gestión de Partida
+        // ==============================
+        // 🔹 GESTIÓN DE LA PARTIDA
+        // ==============================
         public ApiResponse<PartidaResponse> CrearPartida(CrearPartida request)
         {
             var response = new ApiResponse<PartidaResponse>();
@@ -91,20 +94,23 @@ namespace EstancieroService
                 response.Message = "Partida no encontrada";
                 return response;
             }
-            if (partida == )
+            if (partida.Estado == (int)EstadoPartida.EnJuego)
+            {
+                partida.Estado = (int)EstadoPartida.Pausada;
+                _partidaData.WritePartida(partida);
+                response.Success = true;
+                response.Message = "Partida pausada exitosamente";
+                return response;
+            }
+            response.Success = false;
+            response.Message = "No se puede pausar la partida en su estado actual";
+            return response;
 
-            //Falta configurar función de lanzar el dado
+            //Falta configurar función de suspender el dado
         }
-        
-
-
-
-
-
-        public ApiResponse<LanzarDadoResponse> LanzarDado(LanzarDado request)
+        public ApiResponse<PartidaResponse> ReanudarPartida(CambiarEstadoPartida request)
         {
-            var response = new ApiResponse<LanzarDadoResponse>();
-
+            var response = new ApiResponse<PartidaResponse>();
             var partida = _partidaData.GetAll().FirstOrDefault(p => p.NumeroPartida == request.NumeroPartida);
             if (partida == null)
             {
@@ -112,77 +118,98 @@ namespace EstancieroService
                 response.Message = "Partida no encontrada";
                 return response;
             }
-
-            var jugador = partida.Jugadores.FirstOrDefault(j => j.DniJugador == request.DniJugador);
-            if (jugador == null)
+            if (partida.Estado == (int)EstadoPartida.Pausada)
             {
-                response.Success = false;
-                response.Message = "Jugador no encontrado en la partida";
+                partida.Estado = (int)EstadoPartida.EnJuego;
+                _partidaData.WritePartida(partida);
+                response.Success = true;
+                response.Message = "Partida reanudada exitosamente";
+                response.Data = MapearPartida(partida);
                 return response;
             }
+            response.Success = false;
+            response.Message = "No se puede reanudar la partida en su estado actual";
+            return response;
 
-            Random random = new Random();
-            int valorDado = random.Next(1, 7);
-
-            int nuevaPosicion = jugador.PosicionActual + valorDado;
-            if (nuevaPosicion > partida.Tablero.Count)
+            //Falta función para habilitar el dado
+            //Falta verificar si esta suspsendida, no se puede reanudar
+        }
+        public ApiResponse<PartidaResponse> SuspenderPartida(CambiarEstadoPartida request)
+        {
+            var response = new ApiResponse<PartidaResponse>();
+            var partida = _partidaData.GetAll().FirstOrDefault(p => p.NumeroPartida == request.NumeroPartida);
+            if (partida == null)
             {
-                nuevaPosicion = nuevaPosicion - partida.Tablero.Count;
-                jugador.DineroDisponible += 100000;
+                response.Success = false;
+                response.Message = "Partida no encontrada";
+                return response;
             }
-            jugador.PosicionActual = nuevaPosicion;
-            var casillero = partida.Tablero.FirstOrDefault(c => c.NroCasillero == nuevaPosicion);
-            if (casillero != null)
-            {
-                AplicarReglasCasillero(partida, jugador, casillero);
-            }
+            partida.Estado = (int)EstadoPartida.Suspendida;
             _partidaData.WritePartida(partida);
             response.Success = true;
-            response.Message = "Jugador movido exitosamente";
-            response.Data = new LanzarDadoResponse
-            {
-                DniJugador = request.DniJugador,
-                ValorDado = valorDado,
-                PosicionNueva = nuevaPosicion,
-                DineroDisponible = jugador.DineroDisponible
-            };
+            response.Message = "Partida suspendida exitosamente";
+            response.Data = MapearPartida(partida);
             return response;
+
+            //Falta función para deshabilitar funciones de la partida
+            // Falta función para devolver ganadores hasta el momento
         }
-        private void AplicarReglasCasillero(Partida partida, JugadorEnPartida jugador, CasilleroTablero casillero)
+        public ApiResponse<TurnoActualResponse> ConsultarTurnoActual(int nroPartida)
         {
-            switch (casillero.TipoCasillero)
+            ApiResponse<TurnoActualResponse> response = new ApiResponse<TurnoActualResponse>();
+            Partida partida = _partidaData.GetAll().FirstOrDefault(p => p.NumeroPartida == nroPartida);
+            if (partida == null)
             {
-                case 1:
-                    if (casillero.DniPropietario == null)
-                    {
-                        if (jugador.DineroDisponible >= (double)casillero.PrecioCompra)
-                        {
-                            jugador.DineroDisponible -= (double)casillero.PrecioCompra;
-                            casillero.DniPropietario = jugador.DniJugador.ToString();
-                        }
-                    }
-                    else if (casillero.DniPropietario != jugador.DniJugador.ToString())
-                    {
-                        double alquiler = (double)casillero.PrecioAlquiler;
-                        if (jugador.DineroDisponible >= alquiler)
-                        {
-                            jugador.DineroDisponible -= alquiler;
-                            var propietario = partida.Jugadores.FirstOrDefault(j => j.DniJugador.ToString() == casillero.DniPropietario);
-                            if (propietario != null)
-                            {
-                                propietario.DineroDisponible += alquiler;
-                            }
-                        }
-                    }
-                    break;
-                case 2:
-                    jugador.DineroDisponible -= (double)casillero.MontoSancion;
-                    break;
-                case 3:
-                    jugador.DineroDisponible += (double)casillero.MontoSancion;
-                    break;
+                response.Success = false;
+                response.Message = "Partida no encontrada";
+                return response;
+            }
+            if (partida.TurnoActual == 1)
+            {
+                response.Success = true;
+                response.Message = "Es el primer turno de la partida";
+                response.Data = new TurnoActualResponse { NumeroPartida = partida.NumeroPartida , DniJugador = };
             }
         }
+        public ApiResponse<LanzarDadoResponse> LanzarDado(LanzarDado request) { return null; }
+        public ApiResponse<PartidaResponse> TerminarTurno(TerminarTurnoRequest request) { return null; }
+        public ApiResponse<AccionResponse> ComprarPropiedad(ComprarPropiedadRequest request) { return null; }
+        public ApiResponse<AccionResponse> PagarAlquiler(PagarAlquilerRequest request) { return null; }
+        public ApiResponse<AccionResponse> AplicarCasillero(AplicarCasilleroRequest request) { return null; }
+        public ApiResponse<List<JugadorEnPartidaResponse>> GetJugadores(int nroPartida) { return null; }
+        public ApiResponse<List<CasilleroTableroResponse>> GetTablero(int nroPartida) { return null; }
+        public ApiResponse<List<MovimientoResponse>> GetHistorialMovimientos(int nroPartida) { return null; }
+        public ApiResponse<List<MovimientoResponse>> GetHistorialJugador(int nroPartida, int dniJugador) { return null; }
+        private void Acreditar(JugadorEnPartida jugador, double monto, string concepto) { }
+        private void Debitar(JugadorEnPartida jugador, double monto, string concepto) { }
+        private void Transferir(JugadorEnPartida origen, JugadorEnPartida destino, double monto, string concepto) { }
+        private void MarcarDerrotadoSiSaldoNoPositivo(JugadorEnPartida jugador) { }
+        private void EvaluarGanadorYFinalizarSiCorresponde(Partida partida) { }
+        private bool CalcularGanadorPor12Provincias(Partida partida) { return false; }
+        private bool CalcularGanadorPorUnicoSaldoPositivo(Partida partida) { return false; }
+        private bool CalcularGanadorPorMayorSaldo(Partida partida) { return false; }
+        private void RegistrarMovimiento(Partida partida, Movimiento movimiento, IEnumerable<Transaccion> transacciones = null) { }
+        private List<CasilleroTablero> CargarTableroDesdeConfig() { return null; }
+        private CasilleroTablero ObtenerCasilleroActual(Partida partida, int dniJugador) { return null; }
+        private void AplicarReglaDeCasillero(Partida partida, JugadorEnPartida jugador, CasilleroTablero casillero) { }
+        private void ValidarPartidaEnJuego(Partida partida) { }
+        private void ValidarEsTurnoDelJugador(Partida partida, int dniJugador) { }
+        private void ValidarAccionHabilitada(Partida partida, JugadorEnPartida jugador) { }
+        private void ValidarCompraUnicaPorTurno(Partida partida, int dniJugador) { }
+        private void RotarTurno(Partida partida) { }
+        private void ActualizarStatsUsuarios(Partida partida) { }
+
+
+
+
+
+
+
+
+
+
+
+
         private int GenerarNumeroPartida()
         {
             var partidas = _partidaData.GetAll();

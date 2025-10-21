@@ -11,7 +11,6 @@ namespace EstancieroData
         {
             Direccion = Path.Combine(Directory.GetCurrentDirectory(), "Data", "jugadores.json");
         }
-
         public List<Jugador> GetAll()
         {
             if (File.Exists(Direccion))
