@@ -262,8 +262,59 @@ namespace EstancieroService
                 return response;
             }
         }
-        public ApiResponse<PartidaResponse> TerminarTurno(TerminarTurnoRequest request) { return null; }
-        //public ApiResponse<AccionResponse> ComprarPropiedad(ComprarPropiedadRequest request) { return null; }
+        public ApiResponse<PartidaResponse> TerminarTurno(TerminarTurnoRequest request)
+        {
+            var response = new ApiResponse<PartidaResponse>();
+            var partida = _partidaData.GetAll().FirstOrDefault(p => p.NumeroPartida == request.NumeroPartida);
+
+            if (partida == null)
+            {
+                response.Success = false;
+                response.Message = "Partida no encontrada";
+                return response;
+            }
+
+            if (partida.Estado != (int)EstadoPartida.EnJuego)
+            {
+                response.Success = false;
+                response.Message = "La partida no está en juego";
+                return response;
+            }
+
+            var jugador = partida.Jugadores.FirstOrDefault(j => j.DniJugador.ToString() == request.DniJugador);
+            if (jugador == null)
+            {
+                response.Success = false;
+                response.Message = "Jugador no encontrado en la partida";
+                return response;
+            }
+
+            ValidarEsTurnoDelJugador(partida, jugador.DniJugador);
+
+            // Avanzar al siguiente turno
+            partida.TurnoActual++;
+            if (partida.TurnoActual > partida.Jugadores.Count)
+            {
+                partida.TurnoActual = 1;
+            }
+
+            EvaluarGanadorYFinalizarSiCorresponde(partida);
+
+            _partidaData.WritePartida(partida);
+
+            response.Success = true;
+            response.Message = "Turno finalizado exitosamente";
+            response.Data = MapearPartida(partida);
+
+            return response;
+        }
+
+        public ApiResponse<AccionResponse> ComprarPropiedad(ComprarPropiedadRequest request) { 
+        
+        //Accion para comprar una propiedad, según el numero de tablero en el que cae
+
+        
+        }
         //public ApiResponse<AccionResponse> PagarAlquiler(PagarAlquilerRequest request) { return null; }
         //public ApiResponse<AccionResponse> AplicarCasillero(AplicarCasilleroRequest request) { return null; }
         //public ApiResponse<List<JugadorEnPartidaResponse>> GetJugadores(int nroPartida) 
@@ -273,7 +324,7 @@ namespace EstancieroService
         //}
         //public ApiResponse<List<CasilleroTableroResponse>> GetTablero(int nroPartida) 
         //{ 
-            
+
         //    return null; 
         //}
         private void Acreditar(JugadorEnPartida jugador, double monto, string concepto) { }
@@ -327,7 +378,15 @@ namespace EstancieroService
                 }
             }
         }
-        private void EvaluarGanadorYFinalizarSiCorresponde(Partida partida) { }
+        private void EvaluarGanadorYFinalizarSiCorresponde(Partida partida)
+        {
+
+            if (CalcularGanadorPor12Provincias(partida))
+                return;
+
+            if (CalcularGanadorPorUnicoSaldoPositivo(partida))
+                return;
+        }
         private bool CalcularGanadorPor12Provincias(Partida partida)
         {
             foreach (var jugador in partida.Jugadores)
@@ -399,14 +458,23 @@ namespace EstancieroService
             }
             return false;
         }
-        private List<CasilleroTablero> CargarTableroDesdeConfig() { return null; }
-        private CasilleroTablero ObtenerCasilleroActual(Partida partida, int dniJugador) { return null; }
+        private CasilleroTablero ObtenerCasilleroActual(Partida partida, int dniJugador)
+        {
+            var jugador = partida.Jugadores.FirstOrDefault(j => j.DniJugador == dniJugador);
+            if (jugador == null)
+            {
+                return null;
+            }
+            int posicionActual = jugador.PosicionActual;
+            if (posicionActual < 0 || posicionActual >= partida.Tablero.Count)
+            {
+                return null;
+            }
+            return partida.Tablero[posicionActual];
+        }
         private void AplicarReglaDeCasillero(Partida partida, JugadorEnPartida jugador, CasilleroTablero casillero) { }
         private void ValidarPartidaEnJuego(Partida partida) { }
         private void ValidarEsTurnoDelJugador(Partida partida, int dniJugador) { }
-        private void ValidarAccionHabilitada(Partida partida, JugadorEnPartida jugador) { }
-        private void ValidarCompraUnicaPorTurno(Partida partida, int dniJugador) { }
-        private void RotarTurno(Partida partida) { }
         private void ActualizarStatsUsuarios(Partida partida) { }
         private int GenerarNumeroPartida()
         {
