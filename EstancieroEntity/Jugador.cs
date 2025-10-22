@@ -16,6 +16,7 @@
             DNI = dni;
             Nombre = nombre;
             Email = email;
+            HistorialMovimientos = new List<Movimiento>();
             PartidasJugadas = 0;
             PartidasGanadas = 0;
             PartidasPerdidas = 0;
