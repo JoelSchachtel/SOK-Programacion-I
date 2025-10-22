@@ -9,6 +9,6 @@ namespace EstancieroEntity
     public class ConfiguracionTurno
     {
         public int NumeroTurno { get; set; }
-        public string DniJugador { get; set; }
+        public int DniJugador { get; set; }
     }
 }
