@@ -193,10 +193,9 @@ namespace EstancieroService
 
             return response;
         }
-        public ApiResponse<LanzarDadoResponse> LanzarDado(LanzarDado request) {
-
+        public ApiResponse<LanzarDadoResponse> LanzarDado(LanzarDado request)
+        {
             var response = new ApiResponse<LanzarDadoResponse>();
-
             try
             {
                 var partida = _partidaData.GetAll().FirstOrDefault(p => p.NumeroPartida == request.NumeroPartida);
@@ -225,12 +224,12 @@ namespace EstancieroService
                 int posOrigen = jugador.PosicionActual;
                 int posDestino = (jugador.PosicionActual + valorDado);
                 jugador.PosicionActual = posDestino % partida.Tablero.Count;
-                jugador.HistorialMovimientos??= new List<Movimiento>();
+                jugador.HistorialMovimientos ??= new List<Movimiento>();
                 var movimiento = new Movimiento
                 {
-                   Id = (jugador.HistorialMovimientos.Count > 0) ? jugador.HistorialMovimientos.Max(m => m.Id) + 1 : 1,
-                   Fecha = DateTime.Now,
-                   Descripcion = $"Lanzó el dado y avanzó de {posOrigen} a {jugador.PosicionActual}",
+                    Id = (jugador.HistorialMovimientos.Count > 0) ? jugador.HistorialMovimientos.Max(m => m.Id) + 1 : 1,
+                    Fecha = DateTime.Now,
+                    Descripcion = $"Lanzó el dado y avanzó de {posOrigen} a {jugador.PosicionActual}",
                 };
                 jugador.HistorialMovimientos.Add(movimiento);
 
@@ -240,6 +239,20 @@ namespace EstancieroService
                 {
                     AplicarReglaDeCasillero(partida, jugador, casillero);
                 }
+
+                if (casillero.DniPropietario != null && casillero.DniPropietario != jugador.DniJugador.ToString())
+                {
+                    var propietario = partida.Jugadores.FirstOrDefault(j => j.DniJugador.ToString() == casillero.DniPropietario);
+                    if (propietario != null && casillero.PrecioAlquiler.HasValue)
+                    {
+                        double montoAlquiler = casillero.PrecioAlquiler.Value;
+                        Debitar(jugador, montoAlquiler, $"Pago de alquiler a {propietario.DniJugador} por {casillero.Nombre}");
+                        Acreditar(propietario, montoAlquiler, $"Recibió alquiler de {jugador.DniJugador} por {casillero.Nombre}");
+                        MarcarDerrotadoSiSaldoNoPositivo(jugador, partida);
+                    }
+                }
+
+                MarcarDerrotadoSiSaldoNoPositivo(jugador, partida);
 
                 _partidaDetalleData.EscribirDetalle(partida.NumeroPartida, jugador.DniJugador, movimiento);
                 _partidaData.WritePartida(partida);
@@ -308,13 +321,68 @@ namespace EstancieroService
 
             return response;
         }
+        public ApiResponse<AccionResponse> ComprarPropiedad(ComprarPropiedadRequest request)
+        {
+            var response = new ApiResponse<AccionResponse>();
+            var partida = _partidaData.GetAll().FirstOrDefault(p => p.NumeroPartida == request.PropiedadId);
 
-        public ApiResponse<AccionResponse> ComprarPropiedad(ComprarPropiedadRequest request) { 
-        
-        //Accion para comprar una propiedad, según el numero de tablero en el que cae
+            if (partida == null)
+            {
+                response.Success = false;
+                response.Message = "Partida no encontrada";
+                return response;
+            }
+            var jugador = partida.Jugadores.FirstOrDefault(j => j.DniJugador == request.DniJugador);
+            if (jugador == null)
+            {
+                response.Success = false;
+                response.Message = "Jugador no encontrado en la partida";
+                return response;
+            }
+            var casillero = partida.Tablero.FirstOrDefault(c => c.NroCasillero == jugador.PosicionActual);
+            if (casillero == null || casillero.PrecioCompra == null)
+            {
+                response.Success = false;
+                response.Message = "No hay propiedad para comprar en este casillero";
+                return response;
+            }
+            if (casillero.DniPropietario != null)
+            {
+                response.Success = false;
+                response.Message = "La propiedad ya tiene un propietario";
+                return response;
+            }
+            if (jugador.DineroDisponible < casillero.PrecioCompra)
+            {
+                response.Success = false;
+                response.Message = "El jugador no tiene suficiente dinero para comprar esta propiedad";
+                return response;
+            }
+            jugador.DineroDisponible -= casillero.PrecioCompra.Value;
+            casillero.DniPropietario = jugador.DniJugador.ToString();
+            jugador.HistorialMovimientos.Add(new Movimiento
+            {
+                Fecha = DateTime.Now,
+                Tipo = 1, // Tipo personalizado para compra de propiedad
+                Descripcion = $"Compró la propiedad {casillero.Nombre}",
+                Monto = -casillero.PrecioCompra,
+                CasilleroOrigen = jugador.PosicionActual,
+                CasilleroDestino = jugador.PosicionActual,
+                DniJugadorAfectado = jugador.DniJugador
+            });
+            _partidaData.WritePartida(partida);
+            response.Success = true;
+            response.Message = "Propiedad comprada exitosamente";
+            response.Data = new AccionResponse
+            {
+                Id = casillero.NroCasillero,
+                Nombre = casillero.Nombre,
+                Descripcion = "Compra realizada con éxito"
+            };
 
-        
+            return response;
         }
+
         //public ApiResponse<AccionResponse> PagarAlquiler(PagarAlquilerRequest request) { return null; }
         //public ApiResponse<AccionResponse> AplicarCasillero(AplicarCasilleroRequest request) { return null; }
         //public ApiResponse<List<JugadorEnPartidaResponse>> GetJugadores(int nroPartida) 
@@ -475,7 +543,10 @@ namespace EstancieroService
         private void AplicarReglaDeCasillero(Partida partida, JugadorEnPartida jugador, CasilleroTablero casillero) { }
         private void ValidarPartidaEnJuego(Partida partida) { }
         private void ValidarEsTurnoDelJugador(Partida partida, int dniJugador) { }
-        private void ActualizarStatsUsuarios(Partida partida) { }
+        private void ActualizarStatsUsuarios(Partida partida) { 
+        
+
+        }
         private int GenerarNumeroPartida()
         {
             var partidas = _partidaData.GetAll();
