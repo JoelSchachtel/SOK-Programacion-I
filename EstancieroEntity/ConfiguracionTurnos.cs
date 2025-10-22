@@ -1,4 +1,4 @@
-﻿using System;
+﻿11using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +9,6 @@ namespace EstancieroEntity
     public class ConfiguracionTurno
     {
         public int NumeroTurno { get; set; }
-        public int DniJugador { get; set; }
+        public string DniJugador { get; set; }
     }
 }

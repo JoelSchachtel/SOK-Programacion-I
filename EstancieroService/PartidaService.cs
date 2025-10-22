@@ -21,9 +21,6 @@ namespace EstancieroService
             _tableroData = new TableroData();
         }
 
-        // ==============================
-        // 🔹 GESTIÓN DE LA PARTIDA
-        // ==============================
         public ApiResponse<PartidaResponse> CrearPartida(CrearPartida request)
         {
             var response = new ApiResponse<PartidaResponse>();
@@ -164,11 +161,19 @@ namespace EstancieroService
                 response.Message = "Partida no encontrada";
                 return response;
             }
-            if (partida.TurnoActual == 1)
+            if (partida.TurnoActual%2 == 0)
             {
                 response.Success = true;
-                response.Message = "Es el primer turno de la partida";
-                response.Data = new TurnoActualResponse { NumeroPartida = partida.NumeroPartida , DniJugador = };
+                response.Message = "Le toca al jugador 2";
+                response.Data = new TurnoActualResponse { NumeroPartida = partida.NumeroPartida , DniJugador = partida.ConfiguracionTurnos.FirstOrDefault(x=>x.NumeroTurno == partida.TurnoActual)?.DniJugador};
+                return response;
+            }
+            else
+            {
+                response.Success = true;
+                response.Message = "Le toca al jugador 1";
+                response.Data = new TurnoActualResponse { NumeroPartida = partida.NumeroPartida, DniJugador = dnijugador1};
+                return response;
             }
         }
         public ApiResponse<LanzarDadoResponse> LanzarDado(LanzarDado request) { return null; }
