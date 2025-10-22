@@ -20,7 +20,6 @@ namespace EstancieroService
             _jugadorData = new JugadorData();
             _tableroData = new TableroData();
         }
-
         public ApiResponse<PartidaResponse> CrearPartida(CrearPartida request)
         {
             var response = new ApiResponse<PartidaResponse>();
@@ -263,21 +262,20 @@ namespace EstancieroService
                 return response;
             }
         }
-
         public ApiResponse<PartidaResponse> TerminarTurno(TerminarTurnoRequest request) { return null; }
-        public ApiResponse<AccionResponse> ComprarPropiedad(ComprarPropiedadRequest request) { return null; }
-        public ApiResponse<AccionResponse> PagarAlquiler(PagarAlquilerRequest request) { return null; }
-        public ApiResponse<AccionResponse> AplicarCasillero(AplicarCasilleroRequest request) { return null; }
-        public ApiResponse<List<JugadorEnPartidaResponse>> GetJugadores(int nroPartida) 
-        {
+        //public ApiResponse<AccionResponse> ComprarPropiedad(ComprarPropiedadRequest request) { return null; }
+        //public ApiResponse<AccionResponse> PagarAlquiler(PagarAlquilerRequest request) { return null; }
+        //public ApiResponse<AccionResponse> AplicarCasillero(AplicarCasilleroRequest request) { return null; }
+        //public ApiResponse<List<JugadorEnPartidaResponse>> GetJugadores(int nroPartida) 
+        //{
 
-            return null; 
-        }
-        public ApiResponse<List<CasilleroTableroResponse>> GetTablero(int nroPartida) 
-        { 
+        //    return null; 
+        //}
+        //public ApiResponse<List<CasilleroTableroResponse>> GetTablero(int nroPartida) 
+        //{ 
             
-            return null; 
-        }
+        //    return null; 
+        //}
         private void Acreditar(JugadorEnPartida jugador, double monto, string concepto) { }
         private void Debitar(JugadorEnPartida jugador, double monto, string concepto) { }
         private void MarcarDerrotadoSiSaldoNoPositivo(JugadorEnPartida jugador, Partida partida)
@@ -330,7 +328,6 @@ namespace EstancieroService
             }
         }
         private void EvaluarGanadorYFinalizarSiCorresponde(Partida partida) { }
-
         private bool CalcularGanadorPor12Provincias(Partida partida)
         {
             foreach (var jugador in partida.Jugadores)
@@ -402,10 +399,6 @@ namespace EstancieroService
             }
             return false;
         }
-        private void RegistrarMovimiento(Partida partida, Movimiento movimiento, IEnumerable<Transaccion> transacciones = null) { }
-
-      
-
         private List<CasilleroTablero> CargarTableroDesdeConfig() { return null; }
         private CasilleroTablero ObtenerCasilleroActual(Partida partida, int dniJugador) { return null; }
         private void AplicarReglaDeCasillero(Partida partida, JugadorEnPartida jugador, CasilleroTablero casillero) { }
@@ -415,18 +408,6 @@ namespace EstancieroService
         private void ValidarCompraUnicaPorTurno(Partida partida, int dniJugador) { }
         private void RotarTurno(Partida partida) { }
         private void ActualizarStatsUsuarios(Partida partida) { }
-
-
-
-
-
-
-
-
-
-
-
-
         private int GenerarNumeroPartida()
         {
             var partidas = _partidaData.GetAll();

@@ -46,9 +46,8 @@ namespace EstancieroService
                 };
                 var jugadorAgregadoData = JugadorData.EscribirJugador(nuevoJugadorData);
 
-                // Map JugadorData.Jugador back to Jugador (EstancieroEntity)
-
-                var jugadorAgregado = new Jugador(jugadorAgregadoData.DNI.ToString(),jugadorAgregadoData.Nombre,jugadorAgregadoData.Email);
+                
+                var jugadorAgregado = new Jugador(jugadorAgregadoData.DNI,jugadorAgregadoData.Nombre,jugadorAgregadoData.Email);
 
                 response.Success = true;
                 response.Message = "Jugador agregado correctamente.";
