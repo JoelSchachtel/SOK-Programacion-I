@@ -17,7 +17,6 @@ namespace EstancieroService
             var response = new ApiResponse<Jugador>();
             try
             {
-                // Validación básica
                 if (jugador == null)
                 {
                     response.Success = false;
@@ -31,7 +30,6 @@ namespace EstancieroService
                     return response;
                 }
 
-                // Verificar si el jugador ya existe por DNI
                 var jugadores = JugadorData.GetAll();
                 if (jugadores.Any(j => j.DNI == jugador.DNI))
                 {
@@ -40,7 +38,6 @@ namespace EstancieroService
                     return response;
                 }
 
-                // Agregar jugador
                 var nuevoJugadorData = new JugadorData.Jugador()
                 {
                     DNI = jugador.DNI,
@@ -51,7 +48,7 @@ namespace EstancieroService
 
                 // Map JugadorData.Jugador back to Jugador (EstancieroEntity)
 
-                var jugadorAgregado = new Jugador(jugadorAgregadoData.DNI,jugadorAgregadoData.Nombre,jugadorAgregadoData.Email);
+                var jugadorAgregado = new Jugador(jugadorAgregadoData.DNI.ToString(),jugadorAgregadoData.Nombre,jugadorAgregadoData.Email);
 
                 response.Success = true;
                 response.Message = "Jugador agregado correctamente.";

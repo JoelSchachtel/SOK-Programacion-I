@@ -5,29 +5,50 @@ namespace EstancieroData
 {
     public class PartidaDetalleData
     {
-        private string CarpetaBase { get; }
-        private string CarpetaDetalle => Path.Combine(CarpetaBase, "partidas_detalle");
+       private string Direccion { get; set; }
         public PartidaDetalleData()
         {
-            CarpetaBase = Path.GetFullPath(Path.Combine("../EstancieroData/Data"));
-            Directory.CreateDirectory(CarpetaBase);
-            Directory.CreateDirectory(CarpetaDetalle);
+            Direccion = Path.Combine(Directory.GetCurrentDirectory(), "Data", "partidas_detalle.json");
         }
-        private string FileFor(int nro) => Path.Combine(CarpetaDetalle, $"{nro}.json");
-        public List<JugadorEnPartida> GetDetalle(int nroPartida)
+        public List<Partida> GetAll()
         {
-            string f = FileFor(nroPartida);
-            if (File.Exists(f))
+            if (File.Exists(Direccion))
             {
-                var json = File.ReadAllText(f);
-                return JsonConvert.DeserializeObject<List<JugadorEnPartida>>(json) ?? new List<JugadorEnPartida>();
+                string json = File.ReadAllText(Direccion);
+                var partidas = JsonConvert.DeserializeObject<List<Partida>>(json);
+                return partidas ?? new List<Partida>();
             }
-            return new List<JugadorEnPartida>();
+            Directory.CreateDirectory(Path.GetDirectoryName("../EstancieroData/Data"));
+            return new List<Partida>();
         }
-        public void WriteDetalle(int nroPartida, List<JugadorEnPartida> detalle)
+
+        public void EscribirDetalle(List<Partida> partidas)
         {
-            Directory.CreateDirectory(CarpetaDetalle);
-            File.WriteAllText(FileFor(nroPartida), JsonConvert.SerializeObject(detalle, Formatting.Indented));
+            string json = JsonConvert.SerializeObject(partidas, Formatting.Indented);
+            File.WriteAllText(Direccion, json);
+        }
+
+        public void EscribirDetalle(int numeroPartida, int dniJugador, Movimiento movimiento)
+        {
+            var partidas = GetAll();
+            if (partidas == null || partidas.Count == 0) return;
+
+            var partida = partidas.FirstOrDefault(p => p.NumeroPartida == numeroPartida);
+            if (partida == null) return;
+
+            var jugador = partida.Jugadores?.FirstOrDefault(j => j.DniJugador == dniJugador);
+            if (jugador == null) return;
+
+            jugador.HistorialMovimientos ??= new List<Movimiento>();
+            if (movimiento.Id == 0)
+            {
+                movimiento.Id = (jugador.HistorialMovimientos.Count > 0)
+                    ? jugador.HistorialMovimientos.Max(m => m.Id) + 1
+                    : 1;
+            }
+            jugador.HistorialMovimientos.Add(movimiento);
+
+            EscribirDetalle(partidas);
         }
     }
 }
