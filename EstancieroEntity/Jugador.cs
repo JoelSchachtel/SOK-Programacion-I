@@ -2,7 +2,7 @@
 {
     public class Jugador
     {
-        public string DNI { get; set; }
+        public int DNI { get; set; }
         public string Nombre { get; set; }
         public string Email { get; set; }
 
@@ -11,7 +11,7 @@
         public int PartidasPerdidas { get; set; }
         public int PartidasPendientes { get; set; }
 
-        public Jugador(string dni, string nombre, string email)
+        public Jugador(int dni, string nombre, string email)
         {
             DNI = dni;
             Nombre = nombre;

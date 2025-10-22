@@ -15,6 +15,7 @@ namespace EstancieroEntity
         public List<ConfiguracionTurno> ConfiguracionTurnos { get; set; }
         public List<CasilleroTablero> Tablero { get; set; }
         public List<JugadorEnPartida> Jugadores { get; set; }
+
         public int? DniGanador { get; set; }
         public string? MotivoVictoria { get; set; }
 

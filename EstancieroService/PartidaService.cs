@@ -161,20 +161,38 @@ namespace EstancieroService
                 response.Message = "Partida no encontrada";
                 return response;
             }
-            if (partida.TurnoActual%2 == 0)
+            int? dniTurnoConfig = partida.ConfiguracionTurnos?.FirstOrDefault(t => t.NumeroTurno == partida.TurnoActual)?.DniJugador;
+
+            int jugadorIndex;
+            int dniTurno;
+
+            if (dniTurnoConfig.HasValue)
             {
-                response.Success = true;
-                response.Message = "Le toca al jugador 2";
-                response.Data = new TurnoActualResponse { NumeroPartida = partida.NumeroPartida , DniJugador = partida.ConfiguracionTurnos.FirstOrDefault(x=>x.NumeroTurno == partida.TurnoActual)?.DniJugador};
-                return response;
+                dniTurno = dniTurnoConfig.Value;
+                jugadorIndex = partida.Jugadores.FindIndex(j => j.DniJugador == dniTurno);
+                if (jugadorIndex < 0)
+                {
+                    // Fallback si el DNI configurado no está en la lista
+                    jugadorIndex = 0;
+                    dniTurno = partida.Jugadores[jugadorIndex].DniJugador;
+                }
             }
             else
             {
-                response.Success = true;
-                response.Message = "Le toca al jugador 1";
-                response.Data = new TurnoActualResponse { NumeroPartida = partida.NumeroPartida, DniJugador = dnijugador1};
-                return response;
+                // Alternancia por paridad: 1->jugador 1 (índice 0), 2->jugador 2 (índice 1), etc.
+                jugadorIndex = (partida.TurnoActual % 2 == 1) ? 0 : 1;
+                dniTurno = partida.Jugadores[jugadorIndex].DniJugador;
             }
+
+            response.Success = true;
+            response.Message = $"Le toca al jugador {jugadorIndex + 1}";
+            response.Data = new TurnoActualResponse
+            {
+                NumeroPartida = partida.NumeroPartida,
+                DniJugador = dniTurno.ToString()
+            };
+
+            return response;
         }
         public ApiResponse<LanzarDadoResponse> LanzarDado(LanzarDado request) { return null; }
         public ApiResponse<PartidaResponse> TerminarTurno(TerminarTurnoRequest request) { return null; }
