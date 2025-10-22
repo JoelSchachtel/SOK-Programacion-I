@@ -181,18 +181,139 @@ namespace EstancieroService
         public ApiResponse<AccionResponse> ComprarPropiedad(ComprarPropiedadRequest request) { return null; }
         public ApiResponse<AccionResponse> PagarAlquiler(PagarAlquilerRequest request) { return null; }
         public ApiResponse<AccionResponse> AplicarCasillero(AplicarCasilleroRequest request) { return null; }
-        public ApiResponse<List<JugadorEnPartidaResponse>> GetJugadores(int nroPartida) { return null; }
-        public ApiResponse<List<CasilleroTableroResponse>> GetTablero(int nroPartida) { return null; }
-        public ApiResponse<List<MovimientoResponse>> GetHistorialMovimientos(int nroPartida) { return null; }
-        public ApiResponse<List<MovimientoResponse>> GetHistorialJugador(int nroPartida, int dniJugador) { return null; }
+        public ApiResponse<List<JugadorEnPartidaResponse>> GetJugadores(int nroPartida) 
+        {
+
+            return null; 
+        }
+        public ApiResponse<List<CasilleroTableroResponse>> GetTablero(int nroPartida) 
+        { 
+            
+            return null; 
+        }
         private void Acreditar(JugadorEnPartida jugador, double monto, string concepto) { }
         private void Debitar(JugadorEnPartida jugador, double monto, string concepto) { }
-        private void Transferir(JugadorEnPartida origen, JugadorEnPartida destino, double monto, string concepto) { }
-        private void MarcarDerrotadoSiSaldoNoPositivo(JugadorEnPartida jugador) { }
+        private void MarcarDerrotadoSiSaldoNoPositivo(JugadorEnPartida jugador, Partida partida)
+        {
+            
+            if (jugador.DineroDisponible <= 0 && jugador.Estado != (int)EstadoJugador.Derrotado)
+            {
+              
+                var propiedades = partida.Tablero
+                    .Where(c => c.DniPropietario != null && int.TryParse(c.DniPropietario, out var dni) && dni == jugador.DniJugador)
+                    .ToList();
+
+                if (propiedades.Any())
+                {
+                    // aca es donde les decia si quieren hacer lo de que venda las propiedades automaticamente o las elija o no se como quieren hacer
+                    foreach (var propiedad in propiedades.OrderBy(p => p.PrecioCompra ?? 0))
+                    {
+                        if (jugador.DineroDisponible > 0) break;
+                        double montoVenta = propiedad.PrecioCompra ?? 0;
+                        jugador.DineroDisponible += montoVenta;
+                        propiedad.DniPropietario = null; 
+                        jugador.HistorialMovimientos.Add(new Movimiento
+                        {
+                            Fecha = DateTime.Now,
+                            Tipo = 100, // Tipo personalizado para venta de propiedad
+                            Descripcion = $"Venta automática de propiedad {propiedad.Nombre}",
+                            Monto = montoVenta,
+                            CasilleroOrigen = propiedad.NroCasillero,
+                            CasilleroDestino = propiedad.NroCasillero,
+                            DniJugadorAfectado = jugador.DniJugador
+                        });
+                    }
+                }
+
+               
+                if (jugador.DineroDisponible <= 0)
+                {
+                    jugador.Estado = (int)EstadoJugador.Derrotado;
+                    jugador.HistorialMovimientos.Add(new Movimiento
+                    {
+                        Fecha = DateTime.Now,
+                        Tipo = 99, 
+                        Descripcion = "Jugador derrotado por saldo no positivo",
+                        Monto = jugador.DineroDisponible,
+                        CasilleroOrigen = jugador.PosicionActual,
+                        CasilleroDestino = jugador.PosicionActual,
+                        DniJugadorAfectado = jugador.DniJugador
+                    });
+                }
+            }
+        }
         private void EvaluarGanadorYFinalizarSiCorresponde(Partida partida) { }
-        private bool CalcularGanadorPor12Provincias(Partida partida) { return false; }
-        private bool CalcularGanadorPorUnicoSaldoPositivo(Partida partida) { return false; }
-        private bool CalcularGanadorPorMayorSaldo(Partida partida) { return false; }
+        private bool CalcularGanadorPor12Provincias(Partida partida)
+        {
+            foreach (var jugador in partida.Jugadores)
+            {
+                if (jugador.Estado != (int)EstadoJugador.Derrotado)
+                {
+                    int cantidadPropiedades = partida.Tablero
+                        .Count(c => c.DniPropietario != null
+                                    && int.TryParse(c.DniPropietario, out var dniProp)
+                                    && dniProp == jugador.DniJugador);
+
+                    if (cantidadPropiedades >= 12)
+                    {
+                        partida.DniGanador = jugador.DniJugador;
+                        partida.MotivoVictoria = "Ganó por obtener 12 provincias";
+                        partida.Estado = (int)EstadoPartida.Finalizada;
+                        partida.FechaFin = DateTime.Now;
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+        private bool CalcularGanadorPorUnicoSaldoPositivo(Partida partida)
+        {
+     
+            var jugadoresActivos = partida.Jugadores
+                .Where(j => j.Estado != (int)EstadoJugador.Derrotado && j.DineroDisponible > 0)
+                .ToList();
+
+            if (jugadoresActivos.Count == 1)
+            {
+                var ganador = jugadoresActivos.First();
+                partida.DniGanador = ganador.DniJugador;
+                partida.MotivoVictoria = "Ganó por ser el único jugador con saldo positivo";
+                partida.Estado = (int)EstadoPartida.Finalizada;
+                partida.FechaFin = DateTime.Now;
+                return true;
+            }
+            return false;
+        }
+        private bool CalcularGanadorPorMayorSaldo(Partida partida)
+        {
+           
+            var jugadoresConSaldo = partida.Jugadores
+                .Where(j => j.Estado != (int)EstadoJugador.Derrotado)
+                .Select(j => new{Jugador = j, SaldoTotal = j.DineroDisponible + partida.Tablero.Where(c => c.DniPropietario != null
+                                        && int.TryParse(c.DniPropietario, out var dniProp)
+                                        && dniProp == j.DniJugador
+                                        && c.PrecioCompra.HasValue).Sum(c => c.PrecioCompra.Value)}).ToList();
+
+            
+            if (!jugadoresConSaldo.Any())
+                return false;
+
+            
+            var maxSaldo = jugadoresConSaldo.Max(j => j.SaldoTotal);
+            var ganadores = jugadoresConSaldo.Where(j => j.SaldoTotal == maxSaldo).ToList();
+
+            
+            if (ganadores.Count == 1)
+            {
+                var ganador = ganadores.First().Jugador;
+                partida.DniGanador = ganador.DniJugador;
+                partida.MotivoVictoria = "Ganó por tener el mayor saldo sumando dinero y propiedades";
+                partida.Estado = (int)EstadoPartida.Finalizada;
+                partida.FechaFin = DateTime.Now;
+                return true;
+            }
+            return false;
+        }
         private void RegistrarMovimiento(Partida partida, Movimiento movimiento, IEnumerable<Transaccion> transacciones = null) { }
         private List<CasilleroTablero> CargarTableroDesdeConfig() { return null; }
         private CasilleroTablero ObtenerCasilleroActual(Partida partida, int dniJugador) { return null; }
