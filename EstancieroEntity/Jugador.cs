@@ -5,7 +5,6 @@
         public int DNI { get; set; }
         public string Nombre { get; set; }
         public string Email { get; set; }
-
         public int PartidasJugadas { get; set; }
         public int PartidasGanadas { get; set; }
         public int PartidasPerdidas { get; set; }
@@ -16,7 +15,6 @@
             DNI = dni;
             Nombre = nombre;
             Email = email;
-            HistorialMovimientos = new List<Movimiento>();
             PartidasJugadas = 0;
             PartidasGanadas = 0;
             PartidasPerdidas = 0;

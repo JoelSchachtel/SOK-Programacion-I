@@ -17,41 +17,36 @@ namespace EstancieroService
             var response = new ApiResponse<Jugador>();
             try
             {
-                // Validación básica
                 if (jugador == null)
                 {
                     response.Success = false;
                     response.Message = "El jugador no puede ser nulo.";
                     return response;
                 }
-                if (string.IsNullOrWhiteSpace(jugador.DNI) || string.IsNullOrWhiteSpace(jugador.Nombre) || string.IsNullOrWhiteSpace(jugador.Email))
+                if (string.IsNullOrWhiteSpace(jugador.DNI.ToString()) || string.IsNullOrWhiteSpace(jugador.Nombre) || string.IsNullOrWhiteSpace(jugador.Email))
                 {
                     response.Success = false;
                     response.Message = "DNI, Nombre y Email son obligatorios.";
                     return response;
                 }
 
-                // Verificar si el jugador ya existe por DNI
                 var jugadores = JugadorData.GetAll();
-                if (jugadores.Any(j => j.DNI.ToString() == jugador.DNI))
+                if (jugadores.Any(j => j.DNI == jugador.DNI))
                 {
                     response.Success = false;
                     response.Message = "Ya existe un jugador con ese DNI.";
                     return response;
                 }
 
-                // Agregar jugador
                 var nuevoJugadorData = new JugadorData.Jugador()
                 {
-                    DNI = int.Parse(jugador.DNI),
+                    DNI = jugador.DNI,
                     Nombre = jugador.Nombre,
                     Email = jugador.Email
                 };
                 var jugadorAgregadoData = JugadorData.EscribirJugador(nuevoJugadorData);
 
-                // Map JugadorData.Jugador back to Jugador (EstancieroEntity)
-
-                var jugadorAgregado = new Jugador(jugadorAgregadoData.DNI.ToString(),jugadorAgregadoData.Nombre,jugadorAgregadoData.Email);
+                var jugadorAgregado = new Jugador(jugadorAgregadoData.DNI,jugadorAgregadoData.Nombre,jugadorAgregadoData.Email);
 
                 response.Success = true;
                 response.Message = "Jugador agregado correctamente.";
@@ -71,7 +66,7 @@ namespace EstancieroService
             {
                 var jugadoresData = JugadorData.GetAll();
                 var jugadores = jugadoresData
-                    .Select(jd => new Jugador(jd.DNI.ToString(), jd.Nombre, jd.Email))
+                    .Select(jd => new Jugador(jd.DNI, jd.Nombre, jd.Email))
                     .ToList();
 
                 response.Success = true;
@@ -109,7 +104,7 @@ namespace EstancieroService
                     return response;
                 }
 
-                var jugador = new Jugador(jugadorData.DNI.ToString(), jugadorData.Nombre, jugadorData.Email);
+                var jugador = new Jugador(jugadorData.DNI, jugadorData.Nombre, jugadorData.Email);
                 response.Success = true;
                 response.Message = "Jugador obtenido correctamente.";
                 response.Data = jugador;

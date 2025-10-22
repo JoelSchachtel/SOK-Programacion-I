@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EstancieroEntity
+namespace EstancieroRequest
 {
-    public class ConfiguracionTurno
+    public class TerminarTurnoRequest
     {
-        public int NumeroTurno { get; set; }
+        public int NumeroPartida { get; set; }
         public string DniJugador { get; set; }
     }
 }

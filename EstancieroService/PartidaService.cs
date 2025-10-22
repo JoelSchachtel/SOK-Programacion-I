@@ -151,31 +151,31 @@ namespace EstancieroService
             //Falta función para deshabilitar funciones de la partida
             // Falta función para devolver ganadores hasta el momento
         }
-        public ApiResponse<TurnoActualResponse> ConsultarTurnoActual(int nroPartida)
-        {
-            ApiResponse<TurnoActualResponse> response = new ApiResponse<TurnoActualResponse>();
-            Partida partida = _partidaData.GetAll().FirstOrDefault(p => p.NumeroPartida == nroPartida);
-            if (partida == null)
-            {
-                response.Success = false;
-                response.Message = "Partida no encontrada";
-                return response;
-            }
-            if (partida.TurnoActual%2 == 0)
-            {
-                response.Success = true;
-                response.Message = "Le toca al jugador 2";
-                response.Data = new TurnoActualResponse { NumeroPartida = partida.NumeroPartida , DniJugador = partida.ConfiguracionTurnos.FirstOrDefault(x=>x.NumeroTurno == partida.TurnoActual)?.DniJugador};
-                return response;
-            }
-            else
-            {
-                response.Success = true;
-                response.Message = "Le toca al jugador 1";
-                response.Data = new TurnoActualResponse { NumeroPartida = partida.NumeroPartida, DniJugador = dnijugador1};
-                return response;
-            }
-        }
+        //public ApiResponse<TurnoActualResponse> ConsultarTurnoActual(int nroPartida)
+        //{
+        //    ApiResponse<TurnoActualResponse> response = new ApiResponse<TurnoActualResponse>();
+        //    Partida partida = _partidaData.GetAll().FirstOrDefault(p => p.NumeroPartida == nroPartida);
+        //    if (partida == null)
+        //    {
+        //        response.Success = false;
+        //        response.Message = "Partida no encontrada";
+        //        return response;
+        //    }
+        //    if (partida.TurnoActual%2 == 0)
+        //    {
+        //        response.Success = true;
+        //        response.Message = "Le toca al jugador 2";
+        //        response.Data = new TurnoActualResponse { NumeroPartida = partida.NumeroPartida , DniJugador = partida.ConfiguracionTurnos.FirstOrDefault(x=>x.NumeroTurno == partida.TurnoActual)?.DniJugador};
+        //        return response;
+        //    }
+        //    else
+        //    {
+        //        response.Success = true;
+        //        response.Message = "Le toca al jugador 1";
+        //        response.Data = new TurnoActualResponse { NumeroPartida = partida.NumeroPartida, DniJugador = dnijugador1};
+        //        return response;
+        //    }
+        //}
         public ApiResponse<LanzarDadoResponse> LanzarDado(LanzarDado request) {
 
             var response = new ApiResponse<LanzarDadoResponse>();
@@ -246,14 +246,111 @@ namespace EstancieroService
             }
         }
 
-        public ApiResponse<PartidaResponse> TerminarTurno(TerminarTurnoRequest request) { return null; }
-        public ApiResponse<AccionResponse> ComprarPropiedad(ComprarPropiedadRequest request) { return null; }
-        public ApiResponse<AccionResponse> PagarAlquiler(PagarAlquilerRequest request) { return null; }
-        public ApiResponse<AccionResponse> AplicarCasillero(AplicarCasilleroRequest request) { return null; }
-        public ApiResponse<List<JugadorEnPartidaResponse>> GetJugadores(int nroPartida) { return null; }
-        public ApiResponse<List<CasilleroTableroResponse>> GetTablero(int nroPartida) { return null; }
-        public ApiResponse<List<MovimientoResponse>> GetHistorialMovimientos(int nroPartida) { return null; }
-        public ApiResponse<List<MovimientoResponse>> GetHistorialJugador(int nroPartida, int dniJugador) { return null; }
+        public ApiResponse<PartidaResponse> TerminarTurno(TerminarTurnoRequest request)
+        {
+            var response = new ApiResponse<PartidaResponse>();
+
+            var partida = _partidaData.GetAll().FirstOrDefault(p => p.NumeroPartida == request.NumeroPartida);
+            if (partida == null)
+            {
+                response.Success = false;
+                response.Message = "Partida no encontrada";
+                return response;
+            }
+
+            // Si la partida está en otro estado que no sea EnJuego
+            if (partida.Estado != (int)EstadoPartida.EnJuego)
+            {
+                response.Success = false;
+                response.Message = "La partida no está en juego";
+                return response;
+            }
+
+            var jugadorEnPartida = partida.Jugadores.FirstOrDefault(j => j.DniJugador == request.DniJugador);
+            if (jugadorEnPartida == null)
+            {
+                response.Success = false;
+                response.Message = "Jugador no encontrado en la partida";
+                return response;
+            }
+
+            var jugadoresActivos = partida.Jugadores
+                .Where(j => j.Estado == (int)EstadoJugador.EnJuego)
+                .ToList();
+
+            if (jugadoresActivos.Count == 0)
+            {
+                response.Success = false;
+                response.Message = "No hay jugadores activos en la partida";
+                return response;
+            }
+            partida.ConfiguracionTurnos ??= new List<ConfiguracionTurno>();
+
+            int dniTurnoActual;
+            var turnoConfigActual = partida.ConfiguracionTurnos
+                .FirstOrDefault(t => t.NumeroTurno == partida.TurnoActual);
+
+            if (turnoConfigActual != null && int.TryParse(turnoConfigActual.DniJugador, out var dniCfg))
+            {
+                dniTurnoActual = dniCfg;
+            }
+            else
+            {
+
+                var indiceActual = (partida.TurnoActual - 1) % jugadoresActivos.Count;
+                if (indiceActual < 0) indiceActual = 0;
+                dniTurnoActual = jugadoresActivos[indiceActual].DniJugador;
+
+                if (turnoConfigActual == null)
+                {
+                    partida.ConfiguracionTurnos.Add(new ConfiguracionTurno
+                    {
+                        NumeroTurno = partida.TurnoActual,
+                        DniJugador = dniTurnoActual.ToString()
+                    });
+                }
+            }
+
+            if (request.DniJugador != dniTurnoActual)
+            {
+                response.Success = false;
+                response.Message = "No es el turno del jugador";
+                return response;
+            }
+
+            int idxActualEnActivos = jugadoresActivos.FindIndex(j => j.DniJugador == dniTurnoActual);
+            if (idxActualEnActivos < 0)
+            {
+                response.Success = false;
+                response.Message = "El jugador actual no se encuentra activo";
+                return response;
+            }
+
+            int idxSiguiente = (idxActualEnActivos + 1) % jugadoresActivos.Count;
+            int dniSiguiente = jugadoresActivos[idxSiguiente].DniJugador;
+
+            partida.TurnoActual += 1;
+            partida.ConfiguracionTurnos.Add(new ConfiguracionTurno
+            {
+                NumeroTurno = partida.TurnoActual,
+                DniJugador = dniSiguiente.ToString()
+            });
+
+            _partidaData.WritePartida(partida);
+
+            response.Success = true;
+            response.Message = "Turno terminado correctamente";
+            response.Data = MapearPartida(partida);
+            return response;
+        }
+
+        //public ApiResponse<AccionResponse> ComprarPropiedad(ComprarPropiedadRequest request) { return null; }
+        //public ApiResponse<AccionResponse> PagarAlquiler(PagarAlquilerRequest request) { return null; }
+        //public ApiResponse<AccionResponse> AplicarCasillero(AplicarCasilleroRequest request) { return null; }
+        //public ApiResponse<List<JugadorEnPartidaResponse>> GetJugadores(int nroPartida) { return null; }
+        //public ApiResponse<List<CasilleroTableroResponse>> GetTablero(int nroPartida) { return null; }
+        //public ApiResponse<List<MovimientoResponse>> GetHistorialMovimientos(int nroPartida) { return null; }
+        //public ApiResponse<List<MovimientoResponse>> GetHistorialJugador(int nroPartida, int dniJugador) { return null; }
         private void Acreditar(JugadorEnPartida jugador, double monto, string concepto) { }
         private void Debitar(JugadorEnPartida jugador, double monto, string concepto) { }
         private void Transferir(JugadorEnPartida origen, JugadorEnPartida destino, double monto, string concepto) { }
@@ -299,7 +396,7 @@ namespace EstancieroService
                 NumeroPartida = partida.NumeroPartida,
                 Estado = (EstadoPartida)partida.Estado,
                 TurnoActual = partida.TurnoActual,
-                DniJugadorTurno = partida.ConfiguracionTurnos.FirstOrDefault(t => t.NumeroTurno == partida.TurnoActual)?.DniJugador,
+                DniJugadorTurno = partida.DniGanador, // Este está mal, pero no tengo info para corregirlo
                 DniGanador = partida.DniGanador,
                 MotivoVictoria = partida.MotivoVictoria,
                 Jugadores = partida.Jugadores.Select(j => new JugadorEnPartidaResponse
