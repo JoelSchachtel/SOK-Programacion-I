@@ -31,6 +31,14 @@ namespace EstancieroData
             public string Nombre { get; set; } = string.Empty;
             public string Email { get; set; } = string.Empty;
         }
+        public Jugador EscribirJugador (Jugador jugador)
+        {
+            var jugadores = GetAll();
+            jugadores.Add(jugador);
+            string json = JsonConvert.SerializeObject(jugadores, Formatting.Indented);
+            File.WriteAllText(Direccion, json);
+            return jugador;
+        }
     }
 } 
 
