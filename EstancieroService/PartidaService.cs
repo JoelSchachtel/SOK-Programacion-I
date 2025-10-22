@@ -176,7 +176,76 @@ namespace EstancieroService
                 return response;
             }
         }
-        public ApiResponse<LanzarDadoResponse> LanzarDado(LanzarDado request) { return null; }
+        public ApiResponse<LanzarDadoResponse> LanzarDado(LanzarDado request) {
+
+            var response = new ApiResponse<LanzarDadoResponse>();
+
+            try
+            {
+                var partida = _partidaData.GetAll().FirstOrDefault(p => p.NumeroPartida == request.NumeroPartida);
+                if (partida == null)
+                {
+                    response.Success = false;
+                    response.Message = "Partida no encontrada";
+                    return response;
+                }
+                if (partida.Estado != (int)EstadoPartida.EnJuego)
+                {
+                    response.Success = false;
+                    response.Message = "La partida no está en juego";
+                    return response;
+                }
+                ValidarPartidaEnJuego(partida);
+                var jugador = partida.Jugadores.FirstOrDefault(j => j.DniJugador == request.DniJugador);
+                if (jugador == null)
+                {
+                    response.Success = false;
+                    response.Message = "Jugador no encontrado en la partida";
+                    return response;
+                }
+                ValidarEsTurnoDelJugador(partida, request.DniJugador);
+                int valorDado = Random.Shared.Next(1, 7);
+                int posOrigen = jugador.PosicionActual;
+                int posDestino = (jugador.PosicionActual + valorDado);
+                jugador.PosicionActual = posDestino % partida.Tablero.Count;
+                jugador.HistorialMovimientos??= new List<Movimiento>();
+                var movimiento = new Movimiento
+                {
+                   Id = (jugador.HistorialMovimientos.Count > 0) ? jugador.HistorialMovimientos.Max(m => m.Id) + 1 : 1,
+                   Fecha = DateTime.Now,
+                   Descripcion = $"Lanzó el dado y avanzó de {posOrigen} a {jugador.PosicionActual}",
+                };
+                jugador.HistorialMovimientos.Add(movimiento);
+
+                var casillero = ObtenerCasilleroActual(partida, request.DniJugador) ?? partida.Tablero[jugador.PosicionActual];
+
+                if (casillero != null)
+                {
+                    AplicarReglaDeCasillero(partida, jugador, casillero);
+                }
+
+                _partidaDetalleData.EscribirDetalle(partida.NumeroPartida, jugador.DniJugador, movimiento);
+                _partidaData.WritePartida(partida);
+
+                response.Success = true;
+                response.Message = "Dado lanzado exitosamente";
+                response.Data = new LanzarDadoResponse
+                {
+                    DniJugador = jugador.DniJugador,
+                    ValorDado = valorDado,
+                    PosicionNueva = jugador.PosicionActual,
+                    DineroDisponible = jugador.DineroDisponible
+                };
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.Success = false;
+                response.Message = $"Error al lanzar el dado: {ex.Message}";
+                return response;
+            }
+        }
+
         public ApiResponse<PartidaResponse> TerminarTurno(TerminarTurnoRequest request) { return null; }
         public ApiResponse<AccionResponse> ComprarPropiedad(ComprarPropiedadRequest request) { return null; }
         public ApiResponse<AccionResponse> PagarAlquiler(PagarAlquilerRequest request) { return null; }
@@ -193,7 +262,6 @@ namespace EstancieroService
         private bool CalcularGanadorPor12Provincias(Partida partida) { return false; }
         private bool CalcularGanadorPorUnicoSaldoPositivo(Partida partida) { return false; }
         private bool CalcularGanadorPorMayorSaldo(Partida partida) { return false; }
-        private void RegistrarMovimiento(Partida partida, Movimiento movimiento, IEnumerable<Transaccion> transacciones = null) { }
         private List<CasilleroTablero> CargarTableroDesdeConfig() { return null; }
         private CasilleroTablero ObtenerCasilleroActual(Partida partida, int dniJugador) { return null; }
         private void AplicarReglaDeCasillero(Partida partida, JugadorEnPartida jugador, CasilleroTablero casillero) { }
