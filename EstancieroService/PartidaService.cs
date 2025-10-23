@@ -237,7 +237,7 @@ namespace EstancieroService
 
                 if (casillero != null)
                 {
-                    AplicarReglaDeCasillero(partida, jugador, casillero);
+                    CasilleroEspecial(partida, jugador, casillero);
                 }
 
                 if (casillero.DniPropietario != null && casillero.DniPropietario != jugador.DniJugador.ToString())
@@ -382,6 +382,7 @@ namespace EstancieroService
 
             return response;
         }
+<<<<<<< HEAD
 
         //public ApiResponse<AccionResponse> AplicarCasillero(AplicarCasilleroRequest request) { return null; }
         //public ApiResponse<List<JugadorEnPartidaResponse>> GetJugadores(int nroPartida) 
@@ -391,6 +392,36 @@ namespace EstancieroService
         //}
         private void Acreditar(JugadorEnPartida jugador, double monto, string concepto) { }
         private void Debitar(JugadorEnPartida jugador, double monto, string concepto) { }
+=======
+        private void Acreditar(JugadorEnPartida jugador, double monto, string concepto) 
+        {
+            jugador.DineroDisponible += monto;
+            jugador.HistorialMovimientos.Add(new Movimiento
+            {
+                Fecha = DateTime.Now,
+                Tipo = 1, // Tipo personalizado para crédito
+                Descripcion = concepto,
+                Monto = monto,
+                CasilleroOrigen = jugador.PosicionActual,
+                CasilleroDestino = jugador.PosicionActual,
+                DniJugadorAfectado = jugador.DniJugador
+            });
+        }
+        private void Debitar(JugadorEnPartida jugador, double monto, string concepto)
+        {
+            jugador.DineroDisponible -= monto;
+            jugador.HistorialMovimientos.Add(new Movimiento
+            {
+                Fecha = DateTime.Now,
+                Tipo = 2, // Tipo personalizado para débito
+                Descripcion = concepto,
+                Monto = -monto,
+                CasilleroOrigen = jugador.PosicionActual,
+                CasilleroDestino = jugador.PosicionActual,
+                DniJugadorAfectado = jugador.DniJugador
+            });
+        }
+>>>>>>> origin/main
         private void MarcarDerrotadoSiSaldoNoPositivo(JugadorEnPartida jugador, Partida partida)
         {
             
@@ -534,12 +565,83 @@ namespace EstancieroService
             }
             return partida.Tablero[posicionActual];
         }
-        private void AplicarReglaDeCasillero(Partida partida, JugadorEnPartida jugador, CasilleroTablero casillero) { }
-        private void ValidarPartidaEnJuego(Partida partida) { }
-        private void ValidarEsTurnoDelJugador(Partida partida, int dniJugador) { }
-        private void ActualizarStatsUsuarios(Partida partida) { 
-        
+        private void ValidarPartidaEnJuego(Partida partida)
+        {
+            if (partida.Estado != (int)EstadoPartida.EnJuego)
+            {
+                throw new InvalidOperationException("La partida no está en juego.");
+            }
+        }
+        private void ValidarEsTurnoDelJugador(Partida partida, int dniJugador)
+        {
+            int? dniTurnoConfig = partida.ConfiguracionTurnos?.FirstOrDefault(t => t.NumeroTurno == partida.TurnoActual)?.DniJugador;
+            int jugadorIndex;
+            int dniTurno;
+            if (dniTurnoConfig.HasValue)
+            {
+                dniTurno = dniTurnoConfig.Value;
+                jugadorIndex = partida.Jugadores.FindIndex(j => j.DniJugador == dniTurno);
+                if (jugadorIndex < 0)
+                {
+                    jugadorIndex = 0;
+                    dniTurno = partida.Jugadores[jugadorIndex].DniJugador;
+                }
+            }
+            else
+            {
+                jugadorIndex = (partida.TurnoActual % 2 == 1) ? 0 : 1;
+                dniTurno = partida.Jugadores[jugadorIndex].DniJugador;
+            }
+            if (dniJugador != dniTurno)
+            {
+                throw new InvalidOperationException("No es el turno del jugador.");
+            }
+        }
+        private void ActualizarStatsUsuarios(Partida partida)
+        { }
+        private void CasilleroEspecial(Partida partida, JugadorEnPartida jugador, CasilleroTablero casillero)
+        {
+            if (casillero.TipoCasillero != (int)TipoCasillero.Provincia)
+            {
+                double monto = 0;
+                string descripcion = "";
+                if (casillero.TipoCasillero == (int)TipoCasillero.Multa)
+                {
+                    switch (casillero.NroCasillero)
+                    {
+                        case 4: monto = 5000; break;
+                        case 8: monto = 10000; break;
+                        case 14: monto = 14000; break;
+                        case 21: monto = 20000; break;
+                        case 25: monto = 25000; break;
+                        default: monto = casillero.MontoSancion ?? 0; break;
+                    }
+                    jugador.DineroDisponible -= monto;
+                    descripcion = $"Cayó en casillero de multa y se le descuenta ${monto}";
+                }
+                else if (casillero.TipoCasillero == (int)TipoCasillero.Premio) 
+                {
+                    switch (casillero.NroCasillero)
+                    {
+                        case 11: monto = 5000; break;
+                        case 18: monto = 100000; break;
+                        default: monto = casillero.Monto ?? 0; break;
+                    }
+                    jugador.DineroDisponible += monto;
+                    descripcion = $"Cayó en casillero de premio y se le acredita ${monto}";
+                }
 
+                jugador.HistorialMovimientos.Add(new Movimiento
+                {
+                    Fecha = DateTime.Now,
+                    Tipo = casillero.TipoCasillero,
+                    Descripcion = descripcion,
+                    Monto = (casillero.TipoCasillero == 2 ? -monto : monto),
+                    CasilleroOrigen = jugador.PosicionActual,
+                    CasilleroDestino = jugador.PosicionActual,
+                    DniJugadorAfectado = jugador.DniJugador
+                });
+            }
         }
         private int GenerarNumeroPartida()
         {
