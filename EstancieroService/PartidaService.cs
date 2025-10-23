@@ -382,21 +382,34 @@ namespace EstancieroService
 
             return response;
         }
-
-        //public ApiResponse<AccionResponse> PagarAlquiler(PagarAlquilerRequest request) { return null; }
-        //public ApiResponse<AccionResponse> AplicarCasillero(AplicarCasilleroRequest request) { return null; }
-        //public ApiResponse<List<JugadorEnPartidaResponse>> GetJugadores(int nroPartida) 
-        //{
-
-        //    return null; 
-        //}
-        //public ApiResponse<List<CasilleroTableroResponse>> GetTablero(int nroPartida) 
-        //{ 
-
-        //    return null; 
-        //}
-        private void Acreditar(JugadorEnPartida jugador, double monto, string concepto) { }
-        private void Debitar(JugadorEnPartida jugador, double monto, string concepto) { }
+        private void Acreditar(JugadorEnPartida jugador, double monto, string concepto) 
+        {
+            jugador.DineroDisponible += monto;
+            jugador.HistorialMovimientos.Add(new Movimiento
+            {
+                Fecha = DateTime.Now,
+                Tipo = 1, // Tipo personalizado para crédito
+                Descripcion = concepto,
+                Monto = monto,
+                CasilleroOrigen = jugador.PosicionActual,
+                CasilleroDestino = jugador.PosicionActual,
+                DniJugadorAfectado = jugador.DniJugador
+            });
+        }
+        private void Debitar(JugadorEnPartida jugador, double monto, string concepto)
+        {
+            jugador.DineroDisponible -= monto;
+            jugador.HistorialMovimientos.Add(new Movimiento
+            {
+                Fecha = DateTime.Now,
+                Tipo = 2, // Tipo personalizado para débito
+                Descripcion = concepto,
+                Monto = -monto,
+                CasilleroOrigen = jugador.PosicionActual,
+                CasilleroDestino = jugador.PosicionActual,
+                DniJugadorAfectado = jugador.DniJugador
+            });
+        }
         private void MarcarDerrotadoSiSaldoNoPositivo(JugadorEnPartida jugador, Partida partida)
         {
             
@@ -540,11 +553,44 @@ namespace EstancieroService
             }
             return partida.Tablero[posicionActual];
         }
-        private void AplicarReglaDeCasillero(Partida partida, JugadorEnPartida jugador, CasilleroTablero casillero) { }
-        private void ValidarPartidaEnJuego(Partida partida) { }
-        private void ValidarEsTurnoDelJugador(Partida partida, int dniJugador) { }
-        private void ActualizarStatsUsuarios(Partida partida) { 
-        
+        private void AplicarReglaDeCasillero(Partida partida, JugadorEnPartida jugador, CasilleroTablero casillero)
+        {
+
+        }
+        private void ValidarPartidaEnJuego(Partida partida)
+        {
+            if (partida.Estado != (int)EstadoPartida.EnJuego)
+            {
+                throw new InvalidOperationException("La partida no está en juego.");
+            }
+        }
+        private void ValidarEsTurnoDelJugador(Partida partida, int dniJugador)
+        {
+            int? dniTurnoConfig = partida.ConfiguracionTurnos?.FirstOrDefault(t => t.NumeroTurno == partida.TurnoActual)?.DniJugador;
+            int jugadorIndex;
+            int dniTurno;
+            if (dniTurnoConfig.HasValue)
+            {
+                dniTurno = dniTurnoConfig.Value;
+                jugadorIndex = partida.Jugadores.FindIndex(j => j.DniJugador == dniTurno);
+                if (jugadorIndex < 0)
+                {
+                    jugadorIndex = 0;
+                    dniTurno = partida.Jugadores[jugadorIndex].DniJugador;
+                }
+            }
+            else
+            {
+                jugadorIndex = (partida.TurnoActual % 2 == 1) ? 0 : 1;
+                dniTurno = partida.Jugadores[jugadorIndex].DniJugador;
+            }
+            if (dniJugador != dniTurno)
+            {
+                throw new InvalidOperationException("No es el turno del jugador.");
+            }
+        }
+        private void ActualizarStatsUsuarios(Partida partida)
+        {
 
         }
         private int GenerarNumeroPartida()
