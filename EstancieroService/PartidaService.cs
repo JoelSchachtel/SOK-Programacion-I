@@ -554,7 +554,7 @@ namespace EstancieroService
         }
         private List<CasilleroTablero> CargarTablero()
         {
-            return new List<CasilleroTablero>();
+            return _tableroData.GetTablero();
         }
         private PartidaResponse MapearPartida(Partida partida)
         {
