@@ -540,7 +540,50 @@ namespace EstancieroService
             }
             return partida.Tablero[posicionActual];
         }
-        private void AplicarReglaDeCasillero(Partida partida, JugadorEnPartida jugador, CasilleroTablero casillero) { }
+        private void CasilleroEspecial(Partida partida, JugadorEnPartida jugador, CasilleroTablero casillero)
+        {
+            if (casillero.TipoCasillero != (int)TipoCasillero.Provincia)
+            {
+                double monto = 0;
+                string descripcion = "";
+                if (casillero.TipoCasillero == (int)TipoCasillero.Multa)
+                {
+                    switch (casillero.NroCasillero)
+                    {
+                        case 4: monto = 5000; break;
+                        case 8: monto = 10000; break;
+                        case 14: monto = 14000; break;
+                        case 21: monto = 20000; break;
+                        case 25: monto = 25000; break;
+                        default: monto = casillero.MontoSancion ?? 0; break;
+                    }
+                    jugador.DineroDisponible -= monto;
+                    descripcion = $"Cayó en casillero de multa y se le descuenta ${monto}";
+                }
+                else if (casillero.TipoCasillero == (int)TipoCasillero.Premio) 
+                {
+                    switch (casillero.NroCasillero)
+                    {
+                        case 11: monto = 5000; break;
+                        case 18: monto = 100000; break;
+                        default: monto = casillero.Monto ?? 0; break;
+                    }
+                    jugador.DineroDisponible += monto;
+                    descripcion = $"Cayó en casillero de premio y se le acredita ${monto}";
+                }
+
+                jugador.HistorialMovimientos.Add(new Movimiento
+                {
+                    Fecha = DateTime.Now,
+                    Tipo = casillero.TipoCasillero,
+                    Descripcion = descripcion,
+                    Monto = (casillero.TipoCasillero == 2 ? -monto : monto),
+                    CasilleroOrigen = jugador.PosicionActual,
+                    CasilleroDestino = jugador.PosicionActual,
+                    DniJugadorAfectado = jugador.DniJugador
+                });
+            }
+        }
         private void ValidarPartidaEnJuego(Partida partida) { }
         private void ValidarEsTurnoDelJugador(Partida partida, int dniJugador) { }
         private void ActualizarStatsUsuarios(Partida partida) { 
