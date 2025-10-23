@@ -33,13 +33,55 @@ namespace EstancieroWebAppi.Controllers
             }
             return BadRequest(resultado);
         }
+        [HttpPut("/PausarPartida/{id}")]
+        public IActionResult PausarPartida([FromRoute] int id)
+        {
+            var request = new CambiarEstadoPartida { NumeroPartida = id };
+            var resultado = _svc.PausarPartida(request);
+            if (resultado.Success)
+            {
+                return Ok(resultado);
+            }
+            return BadRequest(resultado);
+        }
+        [HttpPut("/ReanudarPartida/{id}")]
+        public IActionResult ReanudarPartida([FromRoute] int id) 
+        {
+            var request = new CambiarEstadoPartida { NumeroPartida = id };
+            var resultado = _svc.ReanudarPartida(request);
+            if (resultado.Success)
+            {
+                return Ok(resultado);
+            }
+            return BadRequest(resultado);
+        }
+        [HttpPut("/SuspenderPartida/{id}")]
+        public IActionResult SuspenderPartida([FromRoute] int id) 
+        {
+            var request = new CambiarEstadoPartida { NumeroPartida = id };
+            var resultado = _svc.SuspenderPartida(request);
+            if (resultado.Success)
+            {
+                return Ok(resultado);
+            }
+            return BadRequest(resultado);
+        }
+        [HttpPut("/LanzarDado/{numeroPartida}/{dniJugador}")]
+        public IActionResult LanzarDado([FromRoute] int numeroPartida, [FromRoute] int dniJugador)
+        {
+            var request = new LanzarDado
+            {
+                NumeroPartida = numeroPartida,
+                DniJugador = dniJugador
+            };
+            var resultado = _svc.LanzarDado(request);
+            if (resultado.Success)
+            {
+                return Ok(resultado);
+            }
+            return BadRequest(resultado);
+        }
 
-        //[HttpPost("lanzarDado")]
-        //public IActionResult LanzarDado([FromBody] LanzarDado request)
-        //{
-        //    var resultado = _svc.LanzarDado(request);
-        //    if (!resultado.Success) return BadRequest(resultado);
-        //    return Ok(resultado);
-        //}
+        // crear partida,buscar partida, pausar,reanudar,suspender partida,lanzar dado, terminar turno.
     }
 }
