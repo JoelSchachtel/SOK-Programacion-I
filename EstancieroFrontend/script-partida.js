@@ -7,7 +7,7 @@ let jugadoresRegistrados = [];
 let numeroPartidaActual = null;
 let detallesJugadores = [];
 
-const API_BASE_URL = 'URL API';
+const API_BASE_URL = 'https://localhost:5278/';
 
 // Funciones de utilidad
 function mostrarError(mensaje) {
@@ -38,7 +38,7 @@ function validarEmail(email) {
 // Función para cargar jugadores registrados
 async function cargarJugadoresRegistrados() {
     try {
-        const response = await fetch(`URL JUGADORES`);
+        const response = await fetch(`${API_BASE_URL}jugador`);
         
         if (response.ok) {
             const jugadores = await response.json();

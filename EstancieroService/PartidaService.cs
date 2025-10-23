@@ -383,15 +383,9 @@ namespace EstancieroService
             return response;
         }
 
-        //public ApiResponse<AccionResponse> PagarAlquiler(PagarAlquilerRequest request) { return null; }
         //public ApiResponse<AccionResponse> AplicarCasillero(AplicarCasilleroRequest request) { return null; }
         //public ApiResponse<List<JugadorEnPartidaResponse>> GetJugadores(int nroPartida) 
         //{
-
-        //    return null; 
-        //}
-        //public ApiResponse<List<CasilleroTableroResponse>> GetTablero(int nroPartida) 
-        //{ 
 
         //    return null; 
         //}

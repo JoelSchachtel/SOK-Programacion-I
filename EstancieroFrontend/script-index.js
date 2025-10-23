@@ -93,8 +93,7 @@ async function crearNuevaPartida() {
     const dniJugador1 = document.getElementById('dniJugador1').value;
     const dniJugador2 = document.getElementById('dniJugador2').value;
     
-    //SE PUEDEN REALIZAR VALIDACIONES DE LOS DNI
-
+    if (!dniJugador1 || !dniJugador2) return alert ('Debe seleccionar ambos jugadores.');
     if(dniJugador1 == dniJugador2) {
         alert('Los jugadores deben ser diferentes.');
         return;
