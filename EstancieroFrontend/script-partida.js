@@ -7,7 +7,7 @@ let jugadoresRegistrados = [];
 let numeroPartidaActual = null;
 let detallesJugadores = [];
 
-const API_BASE_URL = 'https://localhost:5278/';
+const API_BASE_URL = 'http://localhost:5278/';
 
 // Funciones de utilidad
 function mostrarError(mensaje) {
@@ -99,7 +99,7 @@ async function inicializarPartida() {
 async function cargarPartidaCompleta() {
     try {
         // Cargar información básica de la partida
-        const response = await fetch(`URL PARTIDA POR ID`, {
+        const response = await fetch(`${API_BASE_URL}Partida/${numeroPartidaActual}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -139,7 +139,7 @@ async function cargarDetallesJugadores() {
     
     try {
         // Usar el nuevo endpoint para obtener todos los detalles de la partida
-        const response = await fetch(`URL DETALLES JUGADORES PARTIDA POR ID`, {
+        const response = await fetch(`${API_BASE_URL}Partida/${numeroPartidaActual}/Jugadores`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -150,7 +150,7 @@ async function cargarDetallesJugadores() {
             const apiResponse = await response.json();
             if (apiResponse.success) {
                 // Ordenar jugadores por DNI para mantener orden consistente en pantalla
-                detallesJugadores = apiResponse.data.sort((a, b) => a.dniJugador.localeCompare(b.dniJugador));
+                detallesJugadores = apiResponse.data;
             } else {
                 console.error('Error al cargar detalles:', apiResponse.message);
                 detallesJugadores = [];
@@ -170,18 +170,13 @@ function actualizarInterfazPartida() {
     
     // Actualizar información general de la partida
     document.title = `Partida ${partidaActual.numeroPartida} - El Estanciero Digital`;
-    
-    // Actualizar nombres de jugadores (si hay configuración de turnos)
-    if (partidaActual.configuracionTurnos && partidaActual.configuracionTurnos.length > 0) {
-        // Ordenar configuración de turnos por DNI para mantener orden consistente
-        const turnosOrdenados = [...partidaActual.configuracionTurnos].sort((a, b) => a.dniJugador.localeCompare(b.dniJugador));
+    console.log(partidaActual);
+
+    const jugador1 = detallesJugadores[0];
+    const jugador2 = detallesJugadores[1];
         
-        const jugador1 = turnosOrdenados[0];
-        const jugador2 = turnosOrdenados[1] || turnosOrdenados[0];
-        
-        document.getElementById('nombreJugador1').textContent = `Jugador ${jugador1.dniJugador}`;
-        document.getElementById('nombreJugador2').textContent = `Jugador ${jugador2.dniJugador}`;
-    }
+    document.getElementById('nombreJugador1').textContent = `Jugador ${jugador1.dniJugador}`;
+    document.getElementById('nombreJugador2').textContent = `Jugador ${jugador2.dniJugador}`;
     
     // Actualizar estado de la partida
     actualizarEstadoPartida(partidaActual.estado);
@@ -243,15 +238,16 @@ function configurarEventosPartida() {
 }
 
 async function lanzarDado() {
-    if (!partidaActual || partidaActual.estado !== 'EnJuego') {
+    if (!partidaActual) {
         alert('La partida no está en juego o está pausada/suspendida');
         return;
     }
     
     try {
-        // Llamar a la API para lanzar el dado
-        const response = await fetch(`URL LANZAR DADO`, {
-            method: 'POST',
+        console.log(partidaActual.turnoActual)
+        console.log(detallesJugadores)
+        const response = await fetch(`${API_BASE_URL}Partida/${numeroPartidaActual}/LanzarDado/${detallesJugadores[partidaActual.turnoActual].dniJugador}`, {
+            method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
             }
@@ -317,10 +313,9 @@ function actualizarPosicionesJugadores() {
         
         if (casillero && jugadoresEnCasillero) {
             // Determinar si es el turno de este jugador
-            const esTurnoActual = partidaActual && 
-                                partidaActual.configuracionTurnos && 
-                                partidaActual.configuracionTurnos[partidaActual.turnoActual - 1] &&
-                                partidaActual.configuracionTurnos[partidaActual.turnoActual - 1].dniJugador === detalleJugador.dniJugador;
+            const esTurnoActual = detallesJugadores && 
+                                detallesJugadores[partidaActual.turnoActual - 1] &&
+                                detallesJugadores[partidaActual.turnoActual - 1].dniJugador === detalleJugador.dniJugador;
             
             // Asignar color fijo por jugador (basado en el orden de creación)
             let colorFondo;
@@ -328,8 +323,7 @@ function actualizarPosicionesJugadores() {
                 colorFondo = '#3498db'; // Azul para el jugador que tiene el turno
             } else {
                 // Colores fijos por jugador (basado en el índice en la configuración de turnos ordenada por DNI)
-                const turnosOrdenados = [...partidaActual.configuracionTurnos].sort((a, b) => a.dniJugador.localeCompare(b.dniJugador));
-                const indiceJugador = turnosOrdenados.findIndex(t => t.dniJugador === detalleJugador.dniJugador);
+                const indiceJugador = detallesJugadores.findIndex(t => t.dniJugador === detalleJugador.dniJugador);
                 switch (indiceJugador) {
                     case 0:
                         colorFondo = '#e74c3c'; // Rojo para jugador 1

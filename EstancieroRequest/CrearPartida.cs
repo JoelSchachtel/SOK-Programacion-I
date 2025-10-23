@@ -4,6 +4,6 @@ namespace EstancieroRequest
 {
     public class CrearPartida
     {
-        public List<string> Dnis { get; set; }
+        public List<int> Dnis { get; set; }
     }
 }

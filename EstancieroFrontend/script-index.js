@@ -46,7 +46,7 @@ async function cargarJugadoresRegistrados() {
         if (response.ok) {
             const jugadores = await response.json();
             
-            jugadoresRegistrados = Array.isArray(jugadores.data) ? jugadores.data : [];
+            jugadoresRegistrados = jugadores;
             return jugadoresRegistrados;
         } else {
             console.error('Error al cargar jugadores');
@@ -94,8 +94,8 @@ function inicializarInicio() {
 }
 
 async function crearNuevaPartida() {
-    const dniJugador1 = document.getElementById('dniJugador1').value;
-    const dniJugador2 = document.getElementById('dniJugador2').value;
+    var dniJugador1 = document.getElementById('dniJugador1').value;
+    var dniJugador2 = document.getElementById('dniJugador2').value;
     
     if (!dniJugador1 || !dniJugador2) return alert ('Debe seleccionar ambos jugadores.');
     if(dniJugador1 == dniJugador2) {
@@ -105,13 +105,13 @@ async function crearNuevaPartida() {
     
     try {
         // Crear partida usando la API
-        const response = await fetch(`${API_BASE_URL}/Partida/CrearPartida`, {
+        const response = await fetch(`${API_BASE_URL}Partida`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                DnisJugadores: [dniJugador1, dniJugador2]
+                dnis: [parseInt(dniJugador1), parseInt(dniJugador2)]
             })
         });
         
@@ -170,20 +170,28 @@ async function continuarPartida() {
 }
 
 function actualizarSelectoresJugadores() {
-    const selectJugador1 = document.getElementById('dniJugador1');
-    const selectJugador2 = document.getElementById('dniJugador2');
-    
-    if (selectJugador1 && selectJugador2) {
-        // Asegurar que jugadoresRegistrados sea un array
+    const selectJugador = document.getElementById('dniJugador1') 
+    const selectJugador2 = document.getElementById('dniJugador2') 
+    if (selectJugador && selectJugador2 ) {
+
+        console.log(jugadoresRegistrados)
+
         if (!Array.isArray(jugadoresRegistrados)) {
             jugadoresRegistrados = [];
         }
-        
-        //COMPLETAR OPCIONES POR DEFECTO DEL SELECTOR
-        
-        // Agregar jugadores
         jugadoresRegistrados.forEach(jugador => {
-            //COMPLETAR CODIGO PARA AGREGAR JUGADORES
-        });
+            var option = document.createElement("option");
+            option.value = jugador.dni;
+            option.innerHTML = jugador.dni;
+
+            selectJugador.appendChild(option)
+
+            var option2 = document.createElement("option");
+            option2.value = jugador.dni;
+            option2.innerHTML = jugador.dni;
+
+            selectJugador2.appendChild(option2)
+        })
     }
-}
+    }
+

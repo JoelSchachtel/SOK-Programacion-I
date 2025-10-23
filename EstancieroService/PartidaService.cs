@@ -25,7 +25,7 @@ namespace EstancieroService
             var response = new ApiResponse<PartidaResponse>();
             foreach (var dni in request.Dnis)
             {
-                var jugador = _jugadorData.GetAll().FirstOrDefault(j => j.DNI.ToString() == dni);
+                var jugador = _jugadorData.GetAll().FirstOrDefault(j => j.DNI == dni);
                 if (jugador == null)
                 {
                     response.Success = false;
@@ -39,7 +39,7 @@ namespace EstancieroService
                 NumeroPartida = GenerarNumeroPartida(),
                 FechaInicio = DateTime.Now,
                 Estado = 0,
-                TurnoActual = 1,
+                TurnoActual = 0,
                 ConfiguracionTurnos = new List<ConfiguracionTurno>(),
                 Tablero = CargarTablero(),
                 Jugadores = new List<JugadorEnPartida>()
@@ -50,7 +50,7 @@ namespace EstancieroService
                 partida.Jugadores.Add(new JugadorEnPartida
                 {
                     NumeroPartida = partida.NumeroPartida,
-                    DniJugador = int.Parse(dni),
+                    DniJugador = dni,
                     PosicionActual = 0,
                     DineroDisponible = 5000000,
                     Estado = 0, // EnJuego
@@ -219,7 +219,14 @@ namespace EstancieroService
                     response.Message = "Jugador no encontrado en la partida";
                     return response;
                 }
-                ValidarEsTurnoDelJugador(partida, request.DniJugador);
+
+                if (!ValidarEsTurnoDelJugador(partida, request.DniJugador))
+                {
+                    response.Success = false;
+                    response.Message = "No es el turno del jugador";
+                    return response;
+                }
+
                 int valorDado = Random.Shared.Next(1, 7);
                 int posOrigen = jugador.PosicionActual;
                 int posDestino = (jugador.PosicionActual + valorDado);
@@ -254,6 +261,8 @@ namespace EstancieroService
 
                 MarcarDerrotadoSiSaldoNoPositivo(jugador, partida);
 
+                partida.TurnoActual = (partida.TurnoActual + 1) % 2;
+                
                 _partidaDetalleData.EscribirDetalle(partida.NumeroPartida, jugador.DniJugador, movimiento);
                 _partidaData.WritePartida(partida);
 
@@ -274,6 +283,32 @@ namespace EstancieroService
                 response.Message = $"Error al lanzar el dado: {ex.Message}";
                 return response;
             }
+        }
+
+        public ApiResponse<List<JugadorEnPartidaResponse>> ObtenerJugadores(int id)
+        {
+            var response = new ApiResponse<List<JugadorEnPartidaResponse>>();
+            var partida = _partidaData.GetAll().FirstOrDefault(p => p.NumeroPartida == id);
+
+            if (partida == null)
+            {
+                response.Success = false;
+                response.Message = "Partida no encontrada";
+                return response;
+            }
+
+            var jugadores = partida.Jugadores.Select( x => new JugadorEnPartidaResponse()
+            {
+                DineroDisponible = x.DineroDisponible,
+                PosicionActual = x.PosicionActual,
+                DniJugador = x.DniJugador,
+                Estado = (EstadoJugador) x.Estado
+            } ).ToList();
+
+            response.Data = jugadores;
+            response.Success = true;
+
+            return response;
         }
         public ApiResponse<PartidaResponse> TerminarTurno(TerminarTurnoRequest request)
         {
@@ -560,30 +595,9 @@ namespace EstancieroService
                 throw new InvalidOperationException("La partida no está en juego.");
             }
         }
-        private void ValidarEsTurnoDelJugador(Partida partida, int dniJugador)
+        private bool ValidarEsTurnoDelJugador(Partida partida, int dniJugador)
         {
-            int? dniTurnoConfig = partida.ConfiguracionTurnos?.FirstOrDefault(t => t.NumeroTurno == partida.TurnoActual)?.DniJugador;
-            int jugadorIndex;
-            int dniTurno;
-            if (dniTurnoConfig.HasValue)
-            {
-                dniTurno = dniTurnoConfig.Value;
-                jugadorIndex = partida.Jugadores.FindIndex(j => j.DniJugador == dniTurno);
-                if (jugadorIndex < 0)
-                {
-                    jugadorIndex = 0;
-                    dniTurno = partida.Jugadores[jugadorIndex].DniJugador;
-                }
-            }
-            else
-            {
-                jugadorIndex = (partida.TurnoActual % 2 == 1) ? 0 : 1;
-                dniTurno = partida.Jugadores[jugadorIndex].DniJugador;
-            }
-            if (dniJugador != dniTurno)
-            {
-                throw new InvalidOperationException("No es el turno del jugador.");
-            }
+            return partida.Jugadores[partida.TurnoActual].DniJugador == dniJugador;
         }
         private void ActualizarStatsUsuarios(Partida partida)
         { }

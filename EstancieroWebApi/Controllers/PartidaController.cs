@@ -9,9 +9,9 @@ namespace EstancieroWebAppi.Controllers
     [Route("[controller]")]
     public class PartidaController : ControllerBase
     {
-        private readonly PartidaService _svc;
+        private readonly PartidaService _svc = new PartidaService();
 
-        [HttpPost("/CrearPartida")]
+        [HttpPost]
         public IActionResult CrearPartida([FromBody] CrearPartida request)
         {
             var resultado = _svc.CrearPartida(request);
@@ -19,10 +19,10 @@ namespace EstancieroWebAppi.Controllers
             {
                 return BadRequest(resultado);
             }
-            return CreatedAtAction(nameof(CrearPartida), new { numeroPartida = resultado.Data.NumeroPartida }, resultado);
+            return Ok(resultado);
         }
 
-        [HttpGet("/BuscarPartida/{id}")]
+        [HttpGet("{id}")]
         public IActionResult BuscarPartidaId([FromRoute] int id)
         {
             var request = new BuscarPartida { NumeroPartida = id };
@@ -33,6 +33,19 @@ namespace EstancieroWebAppi.Controllers
             }
             return Ok(resultado);
         }
+
+        [HttpGet("{id}/Jugadores")]
+        public IActionResult ObtenerJugadores([FromRoute] int id)
+        {
+            var resultado = _svc.ObtenerJugadores(id);
+
+            if (!resultado.Success)
+            {
+                return BadRequest(resultado);
+            }
+            return Ok(resultado);
+        }
+
         [HttpPut("/PausarPartida/{id}")]
         public IActionResult PausarPartida([FromRoute] int id)
         {
@@ -55,6 +68,7 @@ namespace EstancieroWebAppi.Controllers
             }
             return BadRequest(resultado);
         }
+
         [HttpPut("/SuspenderPartida/{id}")]
         public IActionResult SuspenderPartida([FromRoute] int id)
         {
@@ -66,7 +80,8 @@ namespace EstancieroWebAppi.Controllers
             }
             return BadRequest(resultado);
         }
-        [HttpPut("/LanzarDado/{numeroPartida}/{dniJugador}")]
+
+        [HttpPut("{numeroPartida}/LanzarDado/{dniJugador}")]
         public IActionResult LanzarDado([FromRoute] int numeroPartida, [FromRoute] int dniJugador)
         {
             var request = new LanzarDado
