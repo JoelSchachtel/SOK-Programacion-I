@@ -237,7 +237,7 @@ namespace EstancieroService
 
                 if (casillero != null)
                 {
-                    AplicarReglaDeCasillero(partida, jugador, casillero);
+                    CasilleroEspecial(partida, jugador, casillero);
                 }
 
                 if (casillero.DniPropietario != null && casillero.DniPropietario != jugador.DniJugador.ToString())
@@ -553,11 +553,6 @@ namespace EstancieroService
             }
             return partida.Tablero[posicionActual];
         }
-<<<<<<< HEAD
-        private void AplicarReglaDeCasillero(Partida partida, JugadorEnPartida jugador, CasilleroTablero casillero)
-        {
-
-        }
         private void ValidarPartidaEnJuego(Partida partida)
         {
             if (partida.Estado != (int)EstadoPartida.EnJuego)
@@ -591,8 +586,7 @@ namespace EstancieroService
             }
         }
         private void ActualizarStatsUsuarios(Partida partida)
-        {
-=======
+        { }
         private void CasilleroEspecial(Partida partida, JugadorEnPartida jugador, CasilleroTablero casillero)
         {
             if (casillero.TipoCasillero != (int)TipoCasillero.Provincia)
@@ -636,13 +630,6 @@ namespace EstancieroService
                     DniJugadorAfectado = jugador.DniJugador
                 });
             }
-        }
-        private void ValidarPartidaEnJuego(Partida partida) { }
-        private void ValidarEsTurnoDelJugador(Partida partida, int dniJugador) { }
-        private void ActualizarStatsUsuarios(Partida partida) { 
-        
->>>>>>> origin/main
-
         }
         private int GenerarNumeroPartida()
         {
