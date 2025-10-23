@@ -1,0 +1,92 @@
+﻿[
+  {
+    "dni": 41601451,
+    "nombre": "Joel Schachtel",
+    "email": "joel.schachtel@gmail.com",
+    "partidasJugadas": 15,
+    "partidasGanadas": 8,
+    "partidasPerdidas": 5,
+    "partidasPendientes": 2
+  },
+  {
+    "dni": 42987654,
+    "nombre": "Lucía Gómez",
+    "email": "lucia.gomez@hotmail.com",
+    "partidasJugadas": 10,
+    "partidasGanadas": 4,
+    "partidasPerdidas": 5,
+    "partidasPendientes": 1
+  },
+  {
+    "dni": 40123987,
+    "nombre": "Martín López",
+    "email": "martin.lopez@gmail.com",
+    "partidasJugadas": 22,
+    "partidasGanadas": 12,
+    "partidasPerdidas": 8,
+    "partidasPendientes": 2
+  },
+  {
+    "dni": 43876543,
+    "nombre": "Sofía Pérez",
+    "email": "sofia.perez@yahoo.com",
+    "partidasJugadas": 18,
+    "partidasGanadas": 9,
+    "partidasPerdidas": 7,
+    "partidasPendientes": 2
+  },
+  {
+    "dni": 41234567,
+    "nombre": "Diego Fernández",
+    "email": "diego.fernandez@gmail.com",
+    "partidasJugadas": 9,
+    "partidasGanadas": 3,
+    "partidasPerdidas": 4,
+    "partidasPendientes": 2
+  },
+  {
+    "dni": 42567891,
+    "nombre": "Camila Torres",
+    "email": "camila.torres@gmail.com",
+    "partidasJugadas": 25,
+    "partidasGanadas": 15,
+    "partidasPerdidas": 7,
+    "partidasPendientes": 3
+  },
+  {
+    "dni": 43765432,
+    "nombre": "Facundo Morales",
+    "email": "facundo.morales@hotmail.com",
+    "partidasJugadas": 13,
+    "partidasGanadas": 6,
+    "partidasPerdidas": 6,
+    "partidasPendientes": 1
+  },
+  {
+    "dni": 42345987,
+    "nombre": "Valentina Ruiz",
+    "email": "valentina.ruiz@gmail.com",
+    "partidasJugadas": 14,
+    "partidasGanadas": 5,
+    "partidasPerdidas": 8,
+    "partidasPendientes": 1
+  },
+  {
+    "dni": 44098765,
+    "nombre": "Nicolás Herrera",
+    "email": "nicolas.herrera@yahoo.com",
+    "partidasJugadas": 20,
+    "partidasGanadas": 10,
+    "partidasPerdidas": 8,
+    "partidasPendientes": 2
+  },
+  {
+    "dni": 41987456,
+    "nombre": "Agustina Cabrera",
+    "email": "agustina.cabrera@gmail.com",
+    "partidasJugadas": 16,
+    "partidasGanadas": 7,
+    "partidasPerdidas": 7,
+    "partidasPendientes": 2
+  }
+]

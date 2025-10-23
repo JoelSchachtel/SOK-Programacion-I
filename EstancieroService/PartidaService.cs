@@ -382,17 +382,6 @@ namespace EstancieroService
 
             return response;
         }
-<<<<<<< HEAD
-
-        //public ApiResponse<AccionResponse> AplicarCasillero(AplicarCasilleroRequest request) { return null; }
-        //public ApiResponse<List<JugadorEnPartidaResponse>> GetJugadores(int nroPartida) 
-        //{
-
-        //    return null; 
-        //}
-        private void Acreditar(JugadorEnPartida jugador, double monto, string concepto) { }
-        private void Debitar(JugadorEnPartida jugador, double monto, string concepto) { }
-=======
         private void Acreditar(JugadorEnPartida jugador, double monto, string concepto) 
         {
             jugador.DineroDisponible += monto;
@@ -421,7 +410,6 @@ namespace EstancieroService
                 DniJugadorAfectado = jugador.DniJugador
             });
         }
->>>>>>> origin/main
         private void MarcarDerrotadoSiSaldoNoPositivo(JugadorEnPartida jugador, Partida partida)
         {
             

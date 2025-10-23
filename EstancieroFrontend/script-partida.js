@@ -38,7 +38,11 @@ function validarEmail(email) {
 // Función para cargar jugadores registrados
 async function cargarJugadoresRegistrados() {
     try {
-        const response = await fetch(`${API_BASE_URL}jugador`);
+        const response = await fetch(API_BASE_URL + "Jugador", {
+            method: 'GET',
+            headers: {
+                contentType: 'application/json'}
+        });
         
         if (response.ok) {
             const jugadores = await response.json();

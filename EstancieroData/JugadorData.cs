@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.IO;
 
 namespace EstancieroData
@@ -9,8 +10,9 @@ namespace EstancieroData
 
         public JugadorData()
         {
-            Direccion = Path.Combine(Directory.GetCurrentDirectory(), "Data", "jugadores.json");
+            Direccion = Path.GetFullPath(Path.Combine("../EstancieroData/Data", "jugadores.json"));
         }
+
         public List<Jugador> GetAll()
         {
             if (File.Exists(Direccion))
@@ -19,8 +21,7 @@ namespace EstancieroData
                 var jugadores = JsonConvert.DeserializeObject<List<Jugador>>(json);
                 return jugadores ?? new List<Jugador>();
             }
-
-            Directory.CreateDirectory(Path.GetDirectoryName("../EstancieroData/Data"));
+            Directory.CreateDirectory(Path.GetFullPath("../EstancieroData/Data"));
             return new List<Jugador>();
         }
 
@@ -30,7 +31,8 @@ namespace EstancieroData
             public string Nombre { get; set; } = string.Empty;
             public string Email { get; set; } = string.Empty;
         }
-        public Jugador EscribirJugador (Jugador jugador)
+
+        public Jugador EscribirJugador(Jugador jugador)
         {
             var jugadores = GetAll();
             jugadores.Add(jugador);
@@ -39,7 +41,7 @@ namespace EstancieroData
             return jugador;
         }
     }
-} 
+}
 
 // Entity - DTO / Request / Response - Data - Service - API
 // Referencias actualizadas: WebAPI -> Service, Request, Response -- Service -> Data, Entity, Response -- Data -> Entity
