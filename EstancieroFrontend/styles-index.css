@@ -1,109 +1,124 @@
-/* Estilos para index.html - Para completar por los alumnos */
-
-/* COMPLETAR: Reset básico */
+/* Reset básico */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* COMPLETAR: Estilos del body */
+/* Body */
 body {
-    font-family: Arial, sans-serif;
-    color: #333;
-    background-color: #a49c9c;
+    font-family: 'Poppins', sans-serif;
+    color: #f5f5f5;
+    background-color: #1b1b1b;
 }
 
-/* COMPLETAR: Header */
+/* Header */
 header {
-    color: white;
+    color: #ffd700;
     padding: 20px;
     text-align: center;
-    /* COMPLETAR: Agregar color de fondo */
+    background-color: #7b1113; /* rojo vino */
+    border-bottom: 3px solid #c5a200;
 }
 
 header h1 {
-    font-size: 28px;
-    font-weight: bold;
+    font-size: 32px;
+    font-weight: 900;
 }
 
-/* COMPLETAR: Main */
+/* Main */
 main {
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
-    /* COMPLETAR: Agregar color de fondo */
+    background-color: #2b2b2b;
+    border: 2px solid #b8860b;
+    border-radius: 8px;
 }
 
-/* COMPLETAR: Footer */
+/* Footer */
 footer {
-    color: white;
+    color: #ffd700;
     text-align: center;
     padding: 15px;
     margin-top: 30px;
-    /* COMPLETAR: Agregar color de fondo */
+    background-color: #111;
+    border-top: 2px solid #b8860b;
 }
 
-/* COMPLETAR: Página de inicio */
+/* Página de inicio */
 .inicio-container {
     padding: 30px;
     margin: 20px 0;
     text-align: center;
-    /* COMPLETAR: Agregar color de fondo */
-    /* COMPLETAR: Agregar borde */
+    background-color: #252525;
+    border: 2px solid #b8860b;
+    border-radius: 8px;
 }
 
 .juego-info h2 {
-    font-size: 24px;
+    font-size: 26px;
     margin-bottom: 15px;
-    /* COMPLETAR: Agregar color */
+    color: #ffd700;
 }
 
 .juego-info p {
     margin-bottom: 10px;
-    /* COMPLETAR: Agregar color */
+    color: #e6e6e6;
+    font-size: 16px;
 }
 
-/* COMPLETAR: Formulario */
+/* Formulario */
 .formulario-inicio {
     margin-top: 30px;
     max-width: 400px;
     margin-left: auto;
     margin-right: auto;
+    background-color: #333;
+    padding: 20px;
+    border: 2px solid #b8860b;
+    border-radius: 8px;
 }
 
+/* Navegación de jugadores */
 .navegacion-jugadores {
     margin-bottom: 20px;
 }
 
 .navegacion-jugadores .boton-principal {
     margin-bottom: 20px;
-    /* COMPLETAR: Agregar color de fondo */
+    background-color: #8b0000;
+    border-radius: 6px;
+    color: white;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
-/* COMPLETAR: Efecto hover del botón de navegación */
 .navegacion-jugadores .boton-principal:hover {
-    /* COMPLETAR: Agregar efecto hover */
+    background-color: #b22222;
+    transform: scale(1.05);
 }
 
+/* Opciones de partida */
 .opciones-partida {
     display: flex;
     gap: 30px;
     margin-top: 20px;
+    justify-content: center;
 }
 
 .opcion-partida {
     flex: 1;
     padding: 20px;
-    /* COMPLETAR: Agregar color de fondo */
-    /* COMPLETAR: Agregar borde */
+    background-color: #252525;
+    border: 2px solid #b8860b;
+    border-radius: 8px;
 }
 
 .opcion-partida h3 {
-    font-size: 18px;
+    font-size: 20px;
     margin-bottom: 15px;
     text-align: center;
-    /* COMPLETAR: Agregar color */
+    color: #ffd700;
 }
 
 .campo-formulario {
@@ -115,40 +130,37 @@ footer {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
-    /* COMPLETAR: Agregar color */
+    color: #ffd700;
 }
 
-.campo-formulario input {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    /* COMPLETAR: Agregar color de fondo */
-    /* COMPLETAR: Agregar borde */
-}
-
-/* COMPLETAR: Efectos de focus */
-.campo-formulario input:focus,
-.campo-formulario select:focus {
-    /* COMPLETAR: Agregar efectos de focus */
-}
-
+.campo-formulario input,
 .campo-formulario select {
     width: 100%;
     padding: 10px;
     font-size: 16px;
-    /* COMPLETAR: Agregar color de fondo */
-    /* COMPLETAR: Agregar borde */
+    background-color: #3a3a3a;
+    border: 1px solid #b8860b;
+    color: #f5f5f5;
+    border-radius: 6px;
 }
 
-/* COMPLETAR: Mensajes de error */
+/* Efecto de focus */
+.campo-formulario input:focus,
+.campo-formulario select:focus {
+    outline: none;
+    border-color: #ffd700;
+    background-color: #444;
+}
+
+/* Mensajes de error */
 .error-message {
     font-size: 12px;
     margin-top: 5px;
     display: none;
-    /* COMPLETAR: Agregar color */
+    color: #ff4d4d;
 }
 
-/* COMPLETAR: Botones */
+/* Botones principales */
 .boton-principal {
     color: white;
     padding: 15px 30px;
@@ -158,14 +170,17 @@ footer {
     cursor: pointer;
     width: 100%;
     margin-top: 10px;
-    /* COMPLETAR: Agregar color de fondo */
+    background-color: #8b0000;
+    border-radius: 6px;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
-/* COMPLETAR: Efecto hover del botón principal */
 .boton-principal:hover {
-    /* COMPLETAR: Agregar efecto hover */
+    background-color: #b22222;
+    transform: scale(1.05);
 }
 
+/* Botones de control */
 .boton-control {
     color: white;
     padding: 10px 20px;
@@ -174,20 +189,24 @@ footer {
     font-weight: bold;
     cursor: pointer;
     margin: 0 5px;
-    /* COMPLETAR: Agregar color de fondo */
+    background-color: #8b0000;
+    border-radius: 6px;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
-/* COMPLETAR: Efecto hover del botón de control */
 .boton-control:hover {
-    /* COMPLETAR: Agregar efecto hover */
+    background-color: #b22222;
+    transform: scale(1.05);
 }
 
-/* COMPLETAR: Estilos del botón deshabilitado */
+/* Botón deshabilitado */
 .boton-control:disabled {
-    /* COMPLETAR: Agregar estilos para botón deshabilitado */
+    background-color: #555;
+    color: #999;
+    cursor: not-allowed;
 }
 
-/* COMPLETAR: Responsive */
+/* Responsive */
 @media (max-width: 768px) {
     .opciones-partida {
         flex-direction: column;
