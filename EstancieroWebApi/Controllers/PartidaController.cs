@@ -15,11 +15,11 @@ namespace EstancieroWebAppi.Controllers
         public IActionResult CrearPartida([FromBody] CrearPartida request)
         {
             var resultado = _svc.CrearPartida(request);
-            if (resultado.Success)
+            if (!resultado.Success)
             {
-                return CreatedAtAction(nameof(CrearPartida), new { numeroPartida = resultado.Data.NumeroPartida }, resultado);
+                return BadRequest(resultado);
             }
-            return BadRequest(resultado);
+            return CreatedAtAction(nameof(CrearPartida), new { numeroPartida = resultado.Data.NumeroPartida }, resultado);
         }
 
         [HttpGet("/BuscarPartida/{id}")]
@@ -27,19 +27,11 @@ namespace EstancieroWebAppi.Controllers
         {
             var request = new BuscarPartida { NumeroPartida = id };
             var resultado = _svc.BuscarPartidaId(request);
-            if (resultado.Success)
+            if (!resultado.Success)
             {
-                return CreatedAtAction(nameof(BuscarPartidaId), new { numeroPartida = resultado.Data.NumeroPartida }, resultado);
+                return BadRequest(resultado);
             }
-            return BadRequest(resultado);
+            return Ok(resultado);
         }
-
-        //[HttpPost("lanzarDado")]
-        //public IActionResult LanzarDado([FromBody] LanzarDado request)
-        //{
-        //    var resultado = _svc.LanzarDado(request);
-        //    if (!resultado.Success) return BadRequest(resultado);
-        //    return Ok(resultado);
-        //}
     }
 }
