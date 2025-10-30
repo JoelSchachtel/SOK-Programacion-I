@@ -186,13 +186,23 @@ function actualizarEstadoPartida(estado) {
     const btnLanzarDado = document.getElementById('btnLanzarDado');
     const btnPausar = document.getElementById('btnPausar');
     const btnReanudar = document.getElementById('btnReanudar');
+    const btnSuspender = document.getElementById('btnSuspender')
     
-    if (estado === 'EnJuego') {
-        //DESABILITAR LO QUE SEA NECESARIO
-    } else if (estado === 'Pausada') {
-        //DESABILITAR LO QUE SEA NECESARIO
-    } else if (estado === 'Suspendida' || estado === 'Finalizada') {
-        //DESABILITAR LO QUE SEA NECESARIO
+    console.log(estado)
+
+    if (estado === 0) {
+        btnReanudar.disabled = true;
+        btnLanzarDado.disabled = false;
+        btnPausar.disabled = false;
+    } else if (estado === 3) {
+        btnReanudar.disabled = false;
+        btnLanzarDado.disabled = true;
+        btnPausar.disabled = true;
+    } else if (estado === 1 || estado === 2) {
+        btnReanudar.disabled = true;
+        btnLanzarDado.disabled = true;
+        btnPausar.disabled = true;
+        btnSuspender.disabled = true;
     }
 }
 
@@ -380,7 +390,7 @@ function actualizarInterfaz() {
     const btnReanudar = document.getElementById('btnReanudar');
     
     if (partidaActual && partidaActual.estado === 'EnJuego') {
-        //DESABILITAR LO QUE SEA NECESARIO
+        
     } else if (partidaActual && partidaActual.estado === 'Pausada') {
         //DESABILITAR LO QUE SEA NECESARIO
     } else if (partidaActual && (partidaActual.estado === 'Suspendida' || partidaActual.estado === 'Finalizada')) {
@@ -390,7 +400,7 @@ function actualizarInterfaz() {
 
 async function pausarPartida() {
     try {
-        const response = await fetch(`URL PARTIDA POR ID`, {
+        const response = await fetch(`${API_BASE_URL}PausarPartida/${encodeURIComponent(partidaActual.numeroPartida)}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -417,7 +427,7 @@ async function pausarPartida() {
 
 async function reanudarPartida() {
     try {
-        const response = await fetch(`URL PARTIDA POR ID`, {
+        const response = await fetch(`${API_BASE_URL}ReanudarPartida/${encodeURIComponent(partidaActual.numeroPartida)}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -445,7 +455,7 @@ async function reanudarPartida() {
 async function suspenderPartida() {
     if (confirm('¿Está seguro de que desea suspender la partida? Esto finalizará el juego.')) {
         try {
-            const response = await fetch(`URL PARTIDA POR ID`, {
+            const response = await fetch(`${API_BASE_URL}SuspenderPartida/${encodeURIComponent(partidaActual.numeroPartida)}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
