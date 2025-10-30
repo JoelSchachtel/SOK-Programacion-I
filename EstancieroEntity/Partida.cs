@@ -25,5 +25,29 @@ namespace EstancieroEntity
             Tablero = new List<CasilleroTablero>();
             Jugadores = new List<JugadorEnPartida>();
         }
+
+        public void ActualizarJugador( JugadorEnPartida jugadorActualizado )
+        {
+            for ( int i = 0; i < Jugadores.Count; i++ )
+            {
+                if ( Jugadores[ i ].DniJugador == jugadorActualizado.DniJugador )
+                {
+                    Jugadores[ i ] = jugadorActualizado;
+                    return;
+                }
+            }
+        }
+
+        public void ActualizarCasillero( CasilleroTablero casilleroActualizado )
+        {
+            for ( int i = 0; i < Tablero.Count; i++ )
+            {
+                if ( Tablero[ i ].NroCasillero == casilleroActualizado.NroCasillero )
+                {
+                    Tablero[ i ] = casilleroActualizado;
+                    return;
+                }
+            }
+        }
     }
 }

@@ -270,7 +270,7 @@ async function lanzarDado() {
         const resultadoDado = apiResponse.data;
         
         // Mostrar popup con el resultado del dado
-        const mensajePopup = `MENSAJE POPUP RESULTADO LANZAMIENTO SACADO DE RESULTADO DADO`;
+        const mensajePopup = `El jugador ${resultadoDado.dniJugador} ha lanzado el dado y avanza ${resultadoDado.valorDado} casilleros.`;
         
         alert(mensajePopup);
         

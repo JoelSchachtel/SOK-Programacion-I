@@ -10,312 +10,281 @@
     "Tablero": [
       {
         "NroCasillero": 0,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Salida",
         "PrecioCompra": null,
         "PrecioAlquiler": null,
         "Monto": null,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 1,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Buenos Aires",
         "PrecioCompra": 300000.0,
         "PrecioAlquiler": 25000.0,
         "Monto": null,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 2,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Catamarca",
         "PrecioCompra": 120000.0,
         "PrecioAlquiler": 10000.0,
         "Monto": null,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 3,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Chaco",
         "PrecioCompra": 150000.0,
         "PrecioAlquiler": 12000.0,
         "Monto": null,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 4,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Multa",
         "PrecioCompra": null,
         "PrecioAlquiler": null,
         "Monto": 5000.0,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 5,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Chubut",
         "PrecioCompra": 180000.0,
         "PrecioAlquiler": 15000.0,
         "Monto": null,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 6,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Córdoba",
         "PrecioCompra": 250000.0,
         "PrecioAlquiler": 20000.0,
         "Monto": null,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 7,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Corrientes",
         "PrecioCompra": 160000.0,
         "PrecioAlquiler": 13000.0,
         "Monto": null,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 8,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Multa",
         "PrecioCompra": null,
         "PrecioAlquiler": null,
         "Monto": 10000.0,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 9,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Entre Ríos",
         "PrecioCompra": 170000.0,
         "PrecioAlquiler": 14000.0,
         "Monto": null,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 10,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Formosa",
         "PrecioCompra": 130000.0,
         "PrecioAlquiler": 11000.0,
         "Monto": null,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 11,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Premio Banco",
         "PrecioCompra": null,
         "PrecioAlquiler": null,
         "Monto": 50000.0,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 12,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Jujuy",
         "PrecioCompra": 140000.0,
         "PrecioAlquiler": 12000.0,
         "Monto": null,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 13,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "La Pampa",
         "PrecioCompra": 150000.0,
         "PrecioAlquiler": 13000.0,
         "Monto": null,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 14,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Multa",
         "PrecioCompra": null,
         "PrecioAlquiler": null,
         "Monto": 15000.0,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 15,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "La Rioja",
         "PrecioCompra": 125000.0,
         "PrecioAlquiler": 10000.0,
         "Monto": null,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 16,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Mendoza",
         "PrecioCompra": 220000.0,
         "PrecioAlquiler": 18000.0,
         "Monto": null,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 17,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Misiones",
         "PrecioCompra": 160000.0,
         "PrecioAlquiler": 13000.0,
         "Monto": null,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 18,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Premio Banco",
         "PrecioCompra": null,
         "PrecioAlquiler": null,
         "Monto": 100000.0,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 19,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Neuquén",
         "PrecioCompra": 200000.0,
         "PrecioAlquiler": 17000.0,
         "Monto": null,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 20,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Río Negro",
         "PrecioCompra": 190000.0,
         "PrecioAlquiler": 16000.0,
         "Monto": null,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 21,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Multa",
         "PrecioCompra": null,
         "PrecioAlquiler": null,
         "Monto": 20000.0,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 22,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Salta",
         "PrecioCompra": 140000.0,
         "PrecioAlquiler": 12000.0,
         "Monto": null,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 23,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "San Juan",
         "PrecioCompra": 180000.0,
         "PrecioAlquiler": 15000.0,
         "Monto": null,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 24,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "San Luis",
         "PrecioCompra": 170000.0,
         "PrecioAlquiler": 14000.0,
         "Monto": null,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 25,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Multa",
         "PrecioCompra": null,
         "PrecioAlquiler": null,
         "Monto": 25000.0,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 26,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Santa Cruz",
         "PrecioCompra": 200000.0,
         "PrecioAlquiler": 17000.0,
         "Monto": null,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 27,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Santa Fe",
         "PrecioCompra": 240000.0,
         "PrecioAlquiler": 20000.0,
         "Monto": null,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 28,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Santiago del Estero",
         "PrecioCompra": 150000.0,
         "PrecioAlquiler": 12000.0,
         "Monto": null,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 29,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Tierra del Fuego",
         "PrecioCompra": 210000.0,
         "PrecioAlquiler": 18000.0,
         "Monto": null,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 30,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Tucumán",
         "PrecioCompra": 180000.0,
         "PrecioAlquiler": 15000.0,
         "Monto": null,
-        "MontoSancion": null,
         "DniPropietario": null
       }
     ],
@@ -338,122 +307,86 @@
           {
             "Id": 1,
             "Fecha": "2025-10-23T19:35:42.1450076-03:00",
-            "Descripcion": "Lanzó el dado y avanzó de 0 a 2",
             "Tipo": null,
             "Monto": null,
-            "CasilleroOrigen": null,
-            "CasilleroDestino": null,
-            "DniJugadorAfectado": null
+            "Casillero": null
           },
           {
             "Id": 0,
             "Fecha": "2025-10-23T19:35:42.1466672-03:00",
-            "Descripcion": "",
-            "Tipo": 0,
+            "Tipo": "0",
             "Monto": 0.0,
-            "CasilleroOrigen": 2,
-            "CasilleroDestino": 2,
-            "DniJugadorAfectado": 40123987
+            "Casillero": null
           },
           {
             "Id": 2,
             "Fecha": "2025-10-23T19:35:46.4065815-03:00",
-            "Descripcion": "Lanzó el dado y avanzó de 2 a 7",
             "Tipo": null,
             "Monto": null,
-            "CasilleroOrigen": null,
-            "CasilleroDestino": null,
-            "DniJugadorAfectado": null
+            "Casillero": null
           },
           {
             "Id": 0,
             "Fecha": "2025-10-23T19:35:46.4066372-03:00",
-            "Descripcion": "",
-            "Tipo": 0,
+            "Tipo": "0",
             "Monto": 0.0,
-            "CasilleroOrigen": 7,
-            "CasilleroDestino": 7,
-            "DniJugadorAfectado": 40123987
+            "Casillero": null
           },
           {
             "Id": 3,
             "Fecha": "2025-10-23T19:35:49.0186782-03:00",
-            "Descripcion": "Lanzó el dado y avanzó de 7 a 12",
             "Tipo": null,
             "Monto": null,
-            "CasilleroOrigen": null,
-            "CasilleroDestino": null,
-            "DniJugadorAfectado": null
+            "Casillero": null
           },
           {
             "Id": 0,
             "Fecha": "2025-10-23T19:35:49.0186898-03:00",
-            "Descripcion": "",
-            "Tipo": 0,
+            "Tipo": "0",
             "Monto": 0.0,
-            "CasilleroOrigen": 12,
-            "CasilleroDestino": 12,
-            "DniJugadorAfectado": 40123987
+            "Casillero": null
           },
           {
             "Id": 4,
             "Fecha": "2025-10-23T19:35:51.5048009-03:00",
-            "Descripcion": "Lanzó el dado y avanzó de 12 a 14",
             "Tipo": null,
             "Monto": null,
-            "CasilleroOrigen": null,
-            "CasilleroDestino": null,
-            "DniJugadorAfectado": null
+            "Casillero": null
           },
           {
             "Id": 0,
             "Fecha": "2025-10-23T19:35:51.5048229-03:00",
-            "Descripcion": "",
-            "Tipo": 0,
+            "Tipo": "0",
             "Monto": 0.0,
-            "CasilleroOrigen": 14,
-            "CasilleroDestino": 14,
-            "DniJugadorAfectado": 40123987
+            "Casillero": null
           },
           {
             "Id": 5,
             "Fecha": "2025-10-23T19:35:53.7672245-03:00",
-            "Descripcion": "Lanzó el dado y avanzó de 14 a 17",
             "Tipo": null,
             "Monto": null,
-            "CasilleroOrigen": null,
-            "CasilleroDestino": null,
-            "DniJugadorAfectado": null
+            "Casillero": null
           },
           {
             "Id": 0,
             "Fecha": "2025-10-23T19:35:53.7672939-03:00",
-            "Descripcion": "",
-            "Tipo": 0,
+            "Tipo": "0",
             "Monto": 0.0,
-            "CasilleroOrigen": 17,
-            "CasilleroDestino": 17,
-            "DniJugadorAfectado": 40123987
+            "Casillero": null
           },
           {
             "Id": 6,
             "Fecha": "2025-10-23T19:36:35.0089399-03:00",
-            "Descripcion": "Lanzó el dado y avanzó de 17 a 22",
             "Tipo": null,
             "Monto": null,
-            "CasilleroOrigen": null,
-            "CasilleroDestino": null,
-            "DniJugadorAfectado": null
+            "Casillero": null
           },
           {
             "Id": 0,
             "Fecha": "2025-10-23T19:36:35.0089513-03:00",
-            "Descripcion": "",
-            "Tipo": 0,
+            "Tipo": "0",
             "Monto": 0.0,
-            "CasilleroOrigen": 22,
-            "CasilleroDestino": 22,
-            "DniJugadorAfectado": 40123987
+            "Casillero": null
           }
         ]
       }
@@ -472,312 +405,281 @@
     "Tablero": [
       {
         "NroCasillero": 0,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Salida",
         "PrecioCompra": null,
         "PrecioAlquiler": null,
         "Monto": null,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 1,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Buenos Aires",
         "PrecioCompra": 300000.0,
         "PrecioAlquiler": 25000.0,
         "Monto": null,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 2,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Catamarca",
         "PrecioCompra": 120000.0,
         "PrecioAlquiler": 10000.0,
         "Monto": null,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 3,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Chaco",
         "PrecioCompra": 150000.0,
         "PrecioAlquiler": 12000.0,
         "Monto": null,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 4,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Multa",
         "PrecioCompra": null,
         "PrecioAlquiler": null,
         "Monto": 5000.0,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 5,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Chubut",
         "PrecioCompra": 180000.0,
         "PrecioAlquiler": 15000.0,
         "Monto": null,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 6,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Córdoba",
         "PrecioCompra": 250000.0,
         "PrecioAlquiler": 20000.0,
         "Monto": null,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 7,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Corrientes",
         "PrecioCompra": 160000.0,
         "PrecioAlquiler": 13000.0,
         "Monto": null,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 8,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Multa",
         "PrecioCompra": null,
         "PrecioAlquiler": null,
         "Monto": 10000.0,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 9,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Entre Ríos",
         "PrecioCompra": 170000.0,
         "PrecioAlquiler": 14000.0,
         "Monto": null,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 10,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Formosa",
         "PrecioCompra": 130000.0,
         "PrecioAlquiler": 11000.0,
         "Monto": null,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 11,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Premio Banco",
         "PrecioCompra": null,
         "PrecioAlquiler": null,
         "Monto": 50000.0,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 12,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Jujuy",
         "PrecioCompra": 140000.0,
         "PrecioAlquiler": 12000.0,
         "Monto": null,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 13,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "La Pampa",
         "PrecioCompra": 150000.0,
         "PrecioAlquiler": 13000.0,
         "Monto": null,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 14,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Multa",
         "PrecioCompra": null,
         "PrecioAlquiler": null,
         "Monto": 15000.0,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 15,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "La Rioja",
         "PrecioCompra": 125000.0,
         "PrecioAlquiler": 10000.0,
         "Monto": null,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 16,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Mendoza",
         "PrecioCompra": 220000.0,
         "PrecioAlquiler": 18000.0,
         "Monto": null,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 17,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Misiones",
         "PrecioCompra": 160000.0,
         "PrecioAlquiler": 13000.0,
         "Monto": null,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 18,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Premio Banco",
         "PrecioCompra": null,
         "PrecioAlquiler": null,
         "Monto": 100000.0,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 19,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Neuquén",
         "PrecioCompra": 200000.0,
         "PrecioAlquiler": 17000.0,
         "Monto": null,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 20,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Río Negro",
         "PrecioCompra": 190000.0,
         "PrecioAlquiler": 16000.0,
         "Monto": null,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 21,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Multa",
         "PrecioCompra": null,
         "PrecioAlquiler": null,
         "Monto": 20000.0,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 22,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Salta",
         "PrecioCompra": 140000.0,
         "PrecioAlquiler": 12000.0,
         "Monto": null,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 23,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "San Juan",
         "PrecioCompra": 180000.0,
         "PrecioAlquiler": 15000.0,
         "Monto": null,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 24,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "San Luis",
         "PrecioCompra": 170000.0,
         "PrecioAlquiler": 14000.0,
         "Monto": null,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 25,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Multa",
         "PrecioCompra": null,
         "PrecioAlquiler": null,
         "Monto": 25000.0,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 26,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Santa Cruz",
         "PrecioCompra": 200000.0,
         "PrecioAlquiler": 17000.0,
         "Monto": null,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 27,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Santa Fe",
         "PrecioCompra": 240000.0,
         "PrecioAlquiler": 20000.0,
         "Monto": null,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 28,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Santiago del Estero",
         "PrecioCompra": 150000.0,
         "PrecioAlquiler": 12000.0,
         "Monto": null,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 29,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Tierra del Fuego",
         "PrecioCompra": 210000.0,
         "PrecioAlquiler": 18000.0,
         "Monto": null,
-        "MontoSancion": null,
         "DniPropietario": null
       },
       {
         "NroCasillero": 30,
-        "TipoCasillero": 0,
+        "Tipo": null,
         "Nombre": "Tucumán",
         "PrecioCompra": 180000.0,
         "PrecioAlquiler": 15000.0,
         "Monto": null,
-        "MontoSancion": null,
         "DniPropietario": null
       }
     ],
@@ -792,142 +694,100 @@
           {
             "Id": 1,
             "Fecha": "2025-10-23T19:38:41.5926994-03:00",
-            "Descripcion": "Lanzó el dado y avanzó de 0 a 2",
             "Tipo": null,
             "Monto": null,
-            "CasilleroOrigen": null,
-            "CasilleroDestino": null,
-            "DniJugadorAfectado": null
+            "Casillero": null
           },
           {
             "Id": 0,
             "Fecha": "2025-10-23T19:38:41.5946355-03:00",
-            "Descripcion": "",
-            "Tipo": 0,
+            "Tipo": "0",
             "Monto": 0.0,
-            "CasilleroOrigen": 2,
-            "CasilleroDestino": 2,
-            "DniJugadorAfectado": 41601451
+            "Casillero": null
           },
           {
             "Id": 2,
             "Fecha": "2025-10-23T19:41:59.8444344-03:00",
-            "Descripcion": "Lanzó el dado y avanzó de 2 a 5",
             "Tipo": null,
             "Monto": null,
-            "CasilleroOrigen": null,
-            "CasilleroDestino": null,
-            "DniJugadorAfectado": null
+            "Casillero": null
           },
           {
             "Id": 0,
             "Fecha": "2025-10-23T19:41:59.8444621-03:00",
-            "Descripcion": "",
-            "Tipo": 0,
+            "Tipo": "0",
             "Monto": 0.0,
-            "CasilleroOrigen": 5,
-            "CasilleroDestino": 5,
-            "DniJugadorAfectado": 41601451
+            "Casillero": null
           },
           {
             "Id": 3,
             "Fecha": "2025-10-23T19:42:05.9850428-03:00",
-            "Descripcion": "Lanzó el dado y avanzó de 5 a 9",
             "Tipo": null,
             "Monto": null,
-            "CasilleroOrigen": null,
-            "CasilleroDestino": null,
-            "DniJugadorAfectado": null
+            "Casillero": null
           },
           {
             "Id": 0,
             "Fecha": "2025-10-23T19:42:05.9850541-03:00",
-            "Descripcion": "",
-            "Tipo": 0,
+            "Tipo": "0",
             "Monto": 0.0,
-            "CasilleroOrigen": 9,
-            "CasilleroDestino": 9,
-            "DniJugadorAfectado": 41601451
+            "Casillero": null
           },
           {
             "Id": 4,
             "Fecha": "2025-10-23T19:42:10.7766548-03:00",
-            "Descripcion": "Lanzó el dado y avanzó de 9 a 14",
             "Tipo": null,
             "Monto": null,
-            "CasilleroOrigen": null,
-            "CasilleroDestino": null,
-            "DniJugadorAfectado": null
+            "Casillero": null
           },
           {
             "Id": 0,
             "Fecha": "2025-10-23T19:42:10.7766646-03:00",
-            "Descripcion": "",
-            "Tipo": 0,
+            "Tipo": "0",
             "Monto": 0.0,
-            "CasilleroOrigen": 14,
-            "CasilleroDestino": 14,
-            "DniJugadorAfectado": 41601451
+            "Casillero": null
           },
           {
             "Id": 5,
             "Fecha": "2025-10-23T19:43:54.622976-03:00",
-            "Descripcion": "Lanzó el dado y avanzó de 14 a 20",
             "Tipo": null,
             "Monto": null,
-            "CasilleroOrigen": null,
-            "CasilleroDestino": null,
-            "DniJugadorAfectado": null
+            "Casillero": null
           },
           {
             "Id": 0,
             "Fecha": "2025-10-23T19:43:54.6250185-03:00",
-            "Descripcion": "",
-            "Tipo": 0,
+            "Tipo": "0",
             "Monto": 0.0,
-            "CasilleroOrigen": 20,
-            "CasilleroDestino": 20,
-            "DniJugadorAfectado": 41601451
+            "Casillero": null
           },
           {
             "Id": 6,
             "Fecha": "2025-10-23T19:44:01.1308607-03:00",
-            "Descripcion": "Lanzó el dado y avanzó de 20 a 23",
             "Tipo": null,
             "Monto": null,
-            "CasilleroOrigen": null,
-            "CasilleroDestino": null,
-            "DniJugadorAfectado": null
+            "Casillero": null
           },
           {
             "Id": 0,
             "Fecha": "2025-10-23T19:44:01.1308714-03:00",
-            "Descripcion": "",
-            "Tipo": 0,
+            "Tipo": "0",
             "Monto": 0.0,
-            "CasilleroOrigen": 23,
-            "CasilleroDestino": 23,
-            "DniJugadorAfectado": 41601451
+            "Casillero": null
           },
           {
             "Id": 7,
             "Fecha": "2025-10-23T19:44:06.4950677-03:00",
-            "Descripcion": "Lanzó el dado y avanzó de 23 a 25",
             "Tipo": null,
             "Monto": null,
-            "CasilleroOrigen": null,
-            "CasilleroDestino": null,
-            "DniJugadorAfectado": null
+            "Casillero": null
           },
           {
             "Id": 0,
             "Fecha": "2025-10-23T19:44:06.4950787-03:00",
-            "Descripcion": "",
-            "Tipo": 0,
+            "Tipo": "0",
             "Monto": 0.0,
-            "CasilleroOrigen": 25,
-            "CasilleroDestino": 25,
-            "DniJugadorAfectado": 41601451
+            "Casillero": null
           }
         ]
       },
@@ -941,167 +801,1713 @@
           {
             "Id": 1,
             "Fecha": "2025-10-23T19:38:44.8550783-03:00",
-            "Descripcion": "Lanzó el dado y avanzó de 0 a 2",
             "Tipo": null,
             "Monto": null,
-            "CasilleroOrigen": null,
-            "CasilleroDestino": null,
-            "DniJugadorAfectado": null
+            "Casillero": null
           },
           {
             "Id": 0,
             "Fecha": "2025-10-23T19:38:44.8550902-03:00",
-            "Descripcion": "",
-            "Tipo": 0,
+            "Tipo": "0",
             "Monto": 0.0,
-            "CasilleroOrigen": 2,
-            "CasilleroDestino": 2,
-            "DniJugadorAfectado": 40123987
+            "Casillero": null
           },
           {
             "Id": 2,
             "Fecha": "2025-10-23T19:41:32.8321867-03:00",
-            "Descripcion": "Lanzó el dado y avanzó de 2 a 5",
             "Tipo": null,
             "Monto": null,
-            "CasilleroOrigen": null,
-            "CasilleroDestino": null,
-            "DniJugadorAfectado": null
+            "Casillero": null
           },
           {
             "Id": 0,
             "Fecha": "2025-10-23T19:41:32.8353113-03:00",
-            "Descripcion": "",
-            "Tipo": 0,
+            "Tipo": "0",
             "Monto": 0.0,
-            "CasilleroOrigen": 5,
-            "CasilleroDestino": 5,
-            "DniJugadorAfectado": 40123987
+            "Casillero": null
           },
           {
             "Id": 3,
             "Fecha": "2025-10-23T19:41:35.1603086-03:00",
-            "Descripcion": "Lanzó el dado y avanzó de 5 a 9",
             "Tipo": null,
             "Monto": null,
-            "CasilleroOrigen": null,
-            "CasilleroDestino": null,
-            "DniJugadorAfectado": null
+            "Casillero": null
           },
           {
             "Id": 0,
             "Fecha": "2025-10-23T19:41:35.1603356-03:00",
-            "Descripcion": "",
-            "Tipo": 0,
+            "Tipo": "0",
             "Monto": 0.0,
-            "CasilleroOrigen": 9,
-            "CasilleroDestino": 9,
-            "DniJugadorAfectado": 40123987
+            "Casillero": null
           },
           {
             "Id": 4,
             "Fecha": "2025-10-23T19:41:37.7077962-03:00",
-            "Descripcion": "Lanzó el dado y avanzó de 9 a 13",
             "Tipo": null,
             "Monto": null,
-            "CasilleroOrigen": null,
-            "CasilleroDestino": null,
-            "DniJugadorAfectado": null
+            "Casillero": null
           },
           {
             "Id": 0,
             "Fecha": "2025-10-23T19:41:37.7078352-03:00",
-            "Descripcion": "",
-            "Tipo": 0,
+            "Tipo": "0",
             "Monto": 0.0,
-            "CasilleroOrigen": 13,
-            "CasilleroDestino": 13,
-            "DniJugadorAfectado": 40123987
+            "Casillero": null
           },
           {
             "Id": 5,
             "Fecha": "2025-10-23T19:41:44.6927451-03:00",
-            "Descripcion": "Lanzó el dado y avanzó de 13 a 15",
             "Tipo": null,
             "Monto": null,
-            "CasilleroOrigen": null,
-            "CasilleroDestino": null,
-            "DniJugadorAfectado": null
+            "Casillero": null
           },
           {
             "Id": 0,
             "Fecha": "2025-10-23T19:41:44.6927572-03:00",
-            "Descripcion": "",
-            "Tipo": 0,
+            "Tipo": "0",
             "Monto": 0.0,
-            "CasilleroOrigen": 15,
-            "CasilleroDestino": 15,
-            "DniJugadorAfectado": 40123987
+            "Casillero": null
           },
           {
             "Id": 6,
             "Fecha": "2025-10-23T19:43:57.8416739-03:00",
-            "Descripcion": "Lanzó el dado y avanzó de 15 a 16",
             "Tipo": null,
             "Monto": null,
-            "CasilleroOrigen": null,
-            "CasilleroDestino": null,
-            "DniJugadorAfectado": null
+            "Casillero": null
           },
           {
             "Id": 0,
             "Fecha": "2025-10-23T19:43:57.8416853-03:00",
-            "Descripcion": "",
-            "Tipo": 0,
+            "Tipo": "0",
             "Monto": 0.0,
-            "CasilleroOrigen": 16,
-            "CasilleroDestino": 16,
-            "DniJugadorAfectado": 40123987
+            "Casillero": null
           },
           {
             "Id": 7,
             "Fecha": "2025-10-23T19:44:03.8161235-03:00",
-            "Descripcion": "Lanzó el dado y avanzó de 16 a 17",
             "Tipo": null,
             "Monto": null,
-            "CasilleroOrigen": null,
-            "CasilleroDestino": null,
-            "DniJugadorAfectado": null
+            "Casillero": null
           },
           {
             "Id": 0,
             "Fecha": "2025-10-23T19:44:03.8161352-03:00",
-            "Descripcion": "",
-            "Tipo": 0,
+            "Tipo": "0",
             "Monto": 0.0,
-            "CasilleroOrigen": 17,
-            "CasilleroDestino": 17,
-            "DniJugadorAfectado": 40123987
+            "Casillero": null
           },
           {
             "Id": 8,
             "Fecha": "2025-10-23T19:44:08.8620725-03:00",
-            "Descripcion": "Lanzó el dado y avanzó de 17 a 19",
             "Tipo": null,
             "Monto": null,
-            "CasilleroOrigen": null,
-            "CasilleroDestino": null,
-            "DniJugadorAfectado": null
+            "Casillero": null
           },
           {
             "Id": 0,
             "Fecha": "2025-10-23T19:44:08.8620842-03:00",
-            "Descripcion": "",
-            "Tipo": 0,
+            "Tipo": "0",
             "Monto": 0.0,
-            "CasilleroOrigen": 19,
-            "CasilleroDestino": 19,
-            "DniJugadorAfectado": 40123987
+            "Casillero": null
           }
         ]
       }
     ],
     "DniGanador": null,
     "MotivoVictoria": null
+  },
+  {
+    "NumeroPartida": 3,
+    "FechaInicio": "2025-10-29T21:06:00.8512672-03:00",
+    "FechaFin": null,
+    "Duracion": null,
+    "Estado": 0,
+    "TurnoActual": 1,
+    "ConfiguracionTurnos": [],
+    "Tablero": [
+      {
+        "NroCasillero": 0,
+        "Tipo": null,
+        "Nombre": "Salida",
+        "PrecioCompra": null,
+        "PrecioAlquiler": null,
+        "Monto": null,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 1,
+        "Tipo": null,
+        "Nombre": "Buenos Aires",
+        "PrecioCompra": 300000.0,
+        "PrecioAlquiler": 25000.0,
+        "Monto": null,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 2,
+        "Tipo": null,
+        "Nombre": "Catamarca",
+        "PrecioCompra": 120000.0,
+        "PrecioAlquiler": 10000.0,
+        "Monto": null,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 3,
+        "Tipo": null,
+        "Nombre": "Chaco",
+        "PrecioCompra": 150000.0,
+        "PrecioAlquiler": 12000.0,
+        "Monto": null,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 4,
+        "Tipo": null,
+        "Nombre": "Multa",
+        "PrecioCompra": null,
+        "PrecioAlquiler": null,
+        "Monto": 5000.0,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 5,
+        "Tipo": null,
+        "Nombre": "Chubut",
+        "PrecioCompra": 180000.0,
+        "PrecioAlquiler": 15000.0,
+        "Monto": null,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 6,
+        "Tipo": null,
+        "Nombre": "Córdoba",
+        "PrecioCompra": 250000.0,
+        "PrecioAlquiler": 20000.0,
+        "Monto": null,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 7,
+        "Tipo": null,
+        "Nombre": "Corrientes",
+        "PrecioCompra": 160000.0,
+        "PrecioAlquiler": 13000.0,
+        "Monto": null,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 8,
+        "Tipo": null,
+        "Nombre": "Multa",
+        "PrecioCompra": null,
+        "PrecioAlquiler": null,
+        "Monto": 10000.0,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 9,
+        "Tipo": null,
+        "Nombre": "Entre Ríos",
+        "PrecioCompra": 170000.0,
+        "PrecioAlquiler": 14000.0,
+        "Monto": null,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 10,
+        "Tipo": null,
+        "Nombre": "Formosa",
+        "PrecioCompra": 130000.0,
+        "PrecioAlquiler": 11000.0,
+        "Monto": null,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 11,
+        "Tipo": null,
+        "Nombre": "Premio Banco",
+        "PrecioCompra": null,
+        "PrecioAlquiler": null,
+        "Monto": 50000.0,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 12,
+        "Tipo": null,
+        "Nombre": "Jujuy",
+        "PrecioCompra": 140000.0,
+        "PrecioAlquiler": 12000.0,
+        "Monto": null,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 13,
+        "Tipo": null,
+        "Nombre": "La Pampa",
+        "PrecioCompra": 150000.0,
+        "PrecioAlquiler": 13000.0,
+        "Monto": null,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 14,
+        "Tipo": null,
+        "Nombre": "Multa",
+        "PrecioCompra": null,
+        "PrecioAlquiler": null,
+        "Monto": 15000.0,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 15,
+        "Tipo": null,
+        "Nombre": "La Rioja",
+        "PrecioCompra": 125000.0,
+        "PrecioAlquiler": 10000.0,
+        "Monto": null,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 16,
+        "Tipo": null,
+        "Nombre": "Mendoza",
+        "PrecioCompra": 220000.0,
+        "PrecioAlquiler": 18000.0,
+        "Monto": null,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 17,
+        "Tipo": null,
+        "Nombre": "Misiones",
+        "PrecioCompra": 160000.0,
+        "PrecioAlquiler": 13000.0,
+        "Monto": null,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 18,
+        "Tipo": null,
+        "Nombre": "Premio Banco",
+        "PrecioCompra": null,
+        "PrecioAlquiler": null,
+        "Monto": 100000.0,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 19,
+        "Tipo": null,
+        "Nombre": "Neuquén",
+        "PrecioCompra": 200000.0,
+        "PrecioAlquiler": 17000.0,
+        "Monto": null,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 20,
+        "Tipo": null,
+        "Nombre": "Río Negro",
+        "PrecioCompra": 190000.0,
+        "PrecioAlquiler": 16000.0,
+        "Monto": null,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 21,
+        "Tipo": null,
+        "Nombre": "Multa",
+        "PrecioCompra": null,
+        "PrecioAlquiler": null,
+        "Monto": 20000.0,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 22,
+        "Tipo": null,
+        "Nombre": "Salta",
+        "PrecioCompra": 140000.0,
+        "PrecioAlquiler": 12000.0,
+        "Monto": null,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 23,
+        "Tipo": null,
+        "Nombre": "San Juan",
+        "PrecioCompra": 180000.0,
+        "PrecioAlquiler": 15000.0,
+        "Monto": null,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 24,
+        "Tipo": null,
+        "Nombre": "San Luis",
+        "PrecioCompra": 170000.0,
+        "PrecioAlquiler": 14000.0,
+        "Monto": null,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 25,
+        "Tipo": null,
+        "Nombre": "Multa",
+        "PrecioCompra": null,
+        "PrecioAlquiler": null,
+        "Monto": 25000.0,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 26,
+        "Tipo": null,
+        "Nombre": "Santa Cruz",
+        "PrecioCompra": 200000.0,
+        "PrecioAlquiler": 17000.0,
+        "Monto": null,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 27,
+        "Tipo": null,
+        "Nombre": "Santa Fe",
+        "PrecioCompra": 240000.0,
+        "PrecioAlquiler": 20000.0,
+        "Monto": null,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 28,
+        "Tipo": null,
+        "Nombre": "Santiago del Estero",
+        "PrecioCompra": 150000.0,
+        "PrecioAlquiler": 12000.0,
+        "Monto": null,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 29,
+        "Tipo": null,
+        "Nombre": "Tierra del Fuego",
+        "PrecioCompra": 210000.0,
+        "PrecioAlquiler": 18000.0,
+        "Monto": null,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 30,
+        "Tipo": null,
+        "Nombre": "Tucumán",
+        "PrecioCompra": 180000.0,
+        "PrecioAlquiler": 15000.0,
+        "Monto": null,
+        "DniPropietario": null
+      }
+    ],
+    "Jugadores": [
+      {
+        "NumeroPartida": 3,
+        "DniJugador": 42987654,
+        "PosicionActual": 5,
+        "DineroDisponible": 5000000.0,
+        "Estado": 0,
+        "HistorialMovimientos": [
+          {
+            "Id": 1,
+            "Fecha": "2025-10-29T21:06:07.599874-03:00",
+            "Tipo": null,
+            "Monto": null,
+            "Casillero": null
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:06:07.6004055-03:00",
+            "Tipo": "0",
+            "Monto": 0.0,
+            "Casillero": null
+          },
+          {
+            "Id": 2,
+            "Fecha": "2025-10-29T21:06:16.0195502-03:00",
+            "Tipo": null,
+            "Monto": null,
+            "Casillero": null
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:06:16.0195637-03:00",
+            "Tipo": "0",
+            "Monto": 0.0,
+            "Casillero": null
+          }
+        ]
+      },
+      {
+        "NumeroPartida": 3,
+        "DniJugador": 41234567,
+        "PosicionActual": 6,
+        "DineroDisponible": 5000000.0,
+        "Estado": 0,
+        "HistorialMovimientos": [
+          {
+            "Id": 1,
+            "Fecha": "2025-10-29T21:06:12.1624654-03:00",
+            "Tipo": null,
+            "Monto": null,
+            "Casillero": null
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:06:12.1624692-03:00",
+            "Tipo": "0",
+            "Monto": 0.0,
+            "Casillero": null
+          }
+        ]
+      }
+    ],
+    "DniGanador": null,
+    "MotivoVictoria": null
+  },
+  {
+    "NumeroPartida": 4,
+    "FechaInicio": "2025-10-29T21:29:15.5703425-03:00",
+    "FechaFin": null,
+    "Duracion": null,
+    "Estado": 1,
+    "TurnoActual": 1,
+    "ConfiguracionTurnos": [],
+    "Tablero": [
+      {
+        "NroCasillero": 0,
+        "Tipo": "inicio",
+        "Nombre": "Salida",
+        "PrecioCompra": null,
+        "PrecioAlquiler": null,
+        "Monto": null,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 1,
+        "Tipo": "provincia",
+        "Nombre": "Buenos Aires",
+        "PrecioCompra": 300000.0,
+        "PrecioAlquiler": 25000.0,
+        "Monto": null,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 2,
+        "Tipo": "provincia",
+        "Nombre": "Catamarca",
+        "PrecioCompra": 120000.0,
+        "PrecioAlquiler": 10000.0,
+        "Monto": null,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 3,
+        "Tipo": "provincia",
+        "Nombre": "Chaco",
+        "PrecioCompra": 150000.0,
+        "PrecioAlquiler": 12000.0,
+        "Monto": null,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 4,
+        "Tipo": "multa",
+        "Nombre": "Multa",
+        "PrecioCompra": null,
+        "PrecioAlquiler": null,
+        "Monto": 5000.0,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 5,
+        "Tipo": "provincia",
+        "Nombre": "Chubut",
+        "PrecioCompra": 180000.0,
+        "PrecioAlquiler": 15000.0,
+        "Monto": null,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 6,
+        "Tipo": "provincia",
+        "Nombre": "Córdoba",
+        "PrecioCompra": 250000.0,
+        "PrecioAlquiler": 20000.0,
+        "Monto": null,
+        "DniPropietario": "42987654"
+      },
+      {
+        "NroCasillero": 7,
+        "Tipo": "provincia",
+        "Nombre": "Corrientes",
+        "PrecioCompra": 160000.0,
+        "PrecioAlquiler": 13000.0,
+        "Monto": null,
+        "DniPropietario": "42987654"
+      },
+      {
+        "NroCasillero": 8,
+        "Tipo": "multa",
+        "Nombre": "Multa",
+        "PrecioCompra": null,
+        "PrecioAlquiler": null,
+        "Monto": 10000.0,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 9,
+        "Tipo": "provincia",
+        "Nombre": "Entre Ríos",
+        "PrecioCompra": 170000.0,
+        "PrecioAlquiler": 14000.0,
+        "Monto": null,
+        "DniPropietario": "42987654"
+      },
+      {
+        "NroCasillero": 10,
+        "Tipo": "provincia",
+        "Nombre": "Formosa",
+        "PrecioCompra": 130000.0,
+        "PrecioAlquiler": 11000.0,
+        "Monto": null,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 11,
+        "Tipo": "premio",
+        "Nombre": "Premio Banco",
+        "PrecioCompra": null,
+        "PrecioAlquiler": null,
+        "Monto": 50000.0,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 12,
+        "Tipo": "provincia",
+        "Nombre": "Jujuy",
+        "PrecioCompra": 140000.0,
+        "PrecioAlquiler": 12000.0,
+        "Monto": null,
+        "DniPropietario": "43876543"
+      },
+      {
+        "NroCasillero": 13,
+        "Tipo": "provincia",
+        "Nombre": "La Pampa",
+        "PrecioCompra": 150000.0,
+        "PrecioAlquiler": 13000.0,
+        "Monto": null,
+        "DniPropietario": "42987654"
+      },
+      {
+        "NroCasillero": 14,
+        "Tipo": "multa",
+        "Nombre": "Multa",
+        "PrecioCompra": null,
+        "PrecioAlquiler": null,
+        "Monto": 15000.0,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 15,
+        "Tipo": "provincia",
+        "Nombre": "La Rioja",
+        "PrecioCompra": 125000.0,
+        "PrecioAlquiler": 10000.0,
+        "Monto": null,
+        "DniPropietario": "43876543"
+      },
+      {
+        "NroCasillero": 16,
+        "Tipo": "provincia",
+        "Nombre": "Mendoza",
+        "PrecioCompra": 220000.0,
+        "PrecioAlquiler": 18000.0,
+        "Monto": null,
+        "DniPropietario": "43876543"
+      },
+      {
+        "NroCasillero": 17,
+        "Tipo": "provincia",
+        "Nombre": "Misiones",
+        "PrecioCompra": 160000.0,
+        "PrecioAlquiler": 13000.0,
+        "Monto": null,
+        "DniPropietario": "43876543"
+      },
+      {
+        "NroCasillero": 18,
+        "Tipo": "premio",
+        "Nombre": "Premio Banco",
+        "PrecioCompra": null,
+        "PrecioAlquiler": null,
+        "Monto": 100000.0,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 19,
+        "Tipo": "provincia",
+        "Nombre": "Neuquén",
+        "PrecioCompra": 200000.0,
+        "PrecioAlquiler": 17000.0,
+        "Monto": null,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 20,
+        "Tipo": "provincia",
+        "Nombre": "Río Negro",
+        "PrecioCompra": 190000.0,
+        "PrecioAlquiler": 16000.0,
+        "Monto": null,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 21,
+        "Tipo": "multa",
+        "Nombre": "Multa",
+        "PrecioCompra": null,
+        "PrecioAlquiler": null,
+        "Monto": 20000.0,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 22,
+        "Tipo": "provincia",
+        "Nombre": "Salta",
+        "PrecioCompra": 140000.0,
+        "PrecioAlquiler": 12000.0,
+        "Monto": null,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 23,
+        "Tipo": "provincia",
+        "Nombre": "San Juan",
+        "PrecioCompra": 180000.0,
+        "PrecioAlquiler": 15000.0,
+        "Monto": null,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 24,
+        "Tipo": "provincia",
+        "Nombre": "San Luis",
+        "PrecioCompra": 170000.0,
+        "PrecioAlquiler": 14000.0,
+        "Monto": null,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 25,
+        "Tipo": "multa",
+        "Nombre": "Multa",
+        "PrecioCompra": null,
+        "PrecioAlquiler": null,
+        "Monto": 25000.0,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 26,
+        "Tipo": "provincia",
+        "Nombre": "Santa Cruz",
+        "PrecioCompra": 200000.0,
+        "PrecioAlquiler": 17000.0,
+        "Monto": null,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 27,
+        "Tipo": "provincia",
+        "Nombre": "Santa Fe",
+        "PrecioCompra": 240000.0,
+        "PrecioAlquiler": 20000.0,
+        "Monto": null,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 28,
+        "Tipo": "provincia",
+        "Nombre": "Santiago del Estero",
+        "PrecioCompra": 150000.0,
+        "PrecioAlquiler": 12000.0,
+        "Monto": null,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 29,
+        "Tipo": "provincia",
+        "Nombre": "Tierra del Fuego",
+        "PrecioCompra": 210000.0,
+        "PrecioAlquiler": 18000.0,
+        "Monto": null,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 30,
+        "Tipo": "provincia",
+        "Nombre": "Tucumán",
+        "PrecioCompra": 180000.0,
+        "PrecioAlquiler": 15000.0,
+        "Monto": null,
+        "DniPropietario": null
+      }
+    ],
+    "Jugadores": [
+      {
+        "NumeroPartida": 4,
+        "DniJugador": 42987654,
+        "PosicionActual": 15,
+        "DineroDisponible": -172200.0,
+        "Estado": 1,
+        "HistorialMovimientos": [
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:29:17.394985-03:00",
+            "Tipo": "Compra",
+            "Monto": 250000.0,
+            "Casillero": 6
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:29:22.336332-03:00",
+            "Tipo": "Cobro",
+            "Monto": 20000.0,
+            "Casillero": 6
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:29:32.8162792-03:00",
+            "Tipo": "Compra",
+            "Monto": 160000.0,
+            "Casillero": 7
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:29:37.6072814-03:00",
+            "Tipo": "Compra",
+            "Monto": 170000.0,
+            "Casillero": 9
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:30:39.226522-03:00",
+            "Tipo": "Pago",
+            "Monto": 12000.0,
+            "Casillero": 12
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:30:48.1545731-03:00",
+            "Tipo": "Compra",
+            "Monto": 150000.0,
+            "Casillero": 13
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:33:43.6968272-03:00",
+            "Tipo": "Pago",
+            "Monto": 10000.0,
+            "Casillero": 15
+          }
+        ]
+      },
+      {
+        "NumeroPartida": 4,
+        "DniJugador": 43876543,
+        "PosicionActual": 17,
+        "DineroDisponible": 4357000.0,
+        "Estado": 0,
+        "HistorialMovimientos": [
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:29:22.3363301-03:00",
+            "Tipo": "Pago",
+            "Monto": 20000.0,
+            "Casillero": 6
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:29:35.5792588-03:00",
+            "Tipo": "Compra",
+            "Monto": 140000.0,
+            "Casillero": 12
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:29:42.7490487-03:00",
+            "Tipo": "Compra",
+            "Monto": 125000.0,
+            "Casillero": 15
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:30:39.2265238-03:00",
+            "Tipo": "Cobro",
+            "Monto": 12000.0,
+            "Casillero": 12
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:30:43.8053017-03:00",
+            "Tipo": "Compra",
+            "Monto": 220000.0,
+            "Casillero": 16
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:33:41.1825861-03:00",
+            "Tipo": "Compra",
+            "Monto": 160000.0,
+            "Casillero": 17
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:33:43.6968297-03:00",
+            "Tipo": "Cobro",
+            "Monto": 10000.0,
+            "Casillero": 15
+          }
+        ]
+      }
+    ],
+    "DniGanador": 43876543,
+    "MotivoVictoria": "Ganó por ser el único jugador con saldo positivo"
+  },
+  {
+    "NumeroPartida": 5,
+    "FechaInicio": "2025-10-29T21:34:56.1567783-03:00",
+    "FechaFin": null,
+    "Duracion": null,
+    "Estado": 1,
+    "TurnoActual": 1,
+    "ConfiguracionTurnos": [],
+    "Tablero": [
+      {
+        "NroCasillero": 0,
+        "Tipo": "inicio",
+        "Nombre": "Salida",
+        "PrecioCompra": null,
+        "PrecioAlquiler": null,
+        "Monto": null,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 1,
+        "Tipo": "provincia",
+        "Nombre": "Buenos Aires",
+        "PrecioCompra": 300000.0,
+        "PrecioAlquiler": 25000.0,
+        "Monto": null,
+        "DniPropietario": "41601451"
+      },
+      {
+        "NroCasillero": 2,
+        "Tipo": "provincia",
+        "Nombre": "Catamarca",
+        "PrecioCompra": 120000.0,
+        "PrecioAlquiler": 10000.0,
+        "Monto": null,
+        "DniPropietario": "41601451"
+      },
+      {
+        "NroCasillero": 3,
+        "Tipo": "provincia",
+        "Nombre": "Chaco",
+        "PrecioCompra": 150000.0,
+        "PrecioAlquiler": 12000.0,
+        "Monto": null,
+        "DniPropietario": "41601451"
+      },
+      {
+        "NroCasillero": 4,
+        "Tipo": "multa",
+        "Nombre": "Multa",
+        "PrecioCompra": null,
+        "PrecioAlquiler": null,
+        "Monto": 5000.0,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 5,
+        "Tipo": "provincia",
+        "Nombre": "Chubut",
+        "PrecioCompra": 180000.0,
+        "PrecioAlquiler": 15000.0,
+        "Monto": null,
+        "DniPropietario": "41601451"
+      },
+      {
+        "NroCasillero": 6,
+        "Tipo": "provincia",
+        "Nombre": "Córdoba",
+        "PrecioCompra": 250000.0,
+        "PrecioAlquiler": 20000.0,
+        "Monto": null,
+        "DniPropietario": "41234567"
+      },
+      {
+        "NroCasillero": 7,
+        "Tipo": "provincia",
+        "Nombre": "Corrientes",
+        "PrecioCompra": 160000.0,
+        "PrecioAlquiler": 13000.0,
+        "Monto": null,
+        "DniPropietario": "41601451"
+      },
+      {
+        "NroCasillero": 8,
+        "Tipo": "multa",
+        "Nombre": "Multa",
+        "PrecioCompra": null,
+        "PrecioAlquiler": null,
+        "Monto": 10000.0,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 9,
+        "Tipo": "provincia",
+        "Nombre": "Entre Ríos",
+        "PrecioCompra": 170000.0,
+        "PrecioAlquiler": 14000.0,
+        "Monto": null,
+        "DniPropietario": "41601451"
+      },
+      {
+        "NroCasillero": 10,
+        "Tipo": "provincia",
+        "Nombre": "Formosa",
+        "PrecioCompra": 130000.0,
+        "PrecioAlquiler": 11000.0,
+        "Monto": null,
+        "DniPropietario": "41234567"
+      },
+      {
+        "NroCasillero": 11,
+        "Tipo": "premio",
+        "Nombre": "Premio Banco",
+        "PrecioCompra": null,
+        "PrecioAlquiler": null,
+        "Monto": 50000.0,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 12,
+        "Tipo": "provincia",
+        "Nombre": "Jujuy",
+        "PrecioCompra": 140000.0,
+        "PrecioAlquiler": 12000.0,
+        "Monto": null,
+        "DniPropietario": "41234567"
+      },
+      {
+        "NroCasillero": 13,
+        "Tipo": "provincia",
+        "Nombre": "La Pampa",
+        "PrecioCompra": 150000.0,
+        "PrecioAlquiler": 13000.0,
+        "Monto": null,
+        "DniPropietario": "41601451"
+      },
+      {
+        "NroCasillero": 14,
+        "Tipo": "multa",
+        "Nombre": "Multa",
+        "PrecioCompra": null,
+        "PrecioAlquiler": null,
+        "Monto": 15000.0,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 15,
+        "Tipo": "provincia",
+        "Nombre": "La Rioja",
+        "PrecioCompra": 125000.0,
+        "PrecioAlquiler": 10000.0,
+        "Monto": null,
+        "DniPropietario": "41234567"
+      },
+      {
+        "NroCasillero": 16,
+        "Tipo": "provincia",
+        "Nombre": "Mendoza",
+        "PrecioCompra": 220000.0,
+        "PrecioAlquiler": 18000.0,
+        "Monto": null,
+        "DniPropietario": "41234567"
+      },
+      {
+        "NroCasillero": 17,
+        "Tipo": "provincia",
+        "Nombre": "Misiones",
+        "PrecioCompra": 160000.0,
+        "PrecioAlquiler": 13000.0,
+        "Monto": null,
+        "DniPropietario": "41234567"
+      },
+      {
+        "NroCasillero": 18,
+        "Tipo": "premio",
+        "Nombre": "Premio Banco",
+        "PrecioCompra": null,
+        "PrecioAlquiler": null,
+        "Monto": 100000.0,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 19,
+        "Tipo": "provincia",
+        "Nombre": "Neuquén",
+        "PrecioCompra": 200000.0,
+        "PrecioAlquiler": 17000.0,
+        "Monto": null,
+        "DniPropietario": "41601451"
+      },
+      {
+        "NroCasillero": 20,
+        "Tipo": "provincia",
+        "Nombre": "Río Negro",
+        "PrecioCompra": 190000.0,
+        "PrecioAlquiler": 16000.0,
+        "Monto": null,
+        "DniPropietario": "41234567"
+      },
+      {
+        "NroCasillero": 21,
+        "Tipo": "multa",
+        "Nombre": "Multa",
+        "PrecioCompra": null,
+        "PrecioAlquiler": null,
+        "Monto": 20000.0,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 22,
+        "Tipo": "provincia",
+        "Nombre": "Salta",
+        "PrecioCompra": 140000.0,
+        "PrecioAlquiler": 12000.0,
+        "Monto": null,
+        "DniPropietario": "41234567"
+      },
+      {
+        "NroCasillero": 23,
+        "Tipo": "provincia",
+        "Nombre": "San Juan",
+        "PrecioCompra": 180000.0,
+        "PrecioAlquiler": 15000.0,
+        "Monto": null,
+        "DniPropietario": "41234567"
+      },
+      {
+        "NroCasillero": 24,
+        "Tipo": "provincia",
+        "Nombre": "San Luis",
+        "PrecioCompra": 170000.0,
+        "PrecioAlquiler": 14000.0,
+        "Monto": null,
+        "DniPropietario": "41601451"
+      },
+      {
+        "NroCasillero": 25,
+        "Tipo": "multa",
+        "Nombre": "Multa",
+        "PrecioCompra": null,
+        "PrecioAlquiler": null,
+        "Monto": 25000.0,
+        "DniPropietario": null
+      },
+      {
+        "NroCasillero": 26,
+        "Tipo": "provincia",
+        "Nombre": "Santa Cruz",
+        "PrecioCompra": 200000.0,
+        "PrecioAlquiler": 17000.0,
+        "Monto": null,
+        "DniPropietario": "41601451"
+      },
+      {
+        "NroCasillero": 27,
+        "Tipo": "provincia",
+        "Nombre": "Santa Fe",
+        "PrecioCompra": 240000.0,
+        "PrecioAlquiler": 20000.0,
+        "Monto": null,
+        "DniPropietario": "41234567"
+      },
+      {
+        "NroCasillero": 28,
+        "Tipo": "provincia",
+        "Nombre": "Santiago del Estero",
+        "PrecioCompra": 150000.0,
+        "PrecioAlquiler": 12000.0,
+        "Monto": null,
+        "DniPropietario": "41234567"
+      },
+      {
+        "NroCasillero": 29,
+        "Tipo": "provincia",
+        "Nombre": "Tierra del Fuego",
+        "PrecioCompra": 210000.0,
+        "PrecioAlquiler": 18000.0,
+        "Monto": null,
+        "DniPropietario": "41601451"
+      },
+      {
+        "NroCasillero": 30,
+        "Tipo": "provincia",
+        "Nombre": "Tucumán",
+        "PrecioCompra": 180000.0,
+        "PrecioAlquiler": 15000.0,
+        "Monto": null,
+        "DniPropietario": "41601451"
+      }
+    ],
+    "Jugadores": [
+      {
+        "NumeroPartida": 5,
+        "DniJugador": 41601451,
+        "PosicionActual": 13,
+        "DineroDisponible": 3001000.0,
+        "Estado": 0,
+        "HistorialMovimientos": [
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:34:57.0702307-03:00",
+            "Tipo": "Compra",
+            "Monto": 150000.0,
+            "Casillero": 3
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:35:04.4470612-03:00",
+            "Tipo": "Compra",
+            "Monto": 160000.0,
+            "Casillero": 7
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:35:15.193044-03:00",
+            "Tipo": "Compra",
+            "Monto": 170000.0,
+            "Casillero": 9
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:35:19.5602449-03:00",
+            "Tipo": "Pago",
+            "Monto": 12000.0,
+            "Casillero": 12
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:35:56.6075187-03:00",
+            "Tipo": "Pago",
+            "Monto": 10000.0,
+            "Casillero": 15
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:36:01.6261896-03:00",
+            "Tipo": "Compra",
+            "Monto": 200000.0,
+            "Casillero": 19
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:36:05.8689494-03:00",
+            "Tipo": "Compra",
+            "Monto": 170000.0,
+            "Casillero": 24
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:37:42.9542996-03:00",
+            "Tipo": "Cobro",
+            "Monto": 14000.0,
+            "Casillero": 24
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:37:44.9776467-03:00",
+            "Tipo": "Compra",
+            "Monto": 210000.0,
+            "Casillero": 29
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:37:49.6804302-03:00",
+            "Tipo": "Compra",
+            "Monto": 180000.0,
+            "Casillero": 30
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:37:51.5016989-03:00",
+            "Tipo": "Cobro",
+            "Monto": 15000.0,
+            "Casillero": 30
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:37:54.7143917-03:00",
+            "Tipo": "Cobro",
+            "Monto": 12000.0,
+            "Casillero": 3
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:37:56.7843117-03:00",
+            "Tipo": "Pago",
+            "Monto": 20000.0,
+            "Casillero": 6
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:38:00.051295-03:00",
+            "Tipo": "Pago",
+            "Monto": 10000.0,
+            "Casillero": 8
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:38:07.7592007-03:00",
+            "Tipo": "Pago",
+            "Monto": 12000.0,
+            "Casillero": 12
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:38:10.7835605-03:00",
+            "Tipo": "Pago",
+            "Monto": 10000.0,
+            "Casillero": 15
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:38:15.0268667-03:00",
+            "Tipo": "Cobro",
+            "Monto": 100000.0,
+            "Casillero": 18
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:38:23.0331218-03:00",
+            "Tipo": "Compra",
+            "Monto": 200000.0,
+            "Casillero": 26
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:38:27.3924456-03:00",
+            "Tipo": "Compra",
+            "Monto": 300000.0,
+            "Casillero": 1
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:38:28.9330126-03:00",
+            "Tipo": "Cobro",
+            "Monto": 12000.0,
+            "Casillero": 3
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:38:30.7596751-03:00",
+            "Tipo": "Compra",
+            "Monto": 180000.0,
+            "Casillero": 5
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:38:33.7875692-03:00",
+            "Tipo": "Pago",
+            "Monto": 10000.0,
+            "Casillero": 8
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:38:36.2060364-03:00",
+            "Tipo": "Pago",
+            "Monto": 15000.0,
+            "Casillero": 14
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:38:38.8686262-03:00",
+            "Tipo": "Cobro",
+            "Monto": 100000.0,
+            "Casillero": 18
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:38:40.957877-03:00",
+            "Tipo": "Pago",
+            "Monto": 12000.0,
+            "Casillero": 22
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:38:43.2496629-03:00",
+            "Tipo": "Pago",
+            "Monto": 12000.0,
+            "Casillero": 28
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:38:49.4659045-03:00",
+            "Tipo": "Compra",
+            "Monto": 120000.0,
+            "Casillero": 2
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:38:52.975923-03:00",
+            "Tipo": "Cobro",
+            "Monto": 17000.0,
+            "Casillero": 26
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:38:55.564065-03:00",
+            "Tipo": "Cobro",
+            "Monto": 15000.0,
+            "Casillero": 30
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:38:56.868303-03:00",
+            "Tipo": "Cobro",
+            "Monto": 50000.0,
+            "Casillero": 11
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:38:58.0131881-03:00",
+            "Tipo": "Cobro",
+            "Monto": 12000.0,
+            "Casillero": 3
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:38:59.1026504-03:00",
+            "Tipo": "Pago",
+            "Monto": 10000.0,
+            "Casillero": 15
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:39:01.2548883-03:00",
+            "Tipo": "Pago",
+            "Monto": 20000.0,
+            "Casillero": 21
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:39:09.8278371-03:00",
+            "Tipo": "Pago",
+            "Monto": 20000.0,
+            "Casillero": 6
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:39:13.8904442-03:00",
+            "Tipo": "Cobro",
+            "Monto": 17000.0,
+            "Casillero": 26
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:39:15.1058221-03:00",
+            "Tipo": "Compra",
+            "Monto": 150000.0,
+            "Casillero": 13
+          }
+        ]
+      },
+      {
+        "NumeroPartida": 5,
+        "DniJugador": 41234567,
+        "PosicionActual": 26,
+        "DineroDisponible": 3169000.0,
+        "Estado": 0,
+        "HistorialMovimientos": [
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:35:01.9805575-03:00",
+            "Tipo": "Compra",
+            "Monto": 250000.0,
+            "Casillero": 6
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:35:11.9328532-03:00",
+            "Tipo": "Compra",
+            "Monto": 140000.0,
+            "Casillero": 12
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:35:17.7287541-03:00",
+            "Tipo": "Compra",
+            "Monto": 125000.0,
+            "Casillero": 15
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:35:19.5602466-03:00",
+            "Tipo": "Cobro",
+            "Monto": 12000.0,
+            "Casillero": 12
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:35:21.3150186-03:00",
+            "Tipo": "Compra",
+            "Monto": 190000.0,
+            "Casillero": 20
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:35:56.6075209-03:00",
+            "Tipo": "Cobro",
+            "Monto": 10000.0,
+            "Casillero": 15
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:35:59.3205513-03:00",
+            "Tipo": "Compra",
+            "Monto": 140000.0,
+            "Casillero": 22
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:36:04.1308008-03:00",
+            "Tipo": "Compra",
+            "Monto": 180000.0,
+            "Casillero": 23
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:37:42.9541452-03:00",
+            "Tipo": "Pago",
+            "Monto": 14000.0,
+            "Casillero": 24
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:37:47.5464946-03:00",
+            "Tipo": "Compra",
+            "Monto": 240000.0,
+            "Casillero": 27
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:37:51.5016972-03:00",
+            "Tipo": "Pago",
+            "Monto": 15000.0,
+            "Casillero": 30
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:37:54.7143899-03:00",
+            "Tipo": "Pago",
+            "Monto": 12000.0,
+            "Casillero": 3
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:37:56.7843133-03:00",
+            "Tipo": "Cobro",
+            "Monto": 20000.0,
+            "Casillero": 6
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:37:58.3701592-03:00",
+            "Tipo": "Pago",
+            "Monto": 10000.0,
+            "Casillero": 8
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:38:02.188758-03:00",
+            "Tipo": "Cobro",
+            "Monto": 50000.0,
+            "Casillero": 11
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:38:05.6307801-03:00",
+            "Tipo": "Compra",
+            "Monto": 220000.0,
+            "Casillero": 16
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:38:07.7592024-03:00",
+            "Tipo": "Cobro",
+            "Monto": 12000.0,
+            "Casillero": 12
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:38:09.245099-03:00",
+            "Tipo": "Compra",
+            "Monto": 160000.0,
+            "Casillero": 17
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:38:10.7835627-03:00",
+            "Tipo": "Cobro",
+            "Monto": 10000.0,
+            "Casillero": 15
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:38:16.677861-03:00",
+            "Tipo": "Pago",
+            "Monto": 25000.0,
+            "Casillero": 25
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:38:24.8878421-03:00",
+            "Tipo": "Compra",
+            "Monto": 150000.0,
+            "Casillero": 28
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:38:28.9330099-03:00",
+            "Tipo": "Pago",
+            "Monto": 12000.0,
+            "Casillero": 3
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:38:31.902797-03:00",
+            "Tipo": "Pago",
+            "Monto": 10000.0,
+            "Casillero": 8
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:38:34.9485851-03:00",
+            "Tipo": "Cobro",
+            "Monto": 50000.0,
+            "Casillero": 11
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:38:37.6743009-03:00",
+            "Tipo": "Pago",
+            "Monto": 15000.0,
+            "Casillero": 14
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:38:40.9578777-03:00",
+            "Tipo": "Cobro",
+            "Monto": 12000.0,
+            "Casillero": 22
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:38:43.2496635-03:00",
+            "Tipo": "Cobro",
+            "Monto": 12000.0,
+            "Casillero": 28
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:38:44.4212997-03:00",
+            "Tipo": "Cobro",
+            "Monto": 100000.0,
+            "Casillero": 18
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:38:48.1987435-03:00",
+            "Tipo": "Pago",
+            "Monto": 20000.0,
+            "Casillero": 21
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:38:52.9759225-03:00",
+            "Tipo": "Pago",
+            "Monto": 17000.0,
+            "Casillero": 26
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:38:55.5640645-03:00",
+            "Tipo": "Pago",
+            "Monto": 15000.0,
+            "Casillero": 30
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:38:58.0131876-03:00",
+            "Tipo": "Pago",
+            "Monto": 12000.0,
+            "Casillero": 3
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:38:59.1026508-03:00",
+            "Tipo": "Cobro",
+            "Monto": 10000.0,
+            "Casillero": 15
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:39:00.1728457-03:00",
+            "Tipo": "Pago",
+            "Monto": 10000.0,
+            "Casillero": 8
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:39:02.2238743-03:00",
+            "Tipo": "Compra",
+            "Monto": 130000.0,
+            "Casillero": 10
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:39:08.6013313-03:00",
+            "Tipo": "Pago",
+            "Monto": 20000.0,
+            "Casillero": 21
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:39:09.8278379-03:00",
+            "Tipo": "Cobro",
+            "Monto": 20000.0,
+            "Casillero": 6
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-29T21:39:13.8904432-03:00",
+            "Tipo": "Pago",
+            "Monto": 17000.0,
+            "Casillero": 26
+          }
+        ]
+      }
+    ],
+    "DniGanador": 41601451,
+    "MotivoVictoria": "Ganó por obtener 12 provincias"
   }
 ]

@@ -3,6 +3,8 @@ using EstancieroEntity;
 using EstancieroRequest;
 using EstancieroResponse;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Schema;
+using System.Runtime.CompilerServices;
 using System.Transactions;
 
 namespace EstancieroService
@@ -208,7 +210,7 @@ namespace EstancieroService
                 if (partida.Estado != (int)EstadoPartida.EnJuego)
                 {
                     response.Success = false;
-                    response.Message = "La partida no está en juego";
+                    response.Message = "La partida no está en juego, el ganador fue " + partida.DniGanador;
                     return response;
                 }
                 ValidarPartidaEnJuego(partida);
@@ -228,42 +230,101 @@ namespace EstancieroService
                 }
 
                 int valorDado = Random.Shared.Next(1, 7);
-                int posOrigen = jugador.PosicionActual;
-                int posDestino = (jugador.PosicionActual + valorDado);
-                jugador.PosicionActual = posDestino % partida.Tablero.Count;
-                jugador.HistorialMovimientos ??= new List<Movimiento>();
-                var movimiento = new Movimiento
-                {
-                    Id = (jugador.HistorialMovimientos.Count > 0) ? jugador.HistorialMovimientos.Max(m => m.Id) + 1 : 1,
-                    Fecha = DateTime.Now,
-                    Descripcion = $"Lanzó el dado y avanzó de {posOrigen} a {jugador.PosicionActual}",
-                };
-                jugador.HistorialMovimientos.Add(movimiento);
+                var nuevoCasillero = ( jugador.PosicionActual + valorDado ) % partida.Tablero.Count;
 
-                var casillero = ObtenerCasilleroActual(partida, request.DniJugador) ?? partida.Tablero[jugador.PosicionActual];
+                jugador.PosicionActual = nuevoCasillero;
 
-                if (casillero != null)
+                var casillero = partida.Tablero[nuevoCasillero];
+
+                if ( casillero.Tipo == TipoCasillero.Multa.ToString( ).ToLower() )
                 {
-                    CasilleroEspecial(partida, jugador, casillero);
+                    jugador.DineroDisponible -= ( double ) casillero.Monto;
+
+                    jugador.HistorialMovimientos.Add( new Movimiento
+                    {
+                        Fecha = DateTime.Now,
+                        Tipo = "Pago",
+                        Monto = casillero.Monto,
+                        Casillero = nuevoCasillero
+                    } );
                 }
 
-                if (casillero.DniPropietario != null && casillero.DniPropietario != jugador.DniJugador.ToString())
+                else if ( casillero.Tipo == TipoCasillero.Premio.ToString().ToLower( ) )
                 {
-                    var propietario = partida.Jugadores.FirstOrDefault(j => j.DniJugador.ToString() == casillero.DniPropietario);
-                    if (propietario != null && casillero.PrecioAlquiler.HasValue)
+                    jugador.DineroDisponible += ( double ) casillero.Monto;
+
+                    jugador.HistorialMovimientos.Add( new Movimiento
                     {
-                        double montoAlquiler = casillero.PrecioAlquiler.Value;
-                        Debitar(jugador, montoAlquiler, $"Pago de alquiler a {propietario.DniJugador} por {casillero.Nombre}");
-                        Acreditar(propietario, montoAlquiler, $"Recibió alquiler de {jugador.DniJugador} por {casillero.Nombre}");
-                        MarcarDerrotadoSiSaldoNoPositivo(jugador, partida);
+                        Fecha = DateTime.Now,
+                        Tipo = "Cobro",
+                        Monto = casillero.Monto,
+                        Casillero = nuevoCasillero
+                    } );
+                }
+                else
+                {
+                    if ( casillero.DniPropietario != null )
+                    {
+                        var propietario = partida.Jugadores.FirstOrDefault( j => j.DniJugador.ToString( ) == casillero.DniPropietario );
+
+                        if ( propietario != null && propietario.DniJugador != jugador.DniJugador )
+                        {
+                            jugador.DineroDisponible -= ( double ) casillero.PrecioAlquiler;
+                            propietario.DineroDisponible += ( double ) casillero.PrecioAlquiler;
+
+                            jugador.HistorialMovimientos.Add( new Movimiento
+                            {
+                                Fecha = DateTime.Now,
+                                Tipo = "Pago",
+                                Monto = casillero.PrecioAlquiler,
+                                Casillero = nuevoCasillero
+                            } );
+
+                            propietario.HistorialMovimientos.Add( new Movimiento
+                            {
+                                Fecha = DateTime.Now,
+                                Tipo = "Cobro",
+                                Monto = casillero.PrecioAlquiler,
+                                Casillero = nuevoCasillero
+                            } );
+
+                            partida.ActualizarJugador( propietario );
+                        }
+                    }
+                    else
+                    {
+                        casillero.DniPropietario = jugador.DniJugador.ToString( );
+                        jugador.DineroDisponible -= ( double ) casillero.PrecioCompra;
+
+                        jugador.HistorialMovimientos.Add( new Movimiento
+                        {
+                            Fecha = DateTime.Now,
+                            Tipo = "Compra",
+                            Monto = casillero.PrecioCompra,
+                            Casillero = nuevoCasillero
+                        } );
+
+                        partida.ActualizarCasillero( casillero );
                     }
                 }
 
-                MarcarDerrotadoSiSaldoNoPositivo(jugador, partida);
+                if ( jugador.DineroDisponible < 0 )
+                {
+                    jugador.Estado = ( int ) EstadoJugador.Derrotado;
+                    partida.DniGanador = partida.Jugadores.First( j => j.DniJugador != jugador.DniJugador ).DniJugador;
+                    partida.MotivoVictoria = "Ganó por ser el único jugador con saldo positivo";
+                    partida.Estado = ( int ) EstadoPartida.Finalizada;
+                }
+                else if ( partida.Tablero.Where( x => x.DniPropietario == jugador.DniJugador.ToString() ).Count() >= 12 )
+                {
+                    partida.DniGanador = jugador.DniJugador;
+                    partida.MotivoVictoria = "Ganó por obtener 12 provincias";
+                    partida.Estado = ( int ) EstadoPartida.Finalizada;
+                }
 
+                partida.ActualizarJugador( jugador );
                 partida.TurnoActual = (partida.TurnoActual + 1) % 2;
                 
-                _partidaDetalleData.EscribirDetalle(partida.NumeroPartida, jugador.DniJugador, movimiento);
                 _partidaData.WritePartida(partida);
 
                 response.Success = true;
@@ -302,7 +363,6 @@ namespace EstancieroService
                 DineroDisponible = x.DineroDisponible,
                 PosicionActual = x.PosicionActual,
                 DniJugador = x.DniJugador,
-                Estado = (EstadoJugador) x.Estado
             } ).ToList();
 
             response.Data = jugadores;
@@ -310,6 +370,7 @@ namespace EstancieroService
 
             return response;
         }
+
         public ApiResponse<PartidaResponse> TerminarTurno(TerminarTurnoRequest request)
         {
             var response = new ApiResponse<PartidaResponse>();
@@ -355,144 +416,6 @@ namespace EstancieroService
             response.Data = MapearPartida(partida);
 
             return response;
-        }
-        public ApiResponse<AccionResponse> ComprarPropiedad(ComprarPropiedadRequest request)
-        {
-            var response = new ApiResponse<AccionResponse>();
-            var partida = _partidaData.GetAll().FirstOrDefault(p => p.NumeroPartida == request.PropiedadId);
-
-            if (partida == null)
-            {
-                response.Success = false;
-                response.Message = "Partida no encontrada";
-                return response;
-            }
-            var jugador = partida.Jugadores.FirstOrDefault(j => j.DniJugador == request.DniJugador);
-            if (jugador == null)
-            {
-                response.Success = false;
-                response.Message = "Jugador no encontrado en la partida";
-                return response;
-            }
-            var casillero = partida.Tablero.FirstOrDefault(c => c.NroCasillero == jugador.PosicionActual);
-            if (casillero == null || casillero.PrecioCompra == null)
-            {
-                response.Success = false;
-                response.Message = "No hay propiedad para comprar en este casillero";
-                return response;
-            }
-            if (casillero.DniPropietario != null)
-            {
-                response.Success = false;
-                response.Message = "La propiedad ya tiene un propietario";
-                return response;
-            }
-            if (jugador.DineroDisponible < casillero.PrecioCompra)
-            {
-                response.Success = false;
-                response.Message = "El jugador no tiene suficiente dinero para comprar esta propiedad";
-                return response;
-            }
-            jugador.DineroDisponible -= casillero.PrecioCompra.Value;
-            casillero.DniPropietario = jugador.DniJugador.ToString();
-            jugador.HistorialMovimientos.Add(new Movimiento
-            {
-                Fecha = DateTime.Now,
-                Tipo = 1, // Tipo personalizado para compra de propiedad
-                Descripcion = $"Compró la propiedad {casillero.Nombre}",
-                Monto = -casillero.PrecioCompra,
-                CasilleroOrigen = jugador.PosicionActual,
-                CasilleroDestino = jugador.PosicionActual,
-                DniJugadorAfectado = jugador.DniJugador
-            });
-            _partidaData.WritePartida(partida);
-            response.Success = true;
-            response.Message = "Propiedad comprada exitosamente";
-            response.Data = new AccionResponse
-            {
-                Id = casillero.NroCasillero,
-                Nombre = casillero.Nombre,
-                Descripcion = "Compra realizada con éxito"
-            };
-
-            return response;
-        }
-        private void Acreditar(JugadorEnPartida jugador, double monto, string concepto) 
-        {
-            jugador.DineroDisponible += monto;
-            jugador.HistorialMovimientos.Add(new Movimiento
-            {
-                Fecha = DateTime.Now,
-                Tipo = 1, // Tipo personalizado para crédito
-                Descripcion = concepto,
-                Monto = monto,
-                CasilleroOrigen = jugador.PosicionActual,
-                CasilleroDestino = jugador.PosicionActual,
-                DniJugadorAfectado = jugador.DniJugador
-            });
-        }
-        private void Debitar(JugadorEnPartida jugador, double monto, string concepto)
-        {
-            jugador.DineroDisponible -= monto;
-            jugador.HistorialMovimientos.Add(new Movimiento
-            {
-                Fecha = DateTime.Now,
-                Tipo = 2, // Tipo personalizado para débito
-                Descripcion = concepto,
-                Monto = -monto,
-                CasilleroOrigen = jugador.PosicionActual,
-                CasilleroDestino = jugador.PosicionActual,
-                DniJugadorAfectado = jugador.DniJugador
-            });
-        }
-        private void MarcarDerrotadoSiSaldoNoPositivo(JugadorEnPartida jugador, Partida partida)
-        {
-            
-            if (jugador.DineroDisponible <= 0 && jugador.Estado != (int)EstadoJugador.Derrotado)
-            {
-              
-                var propiedades = partida.Tablero
-                    .Where(c => c.DniPropietario != null && int.TryParse(c.DniPropietario, out var dni) && dni == jugador.DniJugador)
-                    .ToList();
-
-                if (propiedades.Any())
-                {
-                    // aca es donde les decia si quieren hacer lo de que venda las propiedades automaticamente o las elija o no se como quieren hacer
-                    foreach (var propiedad in propiedades.OrderBy(p => p.PrecioCompra ?? 0))
-                    {
-                        if (jugador.DineroDisponible > 0) break;
-                        double montoVenta = propiedad.PrecioCompra ?? 0;
-                        jugador.DineroDisponible += montoVenta;
-                        propiedad.DniPropietario = null; 
-                        jugador.HistorialMovimientos.Add(new Movimiento
-                        {
-                            Fecha = DateTime.Now,
-                            Tipo = 100, // Tipo personalizado para venta de propiedad
-                            Descripcion = $"Venta automática de propiedad {propiedad.Nombre}",
-                            Monto = montoVenta,
-                            CasilleroOrigen = propiedad.NroCasillero,
-                            CasilleroDestino = propiedad.NroCasillero,
-                            DniJugadorAfectado = jugador.DniJugador
-                        });
-                    }
-                }
-
-               
-                if (jugador.DineroDisponible <= 0)
-                {
-                    jugador.Estado = (int)EstadoJugador.Derrotado;
-                    jugador.HistorialMovimientos.Add(new Movimiento
-                    {
-                        Fecha = DateTime.Now,
-                        Tipo = 99, 
-                        Descripcion = "Jugador derrotado por saldo no positivo",
-                        Monto = jugador.DineroDisponible,
-                        CasilleroOrigen = jugador.PosicionActual,
-                        CasilleroDestino = jugador.PosicionActual,
-                        DniJugadorAfectado = jugador.DniJugador
-                    });
-                }
-            }
         }
         private void EvaluarGanadorYFinalizarSiCorresponde(Partida partida)
         {
@@ -544,50 +467,6 @@ namespace EstancieroService
             }
             return false;
         }
-        private bool CalcularGanadorPorMayorSaldo(Partida partida)
-        {
-           
-            var jugadoresConSaldo = partida.Jugadores
-                .Where(j => j.Estado != (int)EstadoJugador.Derrotado)
-                .Select(j => new{Jugador = j, SaldoTotal = j.DineroDisponible + partida.Tablero.Where(c => c.DniPropietario != null
-                                        && int.TryParse(c.DniPropietario, out var dniProp)
-                                        && dniProp == j.DniJugador
-                                        && c.PrecioCompra.HasValue).Sum(c => c.PrecioCompra.Value)}).ToList();
-
-            
-            if (!jugadoresConSaldo.Any())
-                return false;
-
-            
-            var maxSaldo = jugadoresConSaldo.Max(j => j.SaldoTotal);
-            var ganadores = jugadoresConSaldo.Where(j => j.SaldoTotal == maxSaldo).ToList();
-
-            
-            if (ganadores.Count == 1)
-            {
-                var ganador = ganadores.First().Jugador;
-                partida.DniGanador = ganador.DniJugador;
-                partida.MotivoVictoria = "Ganó por tener el mayor saldo sumando dinero y propiedades";
-                partida.Estado = (int)EstadoPartida.Finalizada;
-                partida.FechaFin = DateTime.Now;
-                return true;
-            }
-            return false;
-        }
-        private CasilleroTablero ObtenerCasilleroActual(Partida partida, int dniJugador)
-        {
-            var jugador = partida.Jugadores.FirstOrDefault(j => j.DniJugador == dniJugador);
-            if (jugador == null)
-            {
-                return null;
-            }
-            int posicionActual = jugador.PosicionActual;
-            if (posicionActual < 0 || posicionActual >= partida.Tablero.Count)
-            {
-                return null;
-            }
-            return partida.Tablero[posicionActual];
-        }
         private void ValidarPartidaEnJuego(Partida partida)
         {
             if (partida.Estado != (int)EstadoPartida.EnJuego)
@@ -599,52 +478,7 @@ namespace EstancieroService
         {
             return partida.Jugadores[partida.TurnoActual].DniJugador == dniJugador;
         }
-        private void ActualizarStatsUsuarios(Partida partida)
-        { }
-        private void CasilleroEspecial(Partida partida, JugadorEnPartida jugador, CasilleroTablero casillero)
-        {
-            if (casillero.TipoCasillero != (int)TipoCasillero.Provincia)
-            {
-                double monto = 0;
-                string descripcion = "";
-                if (casillero.TipoCasillero == (int)TipoCasillero.Multa)
-                {
-                    switch (casillero.NroCasillero)
-                    {
-                        case 4: monto = 5000; break;
-                        case 8: monto = 10000; break;
-                        case 14: monto = 14000; break;
-                        case 21: monto = 20000; break;
-                        case 25: monto = 25000; break;
-                        default: monto = casillero.MontoSancion ?? 0; break;
-                    }
-                    jugador.DineroDisponible -= monto;
-                    descripcion = $"Cayó en casillero de multa y se le descuenta ${monto}";
-                }
-                else if (casillero.TipoCasillero == (int)TipoCasillero.Premio) 
-                {
-                    switch (casillero.NroCasillero)
-                    {
-                        case 11: monto = 5000; break;
-                        case 18: monto = 100000; break;
-                        default: monto = casillero.Monto ?? 0; break;
-                    }
-                    jugador.DineroDisponible += monto;
-                    descripcion = $"Cayó en casillero de premio y se le acredita ${monto}";
-                }
-
-                jugador.HistorialMovimientos.Add(new Movimiento
-                {
-                    Fecha = DateTime.Now,
-                    Tipo = casillero.TipoCasillero,
-                    Descripcion = descripcion,
-                    Monto = (casillero.TipoCasillero == 2 ? -monto : monto),
-                    CasilleroOrigen = jugador.PosicionActual,
-                    CasilleroDestino = jugador.PosicionActual,
-                    DniJugadorAfectado = jugador.DniJugador
-                });
-            }
-        }
+       
         private int GenerarNumeroPartida()
         {
             var partidas = _partidaData.GetAll();
