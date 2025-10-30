@@ -65,6 +65,12 @@ async function cargarJugadoresRegistrados() {
 document.addEventListener("DOMContentLoaded", function(event) {
     console.log("Página de partida cargada correctamente");
     inicializarPartida();
+    const ud = sessionStorage.getItem('ultimoDado');
+    if (ud !== null) {
+        const spanUltimo = document.getElementById('ultimoDado');
+    if (spanUltimo) spanUltimo.textContent = ud;
+        sessionStorage.removeItem('ultimoDado');
+    }
 });
 
 // Funciones para la página de partida
@@ -138,7 +144,6 @@ async function cargarDetallesJugadores() {
     }
     
     try {
-        // Usar el nuevo endpoint para obtener todos los detalles de la partida
         const response = await fetch(`${API_BASE_URL}Partida/${numeroPartidaActual}/Jugadores`, {
             method: 'GET',
             headers: {
@@ -187,8 +192,6 @@ function actualizarEstadoPartida(estado) {
     const btnPausar = document.getElementById('btnPausar');
     const btnReanudar = document.getElementById('btnReanudar');
     const btnSuspender = document.getElementById('btnSuspender')
-    
-    console.log(estado)
 
     if (estado === 0) {
         btnReanudar.disabled = true;
@@ -279,6 +282,9 @@ async function lanzarDado() {
         // La respuesta contiene la información del dado lanzado
         const resultadoDado = apiResponse.data;
         
+        if (resultadoDado && resultadoDado.valorDado != null) {
+              sessionStorage.setItem('ultimoDado', String(resultadoDado.valorDado));
+        }
         // Mostrar popup con el resultado del dado
         const mensajePopup = `El jugador ${resultadoDado.dniJugador} ha lanzado el dado y avanza ${resultadoDado.valorDado} casilleros.`;
         
@@ -390,11 +396,18 @@ function actualizarInterfaz() {
     const btnReanudar = document.getElementById('btnReanudar');
     
     if (partidaActual && partidaActual.estado === 'EnJuego') {
-        
+        btnReanudar.disabled = true;
+        btnLanzarDado.disabled = false;
+        btnPausar.disabled = false;
     } else if (partidaActual && partidaActual.estado === 'Pausada') {
-        //DESABILITAR LO QUE SEA NECESARIO
+        btnReanudar.disabled = false;
+        btnLanzarDado.disabled = true;
+        btnPausar.disabled = true;
     } else if (partidaActual && (partidaActual.estado === 'Suspendida' || partidaActual.estado === 'Finalizada')) {
-        //DESABILITAR LO QUE SEA NECESARIO
+        btnReanudar.disabled = true;
+        btnLanzarDado.disabled = true;
+        btnPausar.disabled = true;
+        btnSuspender.disabled = true;
     }
 }
 

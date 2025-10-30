@@ -69,7 +69,7 @@
         "PrecioCompra": 250000.0,
         "PrecioAlquiler": 20000.0,
         "Monto": null,
-        "DniPropietario": null
+        "DniPropietario": "41601451"
       },
       {
         "NroCasillero": 7,
@@ -222,7 +222,7 @@
         "PrecioCompra": 180000.0,
         "PrecioAlquiler": 15000.0,
         "Monto": null,
-        "DniPropietario": null
+        "DniPropietario": "40123987"
       },
       {
         "NroCasillero": 24,
@@ -292,16 +292,24 @@
       {
         "NumeroPartida": 1,
         "DniJugador": 41601451,
-        "PosicionActual": 0,
-        "DineroDisponible": 5000000.0,
+        "PosicionActual": 6,
+        "DineroDisponible": 4750000.0,
         "Estado": 0,
-        "HistorialMovimientos": []
+        "HistorialMovimientos": [
+          {
+            "Id": 0,
+            "Fecha": "2025-10-30T19:38:36.5813003-03:00",
+            "Tipo": "Compra",
+            "Monto": 250000.0,
+            "Casillero": 6
+          }
+        ]
       },
       {
         "NumeroPartida": 1,
         "DniJugador": 40123987,
-        "PosicionActual": 22,
-        "DineroDisponible": 5000000.0,
+        "PosicionActual": 23,
+        "DineroDisponible": 4820000.0,
         "Estado": 0,
         "HistorialMovimientos": [
           {
@@ -387,6 +395,13 @@
             "Tipo": "0",
             "Monto": 0.0,
             "Casillero": null
+          },
+          {
+            "Id": 0,
+            "Fecha": "2025-10-30T19:26:46.0717977-03:00",
+            "Tipo": "Compra",
+            "Monto": 180000.0,
+            "Casillero": 23
           }
         ]
       }

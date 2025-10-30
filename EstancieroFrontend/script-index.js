@@ -142,7 +142,7 @@ async function continuarPartida() {
     
     try {
         // Verificar que la partida existe
-        const response = await fetch(`URL PARTIDA`, {
+        const response = await fetch(`${API_BASE_URL}Partida/${numeroPartida}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -158,9 +158,9 @@ async function continuarPartida() {
                 alert('Error al cargar la partida: ' + apiResponse.message);
             }
         } else if (response.status === 404) {
-           //COMPLETAR CODIGO PARA MANEJO DE ERROR 404
+            alert('La partida solicitada no existe.');
         } else {
-            //COMPLETAR CODIGO PARA MANEJO DE ERROR
+            alert('Error al obtener la partida.')
         }
         
     } catch (error) {
